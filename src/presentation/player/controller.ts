@@ -23,6 +23,21 @@ export class PlayerController {
       .catch(error => this.handleError(error, res));
   };
 
+  public getPlayerById = async (req: Request, res: Response) => {
+
+    console.log(req)
+
+    const player_id = Number(req.params.player_id);
+
+    if (isNaN(player_id)){
+      return res.status(400).json({message: "player_id must be a number"})
+    }
+
+    this.playerService.getPlayerById(player_id)
+      .then(player => res.status(200).json(player))
+      .catch(error => this.handleError(error, res));
+  };
+  
   public getPlayers = async (req: Request, res: Response) => {
     const { page = 1, limit = 10 } = req.query;
 
@@ -33,4 +48,34 @@ export class PlayerController {
       .then(players => res.status(200).json(players))
       .catch(error => this.handleError(error, res));
   };
+
+  public updatePlayer = async (req: Request, res: Response) => {
+
+    const player_id = Number(req.params.id);
+
+    if (isNaN(player_id)) {
+      return res.status(400).json({ message: "player_id must be a number" });
+    }
+
+    this.playerService.updatePlayer(player_id, req.body)
+      .then(player => res.status(200).json(player))
+      .catch(error => this.handleError(error, res));
+  };
+
+  public deletePlayer = async (req: Request, res: Response) => {
+
+    const player_id = Number(req.params.id);
+
+    if (isNaN(player_id)) {
+      return res.status(400).json({ message: "player_id must be a number" });
+    }
+
+    this.playerService.deletePlayer(player_id)
+      .then(result => res.status(200).json(result))
+      .catch(error => this.handleError(error, res));
+  };
+
+
 }
+
+

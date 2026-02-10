@@ -13,11 +13,22 @@ export class PlayerRoutes {
 
     // Definir las rutas
     router.get('/', playerController.getPlayers);
+    router.get('/:player_id', playerController.getPlayerById)
     router.post(
       '/',
       [AuthMiddleware.validateJWT],
       playerController.createPlayer
     );
+    router.put(
+      '/:id', 
+      [AuthMiddleware.validateJWT], 
+      playerController.updatePlayer
+    );
+    router.delete(
+      '/:id', 
+      [AuthMiddleware.validateJWT], 
+      playerController.deletePlayer);
+
 
     return router;
   }
