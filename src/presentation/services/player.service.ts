@@ -9,7 +9,7 @@ export class PlayerService {
 
   constructor() {}
 
-  async createPlayer(createPlayerDTO: CreatePlayerDTO, user: UserEntity) {
+  async createPlayer(createPlayerDTO: CreatePlayerDTO) {
 
     // Verificamos que el jugador no exista por nombre o player_id
     const playerExist = await PlayerModel.findOne({

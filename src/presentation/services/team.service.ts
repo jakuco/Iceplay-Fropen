@@ -7,7 +7,7 @@ export class TeamService {
 
   constructor() {}
 
-  async createTeam(createTeamDTO: CreateTeamDTO, user: UserEntity) {
+  async createTeam(createTeamDTO: CreateTeamDTO) {
 
     const teamExist = await TeamModel.findOne({
       $or: [
@@ -23,7 +23,6 @@ export class TeamService {
     try {
       const team = new TeamModel({
         ...createTeamDTO,
-        user: user.id
       });
 
       await team.save();

@@ -20,7 +20,7 @@ export class TeamController {
       return res.status(400).json({ message: "Name is required" });
     }
 
-    this.teamService.createTeam(req.body, req.body.user)
+    this.teamService.createTeam(req.body)
       .then(team => res.status(201).json(team))
       .catch(error => this.handleError(error, res));
   };

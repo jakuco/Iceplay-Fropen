@@ -18,7 +18,7 @@ export class PlayerController {
     // aquí solo validas lo mínimo
     if (!req.body?.name) return res.status(400).json({ message: "Name is required" });
 
-    this.playerService.createPlayer(req.body, req.body.user)
+    this.playerService.createPlayer(req.body)
       .then(player => res.status(200).json(player))
       .catch(error => this.handleError(error, res));
   };
