@@ -42,4 +42,41 @@ export class TeamController {
       .then(teams => res.status(200).json(teams))
       .catch(error => this.handleError(error, res));
   };
+
+  public getTeamById = async (req: Request, res: Response) => {
+  const team_id = Number(req.params.team_id);
+
+  if (isNaN(team_id)) {
+    return res.status(400).json({ message: "team_id must be a number" });
+  }
+
+    this.teamService.getTeamById(team_id)
+      .then(team => res.status(200).json(team))
+      .catch(error => this.handleError(error, res));
+  };
+
+public updateTeam = async (req: Request, res: Response) => {
+  const team_id = Number(req.params.team_id);
+
+  if (isNaN(team_id)) {
+    return res.status(400).json({ message: "team_id must be a number" });
+  }
+
+    this.teamService.updateTeam(team_id, req.body)
+      .then(team => res.status(200).json(team))
+      .catch(error => this.handleError(error, res));
+  };
+
+public deleteTeam = async (req: Request, res: Response) => {
+  const team_id = Number(req.params.team_id);
+
+  if (isNaN(team_id)) {
+    return res.status(400).json({ message: "team_id must be a number" });
+  }
+
+    this.teamService.deleteTeam(team_id)
+      .then(result => res.status(200).json(result))
+      .catch(error => this.handleError(error, res));
+  };
+
 }

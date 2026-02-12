@@ -32,7 +32,7 @@ const CoachSchema = new Schema<ICoach>(
     email: {
       type: String,
       required: true,
-      maxlength: 20,
+      maxlength: 40,
       lowercase: true,
       trim: true,
     },

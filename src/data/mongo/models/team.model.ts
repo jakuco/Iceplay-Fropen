@@ -5,6 +5,7 @@ export interface ITeam extends Document {
   name: string;
   shortname: string;
   city: string;
+  coach_id: number;
 }
 
 const TeamSchema = new Schema<ITeam>(
@@ -36,6 +37,11 @@ const TeamSchema = new Schema<ITeam>(
       maxlength: 20,
       trim: true,
     },
+    coach_id: {
+    type: Number,
+    ref: "Coach",
+    required: true
+  }
   },
   { timestamps: true }
 );

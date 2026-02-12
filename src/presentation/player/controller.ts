@@ -27,7 +27,7 @@ export class PlayerController {
 
     console.log(req)
 
-    const player_id = Number(req.params.player_id);
+    const player_id = Number(req.params.id);
 
     if (isNaN(player_id)){
       return res.status(400).json({message: "player_id must be a number"})

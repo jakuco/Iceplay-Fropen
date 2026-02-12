@@ -107,7 +107,7 @@ export class PlayerService {
 
     const player = await PlayerModel
       .findOne({player_id})
-      .populate("team_id") // solo si usas ObjectId + ref
+      //.populate("team_id") // solo si usas ObjectId + ref
       .lean()
       .exec();
 

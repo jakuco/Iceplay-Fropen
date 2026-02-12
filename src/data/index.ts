@@ -4,3 +4,9 @@ export * from './mongo/models/product.model';
 export * from './mongo/models/user.model';
 export * from './mongo/models/player.model';
 export * from './mongo/models/team.model';
+export * from './mongo/models/championship.model'
+export * from './mongo/models/chanpionshipTeam.model'
+export * from './mongo/models/coach.model'
+export * from './mongo/models/match.model'
+export * from './mongo/models/matchPlayer.model'
+export * from './mongo/models/player.model'

@@ -13,11 +13,24 @@ export class TeamRoutes {
 
     router.get('/', teamController.getTeams);
     router.get('/all', teamController.getAllTeams);
-
+    router.get('/:team_id', teamController.getTeamById);
+    
     router.post(
       '/',
       [AuthMiddleware.validateJWT],
       teamController.createTeam
+    );
+
+    router.put(
+      '/:team_id',
+      [AuthMiddleware.validateJWT],
+      teamController.updateTeam
+    );
+
+    router.delete(
+      '/:team_id',
+      [AuthMiddleware.validateJWT],
+      teamController.deleteTeam
     );
 
     return router;

@@ -13,7 +13,7 @@ export class PlayerRoutes {
 
     // Definir las rutas
     router.get('/', playerController.getPlayers);
-    router.get('/:player_id', playerController.getPlayerById)
+    router.get('/:id', playerController.getPlayerById)
     router.post(
       '/',
       [AuthMiddleware.validateJWT],

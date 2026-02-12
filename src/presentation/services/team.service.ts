@@ -93,4 +93,49 @@ export class TeamService {
       throw CustomError.internalServer(`${error}`);
     }
   }
+
+  async getTeamById(team_id: number) { 
+    const team = await TeamModel.findOne({ team_id }).lean().exec(); 
+    
+    if (!team) { 
+      throw CustomError.badRequest("Team not found"); 
+    } 
+    
+    return { 
+      id: team._id, 
+      team_id: team.team_id, 
+      name: team.name, 
+      shortname: team.shortname, 
+      city: team.city 
+    }; 
+  }
+
+  async updateTeam(team_id: number, data: any) {
+    const team = await TeamModel.findOne({ team_id }); 
+    
+    if (!team) {
+       throw CustomError.badRequest("Team not found"); 
+    } try { 
+      Object.assign(team, data); await team.save(); 
+      return { 
+        id: team.id, 
+        team_id: team.team_id, 
+        name: team.name, 
+        shortname: team.shortname, 
+        city: team.city }; 
+      } catch (error) { 
+        throw CustomError.internalServer(`${error}`); 
+      } 
+    }
+
+    async deleteTeam(team_id: number) { 
+      const team = await TeamModel.findOneAndDelete({ team_id }); 
+      if (!team) { 
+        throw CustomError.badRequest("Team not found"); 
+      } 
+
+      return { 
+        message: "Team deleted successfully", 
+        team_id }; 
+      }
 }
