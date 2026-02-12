@@ -4,6 +4,11 @@ import { CategoryRoutes } from './category/routes';
 import { PlayerRoutes } from "./player/routes";
 import { TeamRoutes } from "./team/routes";
 import { CoachRoutes } from './coach/routes';
+import { MatchRoutes } from './match/routes';
+import { ChampionshipModel } from '../data';
+import { ChampionshipRoutes } from './championship/routes';
+import { ChampionshipTeamRoutes } from './championshipTeam/routes';
+import { MatchPlayerRoutes } from './matchPlayer/routes';
 
 export class AppRoutes {
 
@@ -18,6 +23,10 @@ export class AppRoutes {
     router.use('/api/players', PlayerRoutes.routes);
     router.use('/api/teams', TeamRoutes.routes);
     router.use('/api/coaches', CoachRoutes.routes);
+    router.use('/api/matches', MatchRoutes.routes);
+    router.use('/api/championships', ChampionshipRoutes.routes);
+    router.use('/api/championshipTeams', ChampionshipTeamRoutes.routes);
+    router.use('/api/matchPlayers', MatchPlayerRoutes.routes);
     return router;
   }
 

@@ -23,6 +23,7 @@ const MatchPlayerSchema = new Schema<IMatchPlayer>(
     score: {
       type: Number,
       required: true,
+      default: 0
     },
   },
   { timestamps: false }
