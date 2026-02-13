@@ -35,8 +35,10 @@ export class PlayerService {
         id: player.id,
         player_id: player.player_id,
         name: player.name,
+        lastname: player.lastname,
         number: player.number,
-        team_id: player.team_id
+        team_id: player.team_id,
+        statics: player.player_statics
       };
 
     } catch (err) {
@@ -91,10 +93,12 @@ export class PlayerService {
           id: player.id,
           player_id: player.player_id,
           name: player.name,
+          lastname: player.lastname,
           number: player.number,
           team_id: player.team_id,
           primary_position: player.primary_position,
-          home_country: player.home_country
+          home_country: player.home_country,
+          statics: player.player_statics
         }))
       };
 
@@ -120,6 +124,7 @@ export class PlayerService {
       player_id: player.player_id,
       number: player.number,
       name: player.name,
+      lastname: player.lastname,
       weight: player.weight,
       height: player.height,
       primary_position: player.primary_position,
@@ -127,7 +132,8 @@ export class PlayerService {
       home_country: player.home_country,
       state_id: player.state_id,
       type: player.type,
-      team: player.team_id
+      team: player.team_id,
+      statics: player.player_statics
     };
   }
 
@@ -148,6 +154,7 @@ export class PlayerService {
         id: player.id,
         player_id: player.player_id,
         name: player.name,
+        lastname: player.lastname,
         number: player.number,
         team_id: player.team_id
       };

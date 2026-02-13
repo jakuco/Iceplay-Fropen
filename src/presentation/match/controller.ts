@@ -79,19 +79,53 @@ export class MatchController {
       .catch(error => this.handleError(error, res));
   };
 
-  public searchMatches = async (req: Request, res: Response) => {
-
-    console.log("Search query:", req.query);
-    const { championship_id, state, date } = req.query;
+  public searchAllMatches = async (req: Request, res: Response) => {
+    const { championship_id, state, date, match_id } = req.query;
 
     const filters: any = {};
     if (championship_id) filters.championship_id = Number(championship_id);
     if (state) filters.state = Number(state);
-    if (date) filters.date = new Date(date as string);
+    if (match_id) filters.match_id = Number(match_id);
+    if (date) {
+      const start = new Date(date as string);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(date as string);
+      end.setHours(23, 59, 59, 999);
+      filters.date = { $gte: start, $lte: end };
+    }
 
-    this.matchService.searchMatches(filters)
+    this.matchService.searchAllMatches(filters)
       .then(matches => res.status(200).json(matches))
       .catch(error => this.handleError(error, res));
   };
+
+
+  public searchMatches = async (req: Request, res: Response) => {
+  try {
+    const { page = 1, limit = 10, championship_id, state, date, match_id } = req.query;
+    const [error, paginationDTO] = PaginationDTO.create(+page, +limit);
+
+    if (error) return res.status(400).json({ error });
+
+    const filters: any = {};
+    if (championship_id) filters.championship_id = Number(championship_id);
+    if (state) filters.state = Number(state);
+    if (match_id) filters.match_id = Number(match_id);
+    if (date) {
+      const start = new Date(date as string);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(date as string);
+      end.setHours(23, 59, 59, 999);
+      filters.date = { $gte: start, $lte: end };
+    }
+
+    const result = await this.matchService.searchMatches(paginationDTO!, filters);
+    return res.status(200).json(result);
+  } catch (error) {
+    return this.handleError(error, res);
+  }
+};
+
+
 
 }

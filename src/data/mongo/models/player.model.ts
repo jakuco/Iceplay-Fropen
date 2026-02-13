@@ -19,6 +19,13 @@ const PlayerSchema = new mongoose.Schema({
     trim: true
   },
 
+  lastname: {
+    type: String,
+    required: [true, "Lastname is required"],
+    maxlength: 30,
+    trim: true
+  },
+
   weight: {
     type: Number,
     required: true
@@ -60,7 +67,11 @@ const PlayerSchema = new mongoose.Schema({
     type: Number,
     ref: "Team",
     required: true
-  }
+  },
+  player_statics: {
+    type: Schema.Types.Mixed, // json{partidos_jugados, goles, asistencias, tarjetas_amarillas, tarjetas_rojas}
+    required: false,
+  },
 
 
 }, {

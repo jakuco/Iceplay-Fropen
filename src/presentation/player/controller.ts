@@ -17,6 +17,8 @@ export class PlayerController {
   public createPlayer = async (req: Request, res: Response) => {
     // aquí solo validas lo mínimo
     if (!req.body?.name) return res.status(400).json({ message: "Name is required" });
+    if (!req.body?.lastname) return res.status(400).json({ message: "Lastname is required" });
+
 
     this.playerService.createPlayer(req.body)
       .then(player => res.status(200).json(player))

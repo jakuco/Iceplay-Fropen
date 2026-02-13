@@ -48,7 +48,7 @@ const MatchSchema = new Schema<IMatch>(
     },
 
     match_events: {
-      type: Schema.Types.Mixed, // json
+      type: Schema.Types.Mixed, // json{Evento[entrar, salir, roja, amarilla, gol, asistencia], id_jugador, minuto}
       required: false,
     },
   },

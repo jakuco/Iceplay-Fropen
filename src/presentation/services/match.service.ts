@@ -3,6 +3,7 @@ import { ChampionshipModel } from "../../data/mongo/models/championship.model";
 import { TeamModel } from "../../data/mongo/models/team.model";
 
 import { CustomError, PaginationDTO } from "../../domain";
+import { match } from "assert";
 
 type CreateMatchDTO = any;
 
@@ -141,34 +142,86 @@ export class MatchService {
       match_id
     };
   }
-  async searchMatches(filters: { championship_id?: number; state?: number; date?: Date }) {
-    const query: any = {}; 
-    if (filters.championship_id) query.championship_id = filters.championship_id; 
-    if (filters.state !== undefined) query.state = filters.state; 
-    if (filters.date) { 
-      // ejemplo: buscar por día exacto 
-      const start = new Date(filters.date); 
-      start.setHours(0, 0, 0, 0); 
-      const end = new Date(filters.date); 
-      end.setHours(23, 59, 59, 999); 
-      query.date = { $gte: start, $lte: end }; 
-    } 
-    try { 
-      const matches = await MatchModel.find(query).lean().exec(); 
-      // enriquecer con datos de campeonato y equipos 
-      const results = await Promise.all( matches.map(async (m) => {
-        const championship = await ChampionshipModel.findOne({ 
-          championship_id: m.championship_id }).lean(); 
-        const homeTeam = await TeamModel.findOne({ team_id: m.home_team_id }).lean(); 
-        const awayTeam = await TeamModel.findOne({ team_id: m.away_team_id }).lean(); 
-        return { 
-          championship_name: championship?.name || "Unknown Championship",
-          match: `${homeTeam?.name || "Home"} vs ${awayTeam?.name || "Away"}`, 
-          date: m.date, location: "Estadio Ejemplo", 
-          // aquí puedes reemplazar con el campo real cuando lo definas 
-          state: m.state 
-        }; 
-      }) 
-    ); 
-    return results; } catch (error) { throw CustomError.internalServer(`${error}`); } }
+
+  async searchMatches(paginationDTO: PaginationDTO, filters: any = {}) {
+    const { page, limit } = paginationDTO;
+    try {
+      const [totalMatches, matches]: [number, any[]] = await Promise.all([
+        MatchModel.countDocuments(filters).exec(),
+        MatchModel.find(filters)
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .lean()
+          .exec() as Promise<any[]>
+      ]);
+
+      const results = await Promise.all(
+        matches.map(async (m) => {
+          const championship = await ChampionshipModel.findOne({ championship_id: m.championship_id }).lean();
+          const homeTeam = await TeamModel.findOne({ team_id: m.home_team_id }).lean();
+          const awayTeam = await TeamModel.findOne({ team_id: m.away_team_id }).lean();
+
+          return {
+            championship_name: championship?.name || "Unknown Championship",
+            match: `${homeTeam?.name || "Home"} vs ${awayTeam?.name || "Away"}`,
+            date: m.date,
+            location: "Estadio Ejemplo",
+            state: m.state,
+            events: m.match_events || []
+          };
+        })
+      );
+
+      return {
+        page,
+        limit,
+        total: totalMatches,
+        next: page * limit < totalMatches ? `/api/matches/details?page=${page + 1}&limit=${limit}` : null,
+        prev: page - 1 > 0 ? `/api/matches/details?page=${page - 1}&limit=${limit}` : null,
+        matches: results
+      };
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  async searchAllMatches(filters: { championship_id?: number; state?: number; date?: Date; match_id?: number }) {
+    const query: any = {};
+    if (filters.championship_id) query.championship_id = filters.championship_id;
+    if (filters.state !== undefined) query.state = filters.state;
+    if (filters.match_id) query.match_id = filters.match_id;
+    if (filters.date) {
+      const start = new Date(filters.date);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(filters.date);
+      end.setHours(23, 59, 59, 999);
+      query.date = { $gte: start, $lte: end };
+    }
+
+    try {
+      const matches = await MatchModel.find(query).lean().exec();
+      const results = await Promise.all(
+        matches.map(async (m) => {
+          const championship = await ChampionshipModel.findOne({ championship_id: m.championship_id }).lean();
+          const homeTeam = await TeamModel.findOne({ team_id: m.home_team_id }).lean();
+          const awayTeam = await TeamModel.findOne({ team_id: m.away_team_id }).lean();
+
+          return {
+            championship_name: championship?.name || "Unknown Championship",
+            match: `${homeTeam?.name || "Home"} vs ${awayTeam?.name || "Away"}`,
+            date: m.date,
+            location: "Estadio Ejemplo",
+            state: m.state,
+            events: m.match_events || []
+          };
+        })
+      );
+      return results;
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  
+  
 }

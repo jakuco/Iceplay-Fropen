@@ -8,13 +8,16 @@ export class MatchRoutes {
     const router = Router();
     const matchService = new MatchService();
     const matchController = new MatchController(matchService);
-
+    
+    // Joins realizados en el controller
     router.get("/search", matchController.searchMatches);
+    router.get("/search/all", matchController.searchAllMatches);
+    //router.get("/details/:match_id");
+
+    // Rutas CRUD
     router.get("/", matchController.getMatches);
     router.get("/all", matchController.getAllMatches);
     router.get("/:match_id", matchController.getMatchById);
-    //router.get("/search", matchController.searchMatches);
-
 
     router.post(
       "/",
