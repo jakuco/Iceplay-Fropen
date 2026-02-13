@@ -78,4 +78,20 @@ export class MatchController {
       .then(result => res.status(200).json(result))
       .catch(error => this.handleError(error, res));
   };
+
+  public searchMatches = async (req: Request, res: Response) => {
+
+    console.log("Search query:", req.query);
+    const { championship_id, state, date } = req.query;
+
+    const filters: any = {};
+    if (championship_id) filters.championship_id = Number(championship_id);
+    if (state) filters.state = Number(state);
+    if (date) filters.date = new Date(date as string);
+
+    this.matchService.searchMatches(filters)
+      .then(matches => res.status(200).json(matches))
+      .catch(error => this.handleError(error, res));
+  };
+
 }

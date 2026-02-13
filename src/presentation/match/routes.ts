@@ -9,9 +9,12 @@ export class MatchRoutes {
     const matchService = new MatchService();
     const matchController = new MatchController(matchService);
 
+    router.get("/search", matchController.searchMatches);
     router.get("/", matchController.getMatches);
     router.get("/all", matchController.getAllMatches);
     router.get("/:match_id", matchController.getMatchById);
+    //router.get("/search", matchController.searchMatches);
+
 
     router.post(
       "/",

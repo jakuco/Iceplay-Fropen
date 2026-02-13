@@ -1,0 +1,11 @@
+# De la pantalla de partidos
+
+## para ver todos los partidos
+http://localhost:3001/api/matches/search
+
+## para ir filtrandolos según el id del campeonato, el estado y la fecha
+http://localhost:3001/api/matches/search?championship_id=10&state=1&date=2026-03-15T18:00:00.000Z
+
+## crud de todos los de mas elementos
+
+En este caso solo muestro el body de cada cosa
