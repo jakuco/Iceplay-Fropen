@@ -143,7 +143,7 @@ export class MatchService {
     };
   }
 
-  async searchMatches(paginationDTO: PaginationDTO, filters: any = {}) {
+  async searchMatches(paginationDTO: PaginationDTO, filters: { championship_id?: number; state?: number; date?: Date; match_id?: number }) {
     const { page, limit } = paginationDTO;
     try {
       const [totalMatches, matches]: [number, any[]] = await Promise.all([
@@ -186,7 +186,7 @@ export class MatchService {
   }
 
   async searchAllMatches(filters: { championship_id?: number; state?: number; date?: Date; match_id?: number }) {
-    const query: any = {};
+    /*const query: any = {};
     if (filters.championship_id) query.championship_id = filters.championship_id;
     if (filters.state !== undefined) query.state = filters.state;
     if (filters.match_id) query.match_id = filters.match_id;
@@ -196,10 +196,10 @@ export class MatchService {
       const end = new Date(filters.date);
       end.setHours(23, 59, 59, 999);
       query.date = { $gte: start, $lte: end };
-    }
+    }*/
 
     try {
-      const matches = await MatchModel.find(query).lean().exec();
+      const matches = await MatchModel.find(filters).lean().exec();
       const results = await Promise.all(
         matches.map(async (m) => {
           const championship = await ChampionshipModel.findOne({ championship_id: m.championship_id }).lean();
