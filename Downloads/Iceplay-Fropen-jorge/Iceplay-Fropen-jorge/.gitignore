@@ -1,0 +1,48 @@
+# ----- Node -----
+mongoDB
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ----- Build / Compilados -----
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+
+# ----- TypeScript -----
+*.tsbuildinfo
+.cache/
+
+# ----- Logs -----
+logs
+*.log
+
+# ----- Entorno -----
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# ----- IDEs / Editores -----
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+
+# ----- Sistema -----
+Thumbs.db
+
+# ----- Opcional: pruebas -----
+jest/
+__tests__/
+*.spec.ts
+*.test.ts
