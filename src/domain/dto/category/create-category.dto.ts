@@ -1,30 +1,24 @@
 export class CreateCategoryDto {
-
   private constructor(
-    public readonly category_id: number,
     public readonly name: string,
-    public readonly description?: string
+    public readonly available: boolean,
   ) {}
 
   static create(payload: any): [string?, CreateCategoryDto?] {
+    const { name, available } = payload ?? {};
 
-    const { category_id, name, description } = payload ?? {};
-
-    if (category_id === undefined || isNaN(Number(category_id))) {
-      return ["category_id must be a number"];
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
+      return ['name is required'];
     }
 
-    if (!name || typeof name !== "string") {
-      return ["name is required"];
-    }
+    // Si no viene available, usa false (igual que tu schema)
+    const availableBool = (available === undefined)
+      ? false
+      : Boolean(available);
 
     return [
       undefined,
-      new CreateCategoryDto(
-        Number(category_id),
-        name.trim(),
-        description ? String(description).trim() : undefined
-      )
+      new CreateCategoryDto(name.trim(), availableBool),
     ];
   }
 }

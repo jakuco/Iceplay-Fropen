@@ -1,5 +1,5 @@
 import { PlayerModel } from "../../data/mongo/models/player.model";
-import { CustomError, PaginationDTO } from "../../domain";
+import { CustomError, PaginationDTO, UpdatePlayerDto } from "../../domain";
 
 type CreatePlayerDTO = any;
 
@@ -64,7 +64,7 @@ export class PlayerService {
           ? `/api/players?page=${page - 1}&limit=${limit}`
           : null,
         players: players.map((player: any) => ({
-          id: player.id,
+          id: player._id,
           player_id: player.player_id,
           name: player.name,
           lastname: player.lastname,
@@ -105,12 +105,13 @@ export class PlayerService {
       home_country: player.home_country,
       state_id: player.state_id,
       type: player.type,
-      team: player.team_id,
+      team_id: player.team_id,
       statics: player.player_statics
     };
   }
 
-  async updatePlayer(player_id: number, data: any) {
+  // ✅ UPDATE usando DTO + validación básica extra
+  async updatePlayer(player_id: number, updatePlayerDto: UpdatePlayerDto) {
 
     const player = await PlayerModel.findOne({ player_id });
 
@@ -119,16 +120,33 @@ export class PlayerService {
     }
 
     try {
-      Object.assign(player, data);
+
+      // (opcional pero recomendado) evitar mandar string vacíos en name/lastname
+      if (updatePlayerDto.name !== undefined && updatePlayerDto.name.trim().length === 0) {
+        throw CustomError.badRequest("name cannot be empty");
+      }
+      if (updatePlayerDto.lastname !== undefined && updatePlayerDto.lastname.trim().length === 0) {
+        throw CustomError.badRequest("lastname cannot be empty");
+      }
+
+      Object.assign(player, updatePlayerDto);
       await player.save();
 
       return {
         id: player.id,
         player_id: player.player_id,
+        number: player.number,
         name: player.name,
         lastname: player.lastname,
-        number: player.number,
-        team_id: player.team_id
+        weight: player.weight,
+        height: player.height,
+        primary_position: player.primary_position,
+        secondary_position: player.secondary_position,
+        home_country: player.home_country,
+        state_id: player.state_id,
+        type: player.type,
+        team_id: player.team_id,
+        statics: player.player_statics
       };
 
     } catch (error) {

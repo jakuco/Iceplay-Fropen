@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CustomError, PaginationDTO } from "../../domain";
+import { CustomError, PaginationDTO, UpdatePlayerDto } from "../../domain";
 import { PlayerService } from "../services/player.service";
 
 export class PlayerController {
@@ -62,7 +62,11 @@ export class PlayerController {
       return res.status(400).json({ message: "player_id must be a number" });
     }
 
-    this.playerService.updatePlayer(player_id, req.body)
+    const [error, updatePlayerDto] = UpdatePlayerDto.create(req.body);
+    if (error) return res.status(400).json({ message: error });
+
+    // ✅ aquí está el cambio: enviar el DTO, no req.body
+    this.playerService.updatePlayer(player_id, updatePlayerDto!)
       .then(player => res.status(200).json(player))
       .catch(error => this.handleError(error, res));
   };
