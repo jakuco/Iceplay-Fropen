@@ -65,7 +65,6 @@ export class PlayerController {
     const [error, updatePlayerDto] = UpdatePlayerDto.create(req.body);
     if (error) return res.status(400).json({ message: error });
 
-    // ✅ aquí está el cambio: enviar el DTO, no req.body
     this.playerService.updatePlayer(player_id, updatePlayerDto!)
       .then(player => res.status(200).json(player))
       .catch(error => this.handleError(error, res));
