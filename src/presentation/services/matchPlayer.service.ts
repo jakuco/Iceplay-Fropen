@@ -8,6 +8,7 @@ export class MatchPlayerService {
   constructor() {}
 
   async createMatchPlayer(createMatchPlayerDTO: CreateMatchPlayerDTO) {
+
     const exist = await MatchPlayerModel.findOne({
       player_id: createMatchPlayerDTO.player_id,
       match_id: createMatchPlayerDTO.match_id
@@ -18,8 +19,10 @@ export class MatchPlayerService {
     }
 
     try {
-      const matchPlayer = new MatchPlayerModel({ ...createMatchPlayerDTO });
-      await matchPlayer.save();
+
+      const matchPlayer = await MatchPlayerModel.create({
+        ...createMatchPlayerDTO
+      });
 
       return {
         id: matchPlayer.id,
@@ -27,15 +30,18 @@ export class MatchPlayerService {
         match_id: matchPlayer.match_id,
         score: matchPlayer.score
       };
+
     } catch (err) {
       throw CustomError.internalServer(`${err}`);
     }
   }
 
   async getMatchPlayers(paginationDTO: PaginationDTO) {
+
     const { page, limit } = paginationDTO;
 
     try {
+
       const [total, matchPlayers]: [number, any[]] = await Promise.all([
         MatchPlayerModel.countDocuments().exec(),
         MatchPlayerModel.find()
@@ -55,75 +61,109 @@ export class MatchPlayerService {
         prev: (page - 1 > 0)
           ? `/api/match-players?page=${page - 1}&limit=${limit}`
           : null,
-        matchPlayers
+        matchPlayers: matchPlayers.map(mp => ({
+          id: mp._id,
+          player_id: mp.player_id,
+          match_id: mp.match_id,
+          score: mp.score
+        }))
       };
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
   async getAllMatchPlayers() {
+
     try {
-      const matchPlayers = await MatchPlayerModel.find().lean().exec();
+
+      const matchPlayers = await MatchPlayerModel.find()
+        .lean()
+        .exec();
+
       return matchPlayers.map(mp => ({
-        id: mp.id,
+        id: mp._id,
         player_id: mp.player_id,
         match_id: mp.match_id,
         score: mp.score
       }));
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
   async getMatchPlayer(player_id: number, match_id: number) {
-    const matchPlayer = await MatchPlayerModel.findOne({ player_id, match_id }).lean().exec();
 
-    if (!matchPlayer) {
+    try {
+
+      const matchPlayer = await MatchPlayerModel
+        .findOne({ player_id, match_id })
+        .lean()
+        .exec();
+
+      if (!matchPlayer) {
         throw CustomError.badRequest("MatchPlayer not found");
-    }
+      }
 
-    return {
+      return {
+        id: matchPlayer._id,
         player_id: matchPlayer.player_id,
         match_id: matchPlayer.match_id,
         score: matchPlayer.score
-    };
-    }
+      };
 
+    } catch (error) {
+      if (error instanceof CustomError) throw error;
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
 
   async updateMatchPlayer(player_id: number, match_id: number, data: any) {
+
     const matchPlayer = await MatchPlayerModel.findOne({ player_id, match_id });
 
     if (!matchPlayer) {
-        throw CustomError.badRequest("MatchPlayer not found");
+      throw CustomError.badRequest("MatchPlayer not found");
     }
 
     try {
-        Object.assign(matchPlayer, data);
-        await matchPlayer.save();
 
-        return {
+      Object.assign(matchPlayer, data);
+      await matchPlayer.save();
+
+      return {
+        id: matchPlayer.id,
         player_id: matchPlayer.player_id,
         match_id: matchPlayer.match_id,
         score: matchPlayer.score
-        };
+      };
+
     } catch (error) {
-        throw CustomError.internalServer(`${error}`);
+      throw CustomError.internalServer(`${error}`);
     }
-    }
+  }
 
-    async deleteMatchPlayer(player_id: number, match_id: number) {
-    const matchPlayer = await MatchPlayerModel.findOneAndDelete({ player_id, match_id });
+  async deleteMatchPlayer(player_id: number, match_id: number) {
 
-    if (!matchPlayer) {
+    try {
+
+      const matchPlayer = await MatchPlayerModel.findOneAndDelete({ player_id, match_id });
+
+      if (!matchPlayer) {
         throw CustomError.badRequest("MatchPlayer not found");
-    }
+      }
 
-    return {
+      return {
         message: "MatchPlayer deleted successfully",
         player_id,
         match_id
-    };
-    }
+      };
 
+    } catch (error) {
+      if (error instanceof CustomError) throw error;
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
 }

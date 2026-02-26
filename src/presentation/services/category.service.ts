@@ -1,5 +1,5 @@
 import { CategoryModel } from '../../data/mongo/models/category.model';
-import { CreateCategoryDTO, CustomError, PaginationDTO, UserEntity } from "../../domain";
+import { CreateCategoryDto, CustomError, PaginationDTO, UserEntity } from "../../domain";
 
 export class CategoryService{
     
@@ -9,10 +9,10 @@ export class CategoryService{
 
     }
 
-    async createCategory(createCategoryDTO: CreateCategoryDTO, user: UserEntity){
+    async createCategory(createCategoryDto: CreateCategoryDto, user: UserEntity){
         
         //? Verificamos que la categpria no exista
-        const categoryExist = await CategoryModel.findOne({name: createCategoryDTO.name});
+        const categoryExist = await CategoryModel.findOne({name: createCategoryDto.name});
 
         //? En caso de existir se lanza un error para informar
         if(categoryExist) throw CustomError.badRequest("Category alredy exist");
@@ -21,7 +21,7 @@ export class CategoryService{
         try{
 
             const category =  new CategoryModel({
-                ...createCategoryDTO,
+                ...createCategoryDto,
                 user: user.id
             })
 

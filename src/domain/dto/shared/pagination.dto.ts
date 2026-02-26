@@ -1,19 +1,30 @@
 export class PaginationDTO {
 
-    //* Aque podemos hacer la validaciones que queramos segun las necesadades colocar limites a la paginacion, etc.
+  private constructor(
+    public readonly page: number,
+    public readonly limit: number,
+  ) {}
 
-    private constructor(
-        public readonly page: number,
-        public readonly limit: number,
+  static create(page: any = 1, limit: any = 10): [string?, PaginationDTO?] {
 
-    ){}
+    const pageNumber  = Number(page);
+    const limitNumber = Number(limit);
 
-    static create(page: number = 1, limit: number = 10): [string?, PaginationDTO?] {
-        if(isNaN(page) || isNaN(limit)) return ["Page and Limit must be a number"];
-        if(page <=0 || limit <= 0) return ["Page and Limit must be greater than 0"];
-
-        return [undefined, new PaginationDTO(page, limit)];
-
+    if (Number.isNaN(pageNumber) || Number.isNaN(limitNumber)) {
+      return ['Page and Limit must be a number'];
     }
 
+    const pageInt  = Math.floor(pageNumber);
+    const limitInt = Math.floor(limitNumber);
+
+    if (pageInt <= 0 || limitInt <= 0) {
+      return ['Page and Limit must be greater than 0'];
+    }
+
+    if (limitInt > 100) {
+      return ['Limit must be less than or equal to 100'];
+    }
+
+    return [undefined, new PaginationDTO(pageInt, limitInt)];
+  }
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CustomError, PaginationDTO } from "../../domain";
+import { CustomError, PaginationDTO, CreateMatchDto } from "../../domain";
 import { MatchService } from "../services/match.service";
 
 export class MatchController {
@@ -15,14 +15,18 @@ export class MatchController {
   }
 
   public createMatch = async (req: Request, res: Response) => {
-    if (!req.body?.match_id) {
-      return res.status(400).json({ message: "match_id is required" });
-    }
 
-    this.matchService.createMatch(req.body)
-      .then(match => res.status(201).json(match))
-      .catch(error => this.handleError(error, res));
-  };
+  const [error, createMatchDto] = CreateMatchDto.create(req.body);
+
+  if (error) {
+    return res.status(400).json({ message: error });
+  }
+
+  this.matchService.createMatch(createMatchDto!)
+    .then(match => res.status(201).json(match))
+    .catch(error => this.handleError(error, res));
+};
+
 
   public getMatches = async (req: Request, res: Response) => {
     const { page = 1, limit = 10 } = req.query;

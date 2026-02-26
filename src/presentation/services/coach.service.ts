@@ -1,21 +1,20 @@
-import { CoachModel } from "../../data/mongo/models/coach.model";
 import { CustomError, PaginationDTO } from "../../domain";
-
-type CreateCoachDTO = any;
+import { CreateCoachDto } from "../../domain/dto/coach/create-coach.dto";
+import { UpdateCoachDto } from "../../domain/dto/coach/update-coach.dto";
+import { CoachModel } from "../../data/mongo/models/coach.model";
 
 export class CoachService {
-
   constructor() {}
 
-  async createCoach(createCoachDTO: CreateCoachDTO) {
-    const coachExist = await CoachModel.findOne({ coach_id: createCoachDTO.coach_id });
+  async createCoach(createCoachDto: CreateCoachDto) {
+    const coachExist = await CoachModel.findOne({ coach_id: createCoachDto.coach_id });
 
     if (coachExist) {
       throw CustomError.badRequest("Coach already exists");
     }
 
     try {
-      const coach = new CoachModel({ ...createCoachDTO });
+      const coach = new CoachModel({ ...createCoachDto });
       await coach.save();
 
       return {
@@ -23,7 +22,7 @@ export class CoachService {
         coach_id: coach.coach_id,
         name: coach.name,
         phone: coach.phone,
-        email: coach.email
+        email: coach.email,
       };
     } catch (err) {
       throw CustomError.internalServer(`${err}`);
@@ -40,20 +39,16 @@ export class CoachService {
           .skip((page - 1) * limit)
           .limit(limit)
           .lean()
-          .exec() as Promise<any[]>
+          .exec() as Promise<any[]>,
       ]);
 
       return {
         page,
         limit,
         total: totalCoaches,
-        next: (page * limit < totalCoaches)
-          ? `/api/coaches?page=${page + 1}&limit=${limit}`
-          : null,
-        prev: (page - 1 > 0)
-          ? `/api/coaches?page=${page - 1}&limit=${limit}`
-          : null,
-        coaches
+        next: page * limit < totalCoaches ? `/api/coaches?page=${page + 1}&limit=${limit}` : null,
+        prev: page - 1 > 0 ? `/api/coaches?page=${page - 1}&limit=${limit}` : null,
+        coaches,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
@@ -72,11 +67,11 @@ export class CoachService {
       coach_id: coach.coach_id,
       name: coach.name,
       phone: coach.phone,
-      email: coach.email
+      email: coach.email,
     };
   }
 
-  async updateCoach(coach_id: number, data: any) {
+  async updateCoach(coach_id: number, updateCoachDto: UpdateCoachDto) {
     const coach = await CoachModel.findOne({ coach_id });
 
     if (!coach) {
@@ -84,7 +79,7 @@ export class CoachService {
     }
 
     try {
-      Object.assign(coach, data);
+      Object.assign(coach, updateCoachDto);
       await coach.save();
 
       return {
@@ -92,7 +87,7 @@ export class CoachService {
         coach_id: coach.coach_id,
         name: coach.name,
         phone: coach.phone,
-        email: coach.email
+        email: coach.email,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
@@ -108,7 +103,7 @@ export class CoachService {
 
     return {
       message: "Coach deleted successfully",
-      coach_id
+      coach_id,
     };
   }
 }

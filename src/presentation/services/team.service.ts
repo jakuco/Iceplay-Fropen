@@ -1,18 +1,16 @@
 import { TeamModel } from "../../data/mongo/models/team.model";
-import { CustomError, PaginationDTO, UserEntity } from "../../domain";
-
-type CreateTeamDTO = any; // luego puedes tiparlo mejor
+import { CustomError, PaginationDTO, CreateTeamDto } from "../../domain";
 
 export class TeamService {
 
   constructor() {}
 
-  async createTeam(createTeamDTO: CreateTeamDTO) {
+  async createTeam(createTeamDto: CreateTeamDto) {
 
     const teamExist = await TeamModel.findOne({
       $or: [
-        { name: createTeamDTO.name },
-        { team_id: createTeamDTO.team_id }
+        { name: createTeamDto.name },
+        { team_id: createTeamDto.team_id }
       ]
     });
 
@@ -21,22 +19,20 @@ export class TeamService {
     }
 
     try {
-      const team = new TeamModel({
-        ...createTeamDTO,
-      });
 
-      await team.save();
+      const team = await TeamModel.create(createTeamDto);
 
       return {
         id: team.id,
         team_id: team.team_id,
         name: team.name,
         shortname: team.shortname,
-        city: team.city
+        city: team.city,
+        coach_id: team.coach_id
       };
 
-    } catch (err) {
-      throw CustomError.internalServer(`${err}`);
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
     }
   }
 
@@ -45,32 +41,36 @@ export class TeamService {
     const { page, limit } = paginationDTO;
 
     try {
-      const [totalTeams, teams]: [number, any[]] = await Promise.all([
+
+      const [totalTeams, teams] = await Promise.all([
         TeamModel.countDocuments().exec(),
         TeamModel.find()
           .skip((page - 1) * limit)
           .limit(limit)
           .lean()
-          .exec() as Promise<any[]>
+          .exec()
       ]);
 
       return {
         page,
         limit,
         total: totalTeams,
+
         next: (page * limit < totalTeams)
           ? `/api/teams?page=${page + 1}&limit=${limit}`
           : null,
+
         prev: (page - 1 > 0)
           ? `/api/teams?page=${page - 1}&limit=${limit}`
           : null,
 
         teams: teams.map(team => ({
-          id: team.id,
+          id: team._id,
           team_id: team.team_id,
           name: team.name,
           shortname: team.shortname,
-          city: team.city
+          city: team.city,
+          coach_id: team.coach_id
         }))
       };
 
@@ -80,62 +80,81 @@ export class TeamService {
   }
 
   async getAllTeams() {
+
     try {
+
       const teams = await TeamModel.find().lean().exec();
-      return teams.map(t => ({
-        id: t.id,
-        team_id: t.team_id,
-        name: t.name,
-        shortname: t.shortname,
-        city: t.city
+
+      return teams.map(team => ({
+        id: team._id,
+        team_id: team.team_id,
+        name: team.name,
+        shortname: team.shortname,
+        city: team.city,
+        coach_id: team.coach_id
       }));
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async getTeamById(team_id: number) { 
-    const team = await TeamModel.findOne({ team_id }).lean().exec(); 
-    
-    if (!team) { 
-      throw CustomError.badRequest("Team not found"); 
-    } 
-    
-    return { 
-      id: team._id, 
-      team_id: team.team_id, 
-      name: team.name, 
-      shortname: team.shortname, 
-      city: team.city 
-    }; 
-  }
+  async getTeamById(team_id: number) {
 
-  async updateTeam(team_id: number, data: any) {
-    const team = await TeamModel.findOne({ team_id }); 
-    
+    const team = await TeamModel.findOne({ team_id }).lean().exec();
+
     if (!team) {
-       throw CustomError.badRequest("Team not found"); 
-    } try { 
-      Object.assign(team, data); await team.save(); 
-      return { 
-        id: team.id, 
-        team_id: team.team_id, 
-        name: team.name, 
-        shortname: team.shortname, 
-        city: team.city }; 
-      } catch (error) { 
-        throw CustomError.internalServer(`${error}`); 
-      } 
+      throw CustomError.badRequest("Team not found");
     }
 
-    async deleteTeam(team_id: number) { 
-      const team = await TeamModel.findOneAndDelete({ team_id }); 
-      if (!team) { 
-        throw CustomError.badRequest("Team not found"); 
-      } 
+    return {
+      id: team._id,
+      team_id: team.team_id,
+      name: team.name,
+      shortname: team.shortname,
+      city: team.city,
+      coach_id: team.coach_id
+    };
+  }
 
-      return { 
-        message: "Team deleted successfully", 
-        team_id }; 
-      }
+  async updateTeam(team_id: number, data: Partial<CreateTeamDto>) {
+
+    const team = await TeamModel.findOne({ team_id });
+
+    if (!team) {
+      throw CustomError.badRequest("Team not found");
+    }
+
+    try {
+
+      Object.assign(team, data);
+      await team.save();
+
+      return {
+        id: team.id,
+        team_id: team.team_id,
+        name: team.name,
+        shortname: team.shortname,
+        city: team.city,
+        coach_id: team.coach_id
+      };
+
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
+  }
+
+  async deleteTeam(team_id: number) {
+
+    const team = await TeamModel.findOneAndDelete({ team_id });
+
+    if (!team) {
+      throw CustomError.badRequest("Team not found");
+    }
+
+    return {
+      message: "Team deleted successfully",
+      team_id
+    };
+  }
 }

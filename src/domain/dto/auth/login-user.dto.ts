@@ -1,19 +1,15 @@
 export class LoginUserDto {
+  private constructor(
+    public readonly email: string,
+    public readonly password: string
+  ) {}
 
-    private constructor(
-        public readonly email: string,
-        public readonly password: string,
-    ) { }
+  static create(payload: any): [string?, LoginUserDto?] {
+    const { email, password } = payload ?? {};
 
-    static create(obj: { [key: string]: any }): [string?, LoginUserDto?] {
-        const { email, password } = obj;
-        if (!email) {
-            return ['Email is required', undefined];
-        }
-        if (!password) {
-            return ['Password is required', undefined];
-        }
-        return [undefined, new LoginUserDto(email, password)];
-    }
+    if (!email || typeof email !== 'string') return ['email is required'];
+    if (!password || typeof password !== 'string') return ['password is required'];
 
+    return [undefined, new LoginUserDto(email.trim().toLowerCase(), password)];
+  }
 }

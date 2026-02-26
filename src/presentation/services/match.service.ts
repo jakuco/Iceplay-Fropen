@@ -1,26 +1,25 @@
 import { MatchModel } from "../../data/mongo/models/match.model";
 import { ChampionshipModel } from "../../data/mongo/models/championship.model";
 import { TeamModel } from "../../data/mongo/models/team.model";
-
-import { CustomError, PaginationDTO } from "../../domain";
-import { match } from "assert";
-
-type CreateMatchDTO = any;
+import { CustomError, PaginationDTO, CreateMatchDto, UpdateMatchDto } from "../../domain";
 
 export class MatchService {
 
   constructor() {}
 
-  async createMatch(createMatchDTO: CreateMatchDTO) {
-    const matchExist = await MatchModel.findOne({ match_id: createMatchDTO.match_id });
+  async createMatch(createMatchDto: CreateMatchDto) {
+
+    const matchExist = await MatchModel.findOne({ match_id: createMatchDto.match_id });
 
     if (matchExist) {
       throw CustomError.badRequest("Match already exists");
     }
 
     try {
-      const match = new MatchModel({ ...createMatchDTO });
-      await match.save();
+
+      const match = await MatchModel.create({
+        ...createMatchDto
+      });
 
       return {
         id: match.id,
@@ -32,15 +31,18 @@ export class MatchService {
         state: match.state,
         match_events: match.match_events
       };
+
     } catch (err) {
       throw CustomError.internalServer(`${err}`);
     }
   }
 
   async getMatches(paginationDTO: PaginationDTO) {
+
     const { page, limit } = paginationDTO;
 
     try {
+
       const [totalMatches, matches]: [number, any[]] = await Promise.all([
         MatchModel.countDocuments().exec(),
         MatchModel.find()
@@ -62,16 +64,20 @@ export class MatchService {
           : null,
         matches
       };
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
   async getAllMatches() {
+
     try {
+
       const matches = await MatchModel.find().lean().exec();
+
       return matches.map(m => ({
-        id: m.id,
+        id: m._id,
         match_id: m.match_id,
         championship_id: m.championship_id,
         home_team_id: m.home_team_id,
@@ -80,12 +86,14 @@ export class MatchService {
         state: m.state,
         match_events: m.match_events
       }));
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
   async getMatchById(match_id: number) {
+
     const match = await MatchModel.findOne({ match_id }).lean().exec();
 
     if (!match) {
@@ -104,7 +112,8 @@ export class MatchService {
     };
   }
 
-  async updateMatch(match_id: number, data: any) {
+  async updateMatch(match_id: number, updateMatchDto: UpdateMatchDto) {
+
     const match = await MatchModel.findOne({ match_id });
 
     if (!match) {
@@ -112,7 +121,8 @@ export class MatchService {
     }
 
     try {
-      Object.assign(match, data);
+
+      Object.assign(match, updateMatchDto);
       await match.save();
 
       return {
@@ -125,12 +135,14 @@ export class MatchService {
         state: match.state,
         match_events: match.match_events
       };
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
   async deleteMatch(match_id: number) {
+
     const match = await MatchModel.findOneAndDelete({ match_id });
 
     if (!match) {
@@ -143,9 +155,15 @@ export class MatchService {
     };
   }
 
-  async searchMatches(paginationDTO: PaginationDTO, filters: { championship_id?: number; state?: number; date?: Date; match_id?: number }) {
+  async searchMatches(
+    paginationDTO: PaginationDTO,
+    filters: { championship_id?: number; state?: number; date?: any; match_id?: number }
+  ) {
+
     const { page, limit } = paginationDTO;
+
     try {
+
       const [totalMatches, matches]: [number, any[]] = await Promise.all([
         MatchModel.countDocuments(filters).exec(),
         MatchModel.find(filters)
@@ -176,30 +194,26 @@ export class MatchService {
         page,
         limit,
         total: totalMatches,
-        next: page * limit < totalMatches ? `/api/matches/details?page=${page + 1}&limit=${limit}` : null,
-        prev: page - 1 > 0 ? `/api/matches/details?page=${page - 1}&limit=${limit}` : null,
+        next: (page * limit < totalMatches)
+          ? `/api/matches/search?page=${page + 1}&limit=${limit}`
+          : null,
+        prev: (page - 1 > 0)
+          ? `/api/matches/search?page=${page - 1}&limit=${limit}`
+          : null,
         matches: results
       };
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async searchAllMatches(filters: { championship_id?: number; state?: number; date?: Date; match_id?: number }) {
-    /*const query: any = {};
-    if (filters.championship_id) query.championship_id = filters.championship_id;
-    if (filters.state !== undefined) query.state = filters.state;
-    if (filters.match_id) query.match_id = filters.match_id;
-    if (filters.date) {
-      const start = new Date(filters.date);
-      start.setHours(0, 0, 0, 0);
-      const end = new Date(filters.date);
-      end.setHours(23, 59, 59, 999);
-      query.date = { $gte: start, $lte: end };
-    }*/
+  async searchAllMatches(filters: { championship_id?: number; state?: number; date?: any; match_id?: number }) {
 
     try {
+
       const matches = await MatchModel.find(filters).lean().exec();
+
       const results = await Promise.all(
         matches.map(async (m) => {
           const championship = await ChampionshipModel.findOne({ championship_id: m.championship_id }).lean();
@@ -216,12 +230,11 @@ export class MatchService {
           };
         })
       );
+
       return results;
+
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
-
-  
-  
 }

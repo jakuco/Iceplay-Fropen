@@ -1,35 +1,18 @@
-import { regularExps } from "../../../config";
-
 export class RegisterUserDto {
-    private constructor(
-        public readonly name: string,
-        public readonly email: string,
-        public readonly password: string,
-    ) { }
+  private constructor(
+    public readonly name: string,
+    public readonly email: string,
+    public readonly password: string
+  ) {}
 
-    // return type is a discriminated tuple: either [errorMessage, undefined] or [undefined, RegisterUserDto]
-    static create(obj: { [key: string]: any }): [string?, RegisterUserDto?] {
+  static create(payload: any): [string?, RegisterUserDto?] {
+    const { name, email, password } = payload ?? {};
 
-        const { name, email, password } = obj;
+    if (!name || typeof name !== 'string') return ['name is required'];
+    if (!email || typeof email !== 'string') return ['email is required'];
+    if (!password || typeof password !== 'string') return ['password is required'];
+    if (password.length < 6) return ['password must be at least 6 characters'];
 
-        if (!name) {
-            return ['Name is required', undefined];
-        }
-        if (!email) {
-            return ['Email is required', undefined];
-        }
-        if(regularExps.email.test(email) === false){
-            return ['Email format is invalid', undefined];
-        }
-        if (!password) {
-            return ['Password is required', undefined];
-        }
-        if (password.length < 6) {
-            return ['Password too short, min 6 characters', undefined];
-        }
-
-        return [undefined, new RegisterUserDto(name, email, password)];
-    }
-
+    return [undefined, new RegisterUserDto(name.trim(), email.trim().toLowerCase(), password)];
+  }
 }
-
