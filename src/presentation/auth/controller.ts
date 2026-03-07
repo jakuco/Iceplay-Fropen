@@ -29,7 +29,7 @@ export class AuthController {
         const resultService = await this.authService.registerUser(result.value);
 
         if (!resultService.ok) {
-            return res.status(resultService.error.code).json({ message: resultService.error.msg });
+            return res.status(resultService.error.code).json({ message: resultService.error.message });
         }
         
         res.json(resultService.value);

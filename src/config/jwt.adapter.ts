@@ -6,27 +6,32 @@ import { envs } from './envs';
 //! No deberia ser asi lo mejor seria hacer Dependency Injection en el constructor 
 const JWT_SEED =  envs.JWT_SECRET
 
-
 export class JwtAdapter {
 
     // DI
     // constructor() {}
 
-    static generateToken(payload: object | string, duration: StringValue | number = '2h'): string | null {
-        try {
-            return jwt.sign(payload, JWT_SEED, {expiresIn: duration});
-        } catch (err) {
-            console.error(`JWT signing error: ${err}`);
-            return null;
-        }
+    static async generateToken(payload: object | string, duration: StringValue | number = '2h'): Promise<string | undefined> {
+        return new Promise((resolve, reject) => {
+            jwt.sign(payload, JWT_SEED, {expiresIn: duration}, (err, token) => {
+                if (err) {
+                    console.error(`JWT signing error: ${err}`);
+                    reject(err);
+                }
+                resolve(token);
+            });
+        });
     }
 
-    static verifyToken<T>(token: string): T | null {
-        try {
-            return jwt.verify(token, JWT_SEED) as T;
-        } catch (err) {
-            console.error(`JWT verification error: ${err}`);
-            return null;
-        }
+    static async verifyToken<T>(token: string): Promise<T | null> {
+        return new Promise((resolve, reject) => {
+            jwt.verify(token, JWT_SEED, (err, decoded) => {
+                if (err) {
+                    console.error(`JWT verification error: ${err}`);
+                    reject(err);
+                }
+                resolve(decoded as T);
+            });
+        });
     }
 }

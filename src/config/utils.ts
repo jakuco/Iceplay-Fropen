@@ -1,3 +1,7 @@
-export type Result<T, E = string> = 
-| { ok: true, value: T, error?: never }
-| { ok: false, value?: never, error: E };
+type Success<T> = T extends void
+    ? { ok: true }
+    : { ok: true; value: T };
+
+type Failure<E> = { ok: false; error: E };
+
+export type Result<T = void, E = string> = Success<T> | Failure<E>;
