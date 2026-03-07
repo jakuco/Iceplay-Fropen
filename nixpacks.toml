@@ -1,0 +1,11 @@
+# Railway build configuration
+# This tells Railway how to install, build, and start the app
+
+[phases.install]
+cmds = ["npm install"]   # installs ALL dependencies including devDependencies (TypeScript, rimraf)
+
+[phases.build]
+cmds = ["npm run build"] # runs: rimraf ./dist && tsc
+
+[start]
+cmd = "node dist/app.js" # runs the compiled output directly
