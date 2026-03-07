@@ -43,6 +43,8 @@ POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
+  "name": "Incomplete User",
+  "password": "123456",
   "email": "incomplete@example.com"
 }
 
