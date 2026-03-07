@@ -1,6 +1,16 @@
+import { z } from "zod";
 import { CustomError } from "../errors/custom.errors";
 
 export class UserEntity {
+    static readonly schema = z.object({
+        id: z.string("Missing id"),
+        name: z.string("Missing name"),
+        email: z.email("Invalid email"),
+        emailValidated: z.string("Missing emailValidated"),
+        password: z.string("Missing password"),
+        role: z.array(z.string(), "Missing roles"),
+        img: z.string().optional(),
+    });
 
     constructor(
         public readonly id: string,
@@ -13,29 +23,20 @@ export class UserEntity {
     ) { }
 
     static fromObject(obj: { [key: string]: any }) {
-        const { id, _id, name, email, emailValidated, password, role, img } = obj;
+        if (obj.id === undefined) {
+            obj.id = obj._id;
+        }
 
-        if (!id && !_id) {
-            throw CustomError.badRequest('Missing id');
+        const parseResult = this.schema.safeParse(obj);
+        
+        if (!parseResult.success) {
+            throw CustomError.badRequest(parseResult.error.message);
         }
-        if (!name) {
-            throw CustomError.badRequest('Missing name');
-        }
-        if (!email) {
-            throw CustomError.badRequest('Missing email');
-        }
-        if (emailValidated === undefined) {
-            throw CustomError.badRequest('Missing emailValidated');
-        }
-        if (!password) {
-            throw CustomError.badRequest('Missing password');
-        }
-        if (!role) {
-            throw CustomError.badRequest('Missing role');
-        }
+
+        const { id, name, email, emailValidated, password, role, img } = parseResult.data;
 
         return new UserEntity(
-            id || _id.toString(),
+            id,
             name,
             email,
             emailValidated,

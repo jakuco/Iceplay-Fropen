@@ -1,15 +1,25 @@
+import { z } from "zod";
+
+import { Result } from "$config/utils";
+
 export class LoginUserDto {
-  private constructor(
-    public readonly email: string,
-    public readonly password: string
-  ) {}
+    static readonly schema = z.object({
+        email: z.email("Invalid email"),
+        password: z.string("Password is required").min(8, "Password must be at least 8 characters"),
+    });
 
-  static create(payload: any): [string?, LoginUserDto?] {
-    const { email, password } = payload ?? {};
+    private constructor(
+        public readonly email: string,
+        public readonly password: string
+    ) { }
 
-    if (!email || typeof email !== 'string') return ['email is required'];
-    if (!password || typeof password !== 'string') return ['password is required'];
+    static create(payload: any): Result<LoginUserDto> {
+        const { email, password } = payload ?? {};
 
-    return [undefined, new LoginUserDto(email.trim().toLowerCase(), password)];
-  }
+        const parseResult = this.schema.safeParse({ email, password });
+
+        if (!parseResult.success) return { ok: false, error: parseResult.error.message };
+
+        return { ok: true, value: new LoginUserDto(email, password) };
+    }
 }
