@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { Result } from "$config/utils";
+import { Result, ok, fail } from "$config/result";
 
 export class LoginUserDto {
     static readonly schema = z.object({
@@ -18,8 +18,8 @@ export class LoginUserDto {
 
         const parseResult = this.schema.safeParse({ email, password });
 
-        if (!parseResult.success) return { ok: false, error: parseResult.error.message };
+        if (!parseResult.success) return fail(parseResult.error.message);
 
-        return { ok: true, value: new LoginUserDto(email, password) };
+        return ok(new LoginUserDto(email, password));
     }
 }

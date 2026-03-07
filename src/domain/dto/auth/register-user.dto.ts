@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Result } from "$config/utils";
+import { Result, ok, fail } from "$config/result";
 
 export class RegisterUserDto {
     static readonly schema = z.object({
@@ -17,10 +17,10 @@ export class RegisterUserDto {
     static create(payload: any): Result<RegisterUserDto> {
         const parseResult = this.schema.safeParse(payload);
 
-        if (!parseResult.success) return { ok: false, error: parseResult.error.message };
+        if (!parseResult.success) return fail(parseResult.error.message);
 
         const { name, email, password } = parseResult.data;
 
-        return { ok: true, value: new RegisterUserDto(name, email, password) };
+        return ok(new RegisterUserDto(name, email, password));
     }
 }

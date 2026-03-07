@@ -4,7 +4,7 @@ import { ServiceError } from "$domain/errors";
 import { JwtAdapter, bcryptAdapter } from "$config";
 import { EmailService } from "./email.service";
 import { envs } from "$config/envs";
-import { Result } from "$config/utils";
+import { Result, ok, fail } from "$config/result";
 import { Status } from "$config/status";
 
 type AuthResponse = { user: Omit<UserEntity, 'password'>, token: string }
@@ -19,37 +19,41 @@ export class AuthService {
     public async registerUser(registerUserDto: RegisterUserDto): Promise<Result<AuthResponse, ServiceError>> {
         const existUser = await UserModel.findOne({ email: registerUserDto.email });
         if (existUser) {
-            return { ok: false, error: { code: Status.BAD_REQUEST, message: "Email already in use" } }
+            return fail({ code: Status.BAD_REQUEST, message: "Email already in use" });
         }
 
         try {
             const user = new UserModel(registerUserDto);
 
-            //TODO: Encriptar la contraseña
-            user.password = bcryptAdapter.hash(registerUserDto.password);
+            user.password = await bcryptAdapter.hash(registerUserDto.password);
             await user.save();
 
-            //TODO: JWT para mantener la autenticación del usuario
             const token = await JwtAdapter.generateToken({ id: user._id.toString() });
 
             if (!token) {
-                return { ok: false, error: { code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" } }
+                return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
             }
 
-            //TODO: Enviar correo de verificacion de JWT
             const emailResult = await this.sendEmailValidationLink(user.email)
 
             if (!emailResult.ok) {
                 return emailResult; // Already a valid `Result`
             }
 
+            const entityResult = UserEntity.fromObject(user);
+            
+            if (!entityResult.ok) {
+                console.error(entityResult.error);
+                return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
+            }
+
             //? Devolver el usuario sin la contraseña
-            const { password, ...userEntity } = UserEntity.fromObject(user);
-            return { ok: true, value: { user: userEntity, token }};
+            const { password, ...userEntity } = entityResult.value;
+            return ok({ user: userEntity, token });
 
         } catch (err) {
             console.error(err);
-            return { ok: false, error: { code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" } }
+            return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
         }
     }
 
@@ -60,33 +64,41 @@ export class AuthService {
         const user = await UserModel.findOne({ email });
 
         if (!user) {
-            return { ok: false, error: { code: Status.BAD_REQUEST, message: "User not found" } }
+            // Different messages for user not found and invalid password allow enumeration attacks
+            return fail({ code: Status.BAD_REQUEST, message: "User or password are invalid" });
         }
 
         //? Comparar la contraseña
-        const isPasswordValid = bcryptAdapter.compare(password, user.password);
+        const isPasswordValid: boolean = await bcryptAdapter.compare(password, user.password);
         if (!isPasswordValid) {
-            return { ok: false, error: { code: Status.BAD_REQUEST, message: "Invalid password" } }
+            return fail({ code: Status.BAD_REQUEST, message: "User or password are invalid" });
+        }
+
+        const entityResult = UserEntity.fromObject(user);
+        
+        if (!entityResult.ok) {
+            console.error(entityResult.error);
+            return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
         }
 
         //? Devolver el usuario y el token
         //? Tengo que colocar el password con _ debido a que arriba en el loginUserDto ya existe un password
         //? El _ es un placeholder para el password
-        const { password: _, ...userEntity } = UserEntity.fromObject(user);
+        const { password: _, ...userEntity } = entityResult.value;
 
         const token = await JwtAdapter.generateToken({ id: user.id, email: user.email });
 
         if (!token) {
-            return { ok: false, error: { code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" } }
+            return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
         }
 
-        return { ok: true, value: { user: userEntity, token }};
+        return ok({ user: userEntity, token });
     }
 
     private async sendEmailValidationLink(email: string): Promise<Result<void, ServiceError>> {
         //Generar un token
         const token = await JwtAdapter.generateToken({ email });
-        if (!token) return { ok: false, error: { code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" } }
+        if (!token) return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
 
         const link = `${envs.WEB_SERVICE_URL}/auth/validate-email/${token}`
 
@@ -109,32 +121,36 @@ export class AuthService {
         }
 
         const isSent = await this.emailService.sendEmail(options);
-        if (!isSent) return { ok: false, error: { code: Status.SERVICE_UNAVAILABLE, message: "Mail service unavailable" } }
+        if (!isSent) return fail({ code: Status.SERVICE_UNAVAILABLE, message: "Mail service unavailable" });
 
-        return { ok: true };
+        return ok();
     }
 
     public async validateEmail(token: string): Promise<Result<void, ServiceError>> {
 
         //?Primero verificamos el token que nos envian por la url
         const payload = await JwtAdapter.verifyToken(token);
-        if (!payload) return { ok: false, error: { code: Status.UNAUTHORIZED, message: "Invalid token" } };
+        if (!payload) return fail({ code: Status.UNAUTHORIZED, message: "Invalid token" });
 
 
         //? Despues verificamos que el email este en el payload del JWT
         const { email } = payload as { email: string };
-        if (!email) return { ok: false, error: { code: Status.BAD_REQUEST, message: "Email not in token" } };
+        if (!email) return fail({ code: Status.BAD_REQUEST, message: "Email not in token" });
 
         //? Despues tenemos que verificar que el usuario existe en BD
         const user = await UserModel.findOne({ email });
 
         // Returning a specific message for a non-existent user could lead to enumeration attacks, leaving it at status 500
-        if (!user) return { ok: false, error: { code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" } };
+        if (!user) {
+            // Adding a console warning so we can ignore this error log on the controller
+            console.warn("User not found");
+            return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
+        }
 
         //? Por ultimo modificamos el estado del email verificado
         user.emailValidated = true;
         await user.save();
 
-        return { ok: true };
+        return ok();
     }
 }

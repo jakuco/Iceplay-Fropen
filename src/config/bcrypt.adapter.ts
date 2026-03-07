@@ -1,15 +1,14 @@
-import {compare, compareSync, genSaltSync, hashSync} from 'bcrypt';
+import { compare, genSalt, hash } from 'bcrypt';
+
+// Switched to async to avoid blocking the server
 
 export const bcryptAdapter = {
-    hash: (password: string) => {
-        const salt = genSaltSync(10);
-        return hashSync(password, salt);
+    hash: async (password: string): Promise<string> => {
+        const salt = await genSalt(10);
+        return hash(password, salt);
     },
-    compare: (password: string, hash: string) => {
-        return compareSync(password, hash);
+
+    compare: async (password: string, hashValue: string): Promise<boolean> => {
+        return compare(password, hashValue);
     }
 }
-
-
-
-

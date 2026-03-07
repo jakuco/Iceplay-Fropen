@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CustomError } from "../errors/custom.errors";
+import { Result, ok, fail } from "$config/result";
 
 export class UserEntity {
     static readonly schema = z.object({
@@ -22,7 +22,7 @@ export class UserEntity {
         public readonly img?: string,
     ) { }
 
-    static fromObject(obj: { [key: string]: any }) {
+    static fromObject(obj: { [key: string]: any }): Result<UserEntity> {
         if (obj.id === undefined) {
             obj.id = obj._id;
         }
@@ -30,12 +30,12 @@ export class UserEntity {
         const parseResult = this.schema.safeParse(obj);
         
         if (!parseResult.success) {
-            throw CustomError.badRequest(parseResult.error.message);
+            return fail(parseResult.error.message);
         }
 
         const { id, name, email, emailValidated, password, role, img } = parseResult.data;
 
-        return new UserEntity(
+        return ok(new UserEntity(
             id,
             name,
             email,
@@ -43,7 +43,7 @@ export class UserEntity {
             password,
             role,
             img,
-        );
+        ));
     }
 
 }
