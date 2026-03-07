@@ -15,6 +15,7 @@ export const envs = {
   SEND_EMAIL:get('SEND_EMAIL').required().default('false').asBool(),
   JWT_TOKEN:get('JWT_TOKEN').required().asString(),
   API_URL:get('API_URL').required().asString(),
+  CORS_ORIGIN:get('CORS_ORIGIN').default('http://localhost:4200').asString(),
 }
 
 

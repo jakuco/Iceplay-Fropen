@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import path from 'path';
 import morgan from 'morgan';
 import cors from 'cors';
+import { envs } from '../config/envs';
 
 interface Options {
   port: number;
@@ -29,9 +30,9 @@ export class Server {
 
     //* Middlewares
     this.app.use(cors({
-      origin: "http://localhost:4200", // origen permitido 
-      methods: ["GET", "POST", "PUT", "DELETE"], // métodos permitidos 
-      credentials: true // si usas cookies o auth headers
+      origin: envs.CORS_ORIGIN,
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true
     }));
     this.app.use( morgan('dev') ); // HTTP request logger
     this.app.use( express.json() ); // raw

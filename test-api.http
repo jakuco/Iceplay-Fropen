@@ -1,0 +1,70 @@
+### ─────────────────────────────────────────
+### ICEPLAY API — Test Requests
+### How to use: click "Send Request" above any request
+### Change @baseUrl to your Railway URL when testing production
+### ─────────────────────────────────────────
+
+@baseUrl = http://localhost:3001/api
+@adminEmail = super@fropen.com
+@adminPassword = admin123
+
+### ─── 1. REGISTER a new user ─────────────
+# @name register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "testuser@example.com",
+  "password": "123456"
+}
+
+### ─── 2. LOGIN with admin user ────────────
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{adminEmail}}",
+  "password": "{{adminPassword}}"
+}
+
+### ─── 3. LOGIN with registered user ───────
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "123456"
+}
+
+### ─── 4. REGISTER — missing fields (expect 400 error) ───
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "incomplete@example.com"
+}
+
+### ─── 5. REGISTER — short password (expect 400 error) ───
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Short Pass",
+  "email": "shortpass@example.com",
+  "password": "123"
+}
+
+### ─── 6. GET teams (protected — needs Bearer token) ─────
+### Paste the token from login response below after "Bearer "
+GET {{baseUrl}}/teams
+Authorization: Bearer PASTE_YOUR_TOKEN_HERE
+
+### ─── 7. GET players (protected) ────────────────────────
+GET {{baseUrl}}/players
+Authorization: Bearer PASTE_YOUR_TOKEN_HERE
+
+### ─── 8. GET championships (protected) ──────────────────
+GET {{baseUrl}}/championships
+Authorization: Bearer PASTE_YOUR_TOKEN_HERE
