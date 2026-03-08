@@ -64,4 +64,13 @@ export class AuthController {
         return res.sendFile(path.join(__dirname, 'public', 'email-validated.html')/*, { headers: { 'Content-Type': 'text/html' } }*/);
     }
 
+    renewToken = async (_: Request, res: Response) => {
+        const serviceResult = await this.authService.renewToken(res.locals.user);
+
+        if (!serviceResult.ok) {
+            return this.handleError(serviceResult.error, res);
+        }
+
+        res.json({ token: serviceResult.value });
+    }
 }

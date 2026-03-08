@@ -8,6 +8,9 @@ import { Result, ok, fail } from "$config/result";
 import { Status } from "$config/status";
 
 type AuthResponse = { user: Omit<UserEntity, 'password'>, token: string }
+// Added to enforce type safety on token generation and make sure we don't accidentally skip any fields.
+// You can choose not to use it, though. generateToken() defaults to `string | object` if the type isn't specified.
+type TokenPayload = { id: string, email: string }
 
 export class AuthService {
     constructor(
@@ -28,7 +31,7 @@ export class AuthService {
             user.password = await bcryptAdapter.hash(registerUserDto.password);
             await user.save();
 
-            const token = await JwtAdapter.generateToken({ id: user._id.toString() });
+            const token = await JwtAdapter.generateToken<TokenPayload>({ id: user._id.toString(), email: user.email });
 
             if (!token) {
                 return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
@@ -86,7 +89,7 @@ export class AuthService {
         //? El _ es un placeholder para el password
         const { password: _, ...userEntity } = entityResult.value;
 
-        const token = await JwtAdapter.generateToken({ id: user.id, email: user.email });
+        const token = await JwtAdapter.generateToken<TokenPayload>({ id: user.id, email: user.email });
 
         if (!token) {
             return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
@@ -129,13 +132,12 @@ export class AuthService {
     public async validateEmail(token: string): Promise<Result<void, ServiceError>> {
 
         //?Primero verificamos el token que nos envian por la url
-        const payload = await JwtAdapter.verifyToken(token);
+        const payload = await JwtAdapter.verifyToken<{ email: string }>(token);
         if (!payload) return fail({ code: Status.UNAUTHORIZED, message: "Invalid token" });
 
-
         //? Despues verificamos que el email este en el payload del JWT
-        const { email } = payload as { email: string };
-        if (!email) return fail({ code: Status.BAD_REQUEST, message: "Email not in token" });
+        const { email } = payload;
+        if (!email) return fail({ code: Status.BAD_REQUEST, message: "Email not in token" }); // Should never happen
 
         //? Despues tenemos que verificar que el usuario existe en BD
         const user = await UserModel.findOne({ email });
@@ -152,5 +154,14 @@ export class AuthService {
         await user.save();
 
         return ok();
+    }
+
+    public async renewToken(user: UserEntity): Promise<Result<string, ServiceError>> {
+        // Auth middleware already handles token validation. We assume this is a valid request.
+
+        const newToken = await JwtAdapter.generateToken<TokenPayload>({ id: user.id, email: user.email });
+        if (!newToken) return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });
+
+        return ok(newToken);
     }
 }

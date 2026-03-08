@@ -11,7 +11,7 @@ export class JwtAdapter {
     // DI
     // constructor() {}
 
-    static async generateToken(payload: object | string, duration: StringValue | number = '2h'): Promise<string | undefined> {
+    static async generateToken<T extends string | object | Buffer = string | object>(payload: T, duration: StringValue | number = '2h'): Promise<string | undefined> {
         return new Promise((resolve, reject) => {
             jwt.sign(payload, JWT_SEED, {expiresIn: duration}, (err, token) => {
                 if (err) {
