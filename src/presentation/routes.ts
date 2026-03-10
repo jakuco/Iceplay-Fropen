@@ -19,14 +19,14 @@ export class AppRoutes {
     
     // Definir las rutas
     router.use('/api/auth', AuthRoutes.routes );
-    router.use('/api/categories', CategoryRoutes.routes );
-    router.use('/api/players', PlayerRoutes.routes);
-    router.use('/api/teams', TeamRoutes.routes);
-    router.use('/api/coaches', CoachRoutes.routes);
-    router.use('/api/matches', MatchRoutes.routes);
-    router.use('/api/championships', ChampionshipRoutes.routes);
-    router.use('/api/championshipTeams', ChampionshipTeamRoutes.routes);
-    router.use('/api/matchPlayers', MatchPlayerRoutes.routes);
+    //router.use('/api/categories', CategoryRoutes.routes );
+    //router.use('/api/players', PlayerRoutes.routes);
+    //router.use('/api/teams', TeamRoutes.routes);
+    //router.use('/api/coaches', CoachRoutes.routes);
+    //router.use('/api/matches', MatchRoutes.routes);
+    //router.use('/api/championships', ChampionshipRoutes.routes);
+    //router.use('/api/championshipTeams', ChampionshipTeamRoutes.routes);
+    //router.use('/api/matchPlayers', MatchPlayerRoutes.routes);
     return router;
   }
 

@@ -2,6 +2,8 @@ import { MatchModel } from "../../data/mongo/models/match.model";
 import { ChampionshipModel } from "../../data/mongo/models/championship.model";
 import { TeamModel } from "../../data/mongo/models/team.model";
 import { CustomError, PaginationDTO, CreateMatchDto, UpdateMatchDto } from "../../domain";
+import { toMatchDto } from "../../domain/dto/match/match.mapper";
+import { MatchDto } from "../../domain/dto/match/match.dto";
 
 export class MatchService {
 
@@ -38,59 +40,35 @@ export class MatchService {
   }
 
   async getMatches(paginationDTO: PaginationDTO) {
-
     const { page, limit } = paginationDTO;
 
-    try {
+    const [totalMatches, matches] = await Promise.all([
+      MatchModel.countDocuments().exec(),
+      MatchModel.find()
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .exec()
+    ]);
 
-      const [totalMatches, matches]: [number, any[]] = await Promise.all([
-        MatchModel.countDocuments().exec(),
-        MatchModel.find()
-          .skip((page - 1) * limit)
-          .limit(limit)
-          .lean()
-          .exec() as Promise<any[]>
-      ]);
-
-      return {
-        page,
-        limit,
-        total: totalMatches,
-        next: (page * limit < totalMatches)
-          ? `/api/matches?page=${page + 1}&limit=${limit}`
-          : null,
-        prev: (page - 1 > 0)
-          ? `/api/matches?page=${page - 1}&limit=${limit}`
-          : null,
-        matches
-      };
-
-    } catch (error) {
-      throw CustomError.internalServer(`${error}`);
-    }
+    return {
+      page,
+      limit,
+      total: totalMatches,
+      next: (page * limit < totalMatches)
+        ? `/api/matches?page=${page + 1}&limit=${limit}`
+        : null,
+      prev: (page - 1 > 0)
+        ? `/api/matches?page=${page - 1}&limit=${limit}`
+        : null,
+      matches: matches.map(m => toMatchDto(m))
+    };
   }
 
-  async getAllMatches() {
-
-    try {
-
-      const matches = await MatchModel.find().lean().exec();
-
-      return matches.map(m => ({
-        id: m._id,
-        match_id: m.match_id,
-        championship_id: m.championship_id,
-        home_team_id: m.home_team_id,
-        away_team_id: m.away_team_id,
-        date: m.date,
-        state: m.state,
-        match_events: m.match_events
-      }));
-
-    } catch (error) {
-      throw CustomError.internalServer(`${error}`);
-    }
+  async getAllMatches(): Promise<MatchDto[]> {
+    const matches = await MatchModel.find().exec();
+    return matches.map(m => toMatchDto(m));
   }
+
 
   async getMatchById(match_id: number) {
 

@@ -1,5 +1,6 @@
 import { ChampionshipModel } from "../../data/mongo/models/championship.model";
 import { CustomError, PaginationDTO } from "../../domain";
+import { toChampionshipDto } from "../../domain/dto/championship/championship.mapper";
 
 type CreateChampionshipDTO = any;
 
@@ -63,6 +64,9 @@ export class ChampionshipService {
   }
 
   async getAllChampionships() {
+    const championships = await ChampionshipModel.find().exec();
+    return championships.map(c => toChampionshipDto(c))
+
     try {
       const championships = await ChampionshipModel.find().lean().exec();
       return championships.map(c => ({

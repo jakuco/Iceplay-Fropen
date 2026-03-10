@@ -12,6 +12,18 @@ services:
     ports:
       - 27017:27017
 
+
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: iceplay_db
+      POSTGRES_USER: iceplay_user
+      POSTGRES_PASSWORD: iceplay_password
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      
   # postgres-db:
   #   image: postgres:15.3
   #   restart: always

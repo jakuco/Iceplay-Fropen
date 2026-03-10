@@ -7,6 +7,8 @@ export class CreateMatchDto {
     public readonly away_team_id: number,
     public readonly date: Date,
     public readonly state: number,
+    public readonly city: string,
+    public readonly venue: string,
     public readonly match_events?: any
   ) {}
 
@@ -19,6 +21,8 @@ export class CreateMatchDto {
       away_team_id,
       date,
       state,
+      city,
+      venue,
       match_events
     } = payload ?? {};
 
@@ -65,6 +69,8 @@ export class CreateMatchDto {
         Number(away_team_id),
         dateObj,
         Number(state),
+        String(city),
+        String(venue),
         match_events ?? undefined
       )
     ];

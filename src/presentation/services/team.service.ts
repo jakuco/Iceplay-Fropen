@@ -1,5 +1,6 @@
 import { TeamModel } from "../../data/mongo/models/team.model";
 import { CustomError, PaginationDTO, CreateTeamDto } from "../../domain";
+import { toTeamDto } from "../../domain/dto/team/team.mapper";
 
 export class TeamService {
 
@@ -80,6 +81,9 @@ export class TeamService {
   }
 
   async getAllTeams() {
+
+    const teams = await TeamModel.find().exec();
+    return teams.map(team => toTeamDto(team))
 
     try {
 
