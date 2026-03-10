@@ -1,54 +1,65 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose from "mongoose";
 
-export interface IChampionship extends Document {
-  championship_id: number;
-  name: string;
-  type_id: number;
-  format_id: number;
-  state_id: number;
-  season_id: number;
-}
+// ── SocialNetwork ─────────────────────────────────────────────────────────────
+// id: autoincrement (no viene en JSON)
+const SocialNetworkSchema = new mongoose.Schema({
+    id:   { type: Number, required: true, unique: true },
+    name: { type: String, required: [true, "Name is required"], unique: true },
+    icon: { type: String },
+});
 
-const ChampionshipSchema = new Schema<IChampionship>(
-  {
-    championship_id: {
-      type: Number,
-      unique: true,
-      index: true,
-      required: true,
-    },
+export const SocialNetworkModel = mongoose.model("SocialNetwork", SocialNetworkSchema);
 
-    name: {
-      type: String,
-      required: true,
-      maxlength: 40,
-      trim: true,
-    },
 
-    type_id: {
-      type: Number,
-      required: true,
-    },
+// ── Championship ──────────────────────────────────────────────────────────────
+// id: autoincrement (no viene en JSON)
+// organizationId: FK → Organization.id  |  sportId: FK → Sport.id
+const ChampionshipSchema = new mongoose.Schema({
+    id:                    { type: Number, required: true, unique: true },
+    organizationId:        { type: Number, required: [true, "Organization is required"] },
+    sportId:               { type: Number, required: [true, "Sport is required"] },
+    name:                  { type: String, required: [true, "Name is required"] },
+    slug:                  { type: String, required: [true, "Slug is required"], unique: true },
+    description:           { type: String },
+    season:                { type: String, required: [true, "Season is required"] },
+    logo:                  { type: String },
+    status:                { type: Number, default: 1 },
+    registrationStartDate: { type: Date },
+    registrationEndDate:   { type: Date },
+    startDate:             { type: Date },
+    endDate:               { type: Date },
+    maxTeams:              { type: Number },
+    maxPlayersPerTeam:     { type: Number },
+}, { timestamps: true });
 
-    format_id: {
-      type: Number,
-      required: true,
-    },
+export const ChampionshipModel = mongoose.model("Championship", ChampionshipSchema);
 
-    state_id: {
-      type: Number,
-      required: true,
-    },
 
-    season_id: {
-      type: Number,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
+// ── SocialLinks ───────────────────────────────────────────────────────────────
+// id: autoincrement  |  championshipId: FK → Championship.id
+// socialNetworkId: FK → SocialNetwork.id
+const SocialLinksSchema = new mongoose.Schema({
+    id:              { type: Number, required: true, unique: true },
+    championshipId:  { type: Number, required: [true, "Championship is required"] },
+    socialNetworkId: { type: Number, required: [true, "SocialNetwork is required"] },
+    link:            { type: String, required: [true, "Link is required"] },
+});
 
-export const ChampionshipModel = mongoose.model<IChampionship>(
-  "Championship",
-  ChampionshipSchema
-);
+SocialLinksSchema.index({ championshipId: 1, socialNetworkId: 1 }, { unique: true });
+
+export const SocialLinksModel = mongoose.model("SocialLinks", SocialLinksSchema);
+
+
+// ── MatchRulesChampionshipSport (pivot con valor sobreescrito) ────────────────
+// matchRulesId: FK → MatchRules.id  |  championshipId: FK → Championship.id
+// sportId: FK → Sport.id
+const MatchRulesChampionshipSportSchema = new mongoose.Schema({
+    matchRulesId:   { type: Number, required: [true, "MatchRules is required"] },
+    championshipId: { type: Number, required: [true, "Championship is required"] },
+    sportId:        { type: Number, required: [true, "Sport is required"] },
+    value:          { type: Number, required: [true, "Value is required"] },
+});
+
+MatchRulesChampionshipSportSchema.index({ matchRulesId: 1, championshipId: 1, sportId: 1 }, { unique: true });
+
+export const MatchRulesChampionshipSportModel = mongoose.model("MatchRulesChampionshipSport", MatchRulesChampionshipSportSchema);

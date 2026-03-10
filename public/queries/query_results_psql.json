@@ -1,0 +1,973 @@
+{
+  "q1": [
+    {
+      "id": 1,
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "finished",
+      "homeTeam": {
+        "id": 1,
+        "name": "Cuenca Warriors"
+      },
+      "awayTeam": {
+        "id": 16,
+        "name": "Portoviejo Tigres"
+      }
+    }
+  ],
+  "q2": [
+    {
+      "id": 1,
+      "homeScore": 2,
+      "awayScore": 0,
+      "status": "finished",
+      "eventos": [
+        {
+          "playerId": null,
+          "teamId": null,
+          "time": 0,
+          "tipoEvento": {
+            "label": "Inicio de Partido",
+            "category": "match_control"
+          }
+        },
+        {
+          "playerId": 1,
+          "teamId": 1,
+          "time": 1860,
+          "tipoEvento": {
+            "label": "Gol",
+            "category": "score"
+          }
+        },
+        {
+          "playerId": 8,
+          "teamId": 1,
+          "time": 2460,
+          "tipoEvento": {
+            "label": "Gol",
+            "category": "score"
+          }
+        },
+        {
+          "playerId": 2,
+          "teamId": 1,
+          "time": 2580,
+          "tipoEvento": {
+            "label": "Tarjeta Amarilla",
+            "category": "discipline"
+          }
+        },
+        {
+          "playerId": null,
+          "teamId": null,
+          "time": 2760,
+          "tipoEvento": {
+            "label": "Inicio Segundo Tiempo",
+            "category": "match_control"
+          }
+        },
+        {
+          "playerId": 14,
+          "teamId": 2,
+          "time": 3540,
+          "tipoEvento": {
+            "label": "Entrada de Jugador",
+            "category": "substitution"
+          }
+        },
+        {
+          "playerId": 10,
+          "teamId": 2,
+          "time": 3540,
+          "tipoEvento": {
+            "label": "Salida de Jugador",
+            "category": "substitution"
+          }
+        },
+        {
+          "playerId": 1,
+          "teamId": 1,
+          "time": 3900,
+          "tipoEvento": {
+            "label": "Salida de Jugador",
+            "category": "substitution"
+          }
+        },
+        {
+          "playerId": 4,
+          "teamId": 1,
+          "time": 3900,
+          "tipoEvento": {
+            "label": "Entrada de Jugador",
+            "category": "substitution"
+          }
+        },
+        {
+          "playerId": null,
+          "teamId": 1,
+          "time": 5400,
+          "tipoEvento": {
+            "label": "Partido Ganado",
+            "category": "match_result"
+          }
+        }
+      ]
+    }
+  ],
+  "q3": [
+    {
+      "id": 1,
+      "firstName": "Andrés",
+      "lastName": "Ramírez",
+      "number": 9,
+      "posicion": {
+        "code": "ST",
+        "label": "Delantero"
+      }
+    },
+    {
+      "id": 2,
+      "firstName": "Miguel",
+      "lastName": "Lozano",
+      "number": 10,
+      "posicion": {
+        "code": "CM",
+        "label": "Mediocampista Central"
+      }
+    },
+    {
+      "id": 3,
+      "firstName": "José",
+      "lastName": "Martínez",
+      "number": 5,
+      "posicion": {
+        "code": "LB",
+        "label": "Lateral Izquierdo"
+      }
+    },
+    {
+      "id": 4,
+      "firstName": "Carlos",
+      "lastName": "Vega",
+      "number": 7,
+      "posicion": {
+        "code": "LW",
+        "label": "Extremo Izquierdo"
+      }
+    },
+    {
+      "id": 5,
+      "firstName": "Luis",
+      "lastName": "García",
+      "number": 4,
+      "posicion": {
+        "code": "CB",
+        "label": "Defensa Central"
+      }
+    },
+    {
+      "id": 6,
+      "firstName": "David",
+      "lastName": "Suárez",
+      "number": 1,
+      "posicion": {
+        "code": "GK",
+        "label": "Arquero"
+      }
+    },
+    {
+      "id": 7,
+      "firstName": "Esteban",
+      "lastName": "Morales",
+      "number": 6,
+      "posicion": {
+        "code": "CDM",
+        "label": "Mediocampista Defensivo Central"
+      }
+    },
+    {
+      "id": 8,
+      "firstName": "Felipe",
+      "lastName": "Navarro",
+      "number": 11,
+      "posicion": {
+        "code": "ST",
+        "label": "Delantero"
+      }
+    }
+  ],
+  "q4": [
+    {
+      "id": 1,
+      "name": "Fase Suiza",
+      "phaseType": "swiss",
+      "grupos": [
+        {
+          "id": 1,
+          "order": 1,
+          "partidos": [
+            {
+              "id": 1,
+              "homeTeamId": 1,
+              "awayTeamId": 16,
+              "homeScore": 2,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 2,
+              "homeTeamId": 2,
+              "awayTeamId": 15,
+              "homeScore": 1,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 3,
+              "homeTeamId": 3,
+              "awayTeamId": 14,
+              "homeScore": 3,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 4,
+              "homeTeamId": 4,
+              "awayTeamId": 13,
+              "homeScore": 0,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 5,
+              "homeTeamId": 5,
+              "awayTeamId": 12,
+              "homeScore": 2,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 6,
+              "homeTeamId": 6,
+              "awayTeamId": 11,
+              "homeScore": 1,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 7,
+              "homeTeamId": 7,
+              "awayTeamId": 10,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 8,
+              "homeTeamId": 8,
+              "awayTeamId": 9,
+              "homeScore": 2,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 9,
+              "homeTeamId": 1,
+              "awayTeamId": 3,
+              "homeScore": 1,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 10,
+              "homeTeamId": 13,
+              "awayTeamId": 6,
+              "homeScore": 2,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 11,
+              "homeTeamId": 8,
+              "awayTeamId": 10,
+              "homeScore": 3,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 12,
+              "homeTeamId": 5,
+              "awayTeamId": 2,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 13,
+              "homeTeamId": 4,
+              "awayTeamId": 11,
+              "homeScore": 1,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 14,
+              "homeTeamId": 15,
+              "awayTeamId": 9,
+              "homeScore": 2,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 15,
+              "homeTeamId": 14,
+              "awayTeamId": 7,
+              "homeScore": 0,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 16,
+              "homeTeamId": 16,
+              "awayTeamId": 12,
+              "homeScore": 1,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 17,
+              "homeTeamId": 1,
+              "awayTeamId": 8,
+              "homeScore": 2,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 18,
+              "homeTeamId": 2,
+              "awayTeamId": 13,
+              "homeScore": 1,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 19,
+              "homeTeamId": 6,
+              "awayTeamId": 10,
+              "homeScore": 3,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 20,
+              "homeTeamId": 15,
+              "awayTeamId": 7,
+              "homeScore": 0,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 21,
+              "homeTeamId": 3,
+              "awayTeamId": 5,
+              "homeScore": 2,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 22,
+              "homeTeamId": 4,
+              "awayTeamId": 9,
+              "homeScore": 1,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 23,
+              "homeTeamId": 11,
+              "awayTeamId": 16,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 24,
+              "homeTeamId": 12,
+              "awayTeamId": 14,
+              "homeScore": 2,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 3
+            },
+            {
+              "id": 25,
+              "homeTeamId": 1,
+              "awayTeamId": 2,
+              "homeScore": 1,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 26,
+              "homeTeamId": 8,
+              "awayTeamId": 6,
+              "homeScore": 2,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 27,
+              "homeTeamId": 13,
+              "awayTeamId": 7,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 28,
+              "homeTeamId": 3,
+              "awayTeamId": 4,
+              "homeScore": 3,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 29,
+              "homeTeamId": 5,
+              "awayTeamId": 12,
+              "homeScore": 1,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 30,
+              "homeTeamId": 10,
+              "awayTeamId": 15,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 31,
+              "homeTeamId": 9,
+              "awayTeamId": 16,
+              "homeScore": 2,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 32,
+              "homeTeamId": 11,
+              "awayTeamId": 14,
+              "homeScore": 1,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 4
+            },
+            {
+              "id": 33,
+              "homeTeamId": 1,
+              "awayTeamId": 7,
+              "homeScore": 2,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 34,
+              "homeTeamId": 2,
+              "awayTeamId": 3,
+              "homeScore": 1,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 35,
+              "homeTeamId": 8,
+              "awayTeamId": 13,
+              "homeScore": 3,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 36,
+              "homeTeamId": 6,
+              "awayTeamId": 4,
+              "homeScore": 2,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 37,
+              "homeTeamId": 12,
+              "awayTeamId": 15,
+              "homeScore": 1,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 38,
+              "homeTeamId": 5,
+              "awayTeamId": 9,
+              "homeScore": 2,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 39,
+              "homeTeamId": 16,
+              "awayTeamId": 10,
+              "homeScore": 0,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 5
+            },
+            {
+              "id": 40,
+              "homeTeamId": 11,
+              "awayTeamId": 14,
+              "homeScore": 1,
+              "awayScore": 3,
+              "status": "finished",
+              "round": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Fase Eliminatoria",
+      "phaseType": "knockout",
+      "grupos": [
+        {
+          "id": 2,
+          "order": 1,
+          "partidos": []
+        },
+        {
+          "id": 3,
+          "order": 2,
+          "partidos": [
+            {
+              "id": 41,
+              "homeTeamId": 1,
+              "awayTeamId": 10,
+              "homeScore": 2,
+              "awayScore": 0,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 42,
+              "homeTeamId": 2,
+              "awayTeamId": 12,
+              "homeScore": 1,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 43,
+              "homeTeamId": 8,
+              "awayTeamId": 7,
+              "homeScore": 3,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 1
+            },
+            {
+              "id": 44,
+              "homeTeamId": 6,
+              "awayTeamId": 3,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 1
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "order": 3,
+          "partidos": [
+            {
+              "id": 45,
+              "homeTeamId": 1,
+              "awayTeamId": 3,
+              "homeScore": 2,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 2
+            },
+            {
+              "id": 46,
+              "homeTeamId": 2,
+              "awayTeamId": 8,
+              "homeScore": 0,
+              "awayScore": 1,
+              "status": "finished",
+              "round": 2
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "order": 4,
+          "partidos": [
+            {
+              "id": 47,
+              "homeTeamId": 1,
+              "awayTeamId": 8,
+              "homeScore": 2,
+              "awayScore": 2,
+              "status": "finished",
+              "round": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "q5": [
+    {
+      "equipo": "Cuenca Warriors",
+      "puntos": "22",
+      "jugados": "8",
+      "ganados": "7",
+      "empatados": "1",
+      "perdidos": "0",
+      "gf": "14",
+      "gc": "5",
+      "dg": "9"
+    },
+    {
+      "equipo": "Esmeraldas Jaguars",
+      "puntos": "17",
+      "jugados": "8",
+      "ganados": "5",
+      "empatados": "2",
+      "perdidos": "1",
+      "gf": "17",
+      "gc": "12",
+      "dg": "5"
+    },
+    {
+      "equipo": "Machala Panthers",
+      "puntos": "11",
+      "jugados": "6",
+      "ganados": "3",
+      "empatados": "2",
+      "perdidos": "1",
+      "gf": "10",
+      "gc": "5",
+      "dg": "5"
+    },
+    {
+      "equipo": "Guayaquil Sharks",
+      "puntos": "11",
+      "jugados": "7",
+      "ganados": "3",
+      "empatados": "2",
+      "perdidos": "2",
+      "gf": "11",
+      "gc": "8",
+      "dg": "3"
+    },
+    {
+      "equipo": "Loja Cóndores",
+      "puntos": "11",
+      "jugados": "6",
+      "ganados": "3",
+      "empatados": "2",
+      "perdidos": "1",
+      "gf": "8",
+      "gc": "6",
+      "dg": "2"
+    },
+    {
+      "equipo": "Manta Dolphins",
+      "puntos": "9",
+      "jugados": "6",
+      "ganados": "3",
+      "empatados": "0",
+      "perdidos": "3",
+      "gf": "8",
+      "gc": "6",
+      "dg": "2"
+    },
+    {
+      "equipo": "Riobamba Cóndor FC",
+      "puntos": "7",
+      "jugados": "5",
+      "ganados": "2",
+      "empatados": "1",
+      "perdidos": "2",
+      "gf": "4",
+      "gc": "4",
+      "dg": "0"
+    },
+    {
+      "equipo": "Quito Titans",
+      "puntos": "7",
+      "jugados": "7",
+      "ganados": "1",
+      "empatados": "4",
+      "perdidos": "2",
+      "gf": "5",
+      "gc": "6",
+      "dg": "-1"
+    },
+    {
+      "equipo": "Portoviejo Tigres",
+      "puntos": "6",
+      "jugados": "5",
+      "ganados": "2",
+      "empatados": "0",
+      "perdidos": "3",
+      "gf": "3",
+      "gc": "6",
+      "dg": "-3"
+    },
+    {
+      "equipo": "Guayaquil Sharks",
+      "puntos": "6",
+      "jugados": "6",
+      "ganados": "2",
+      "empatados": "0",
+      "perdidos": "4",
+      "gf": "4",
+      "gc": "9",
+      "dg": "-5"
+    },
+    {
+      "equipo": "Manta Piratas",
+      "puntos": "5",
+      "jugados": "5",
+      "ganados": "1",
+      "empatados": "2",
+      "perdidos": "2",
+      "gf": "7",
+      "gc": "7",
+      "dg": "0"
+    },
+    {
+      "equipo": "Esmeraldas Jaguares",
+      "puntos": "4",
+      "jugados": "5",
+      "ganados": "1",
+      "empatados": "1",
+      "perdidos": "3",
+      "gf": "6",
+      "gc": "9",
+      "dg": "-3"
+    },
+    {
+      "equipo": "Quito Eagles",
+      "puntos": "4",
+      "jugados": "5",
+      "ganados": "1",
+      "empatados": "1",
+      "perdidos": "3",
+      "gf": "5",
+      "gc": "8",
+      "dg": "-3"
+    },
+    {
+      "equipo": "Loja Eagles",
+      "puntos": "4",
+      "jugados": "5",
+      "ganados": "1",
+      "empatados": "1",
+      "perdidos": "3",
+      "gf": "3",
+      "gc": "8",
+      "dg": "-5"
+    },
+    {
+      "equipo": "Ambato Bulls",
+      "puntos": "3",
+      "jugados": "5",
+      "ganados": "0",
+      "empatados": "3",
+      "perdidos": "2",
+      "gf": "7",
+      "gc": "9",
+      "dg": "-2"
+    },
+    {
+      "equipo": "Ambato Volcanes",
+      "puntos": "2",
+      "jugados": "5",
+      "ganados": "0",
+      "empatados": "2",
+      "perdidos": "3",
+      "gf": "3",
+      "gc": "7",
+      "dg": "-4"
+    }
+  ],
+  "q6": [
+    {
+      "id": 1,
+      "name": "Copa Nulti",
+      "season": "2026",
+      "status": 1,
+      "organizacion": {
+        "name": "UCuenca",
+        "city": "Cuenca"
+      },
+      "deporte": {
+        "matchTypeSingular": "GOL"
+      },
+      "equipos": [
+        {
+          "id": 1,
+          "name": "Cuenca Warriors",
+          "shortname": "CWR",
+          "coachName": "Luis Andrade"
+        },
+        {
+          "id": 2,
+          "name": "Quito Titans",
+          "shortname": "QTT",
+          "coachName": "Carlos Pérez"
+        },
+        {
+          "id": 3,
+          "name": "Guayaquil Sharks",
+          "shortname": "GSH",
+          "coachName": "Pedro Gómez"
+        },
+        {
+          "id": 4,
+          "name": "Loja Eagles",
+          "shortname": "LEG",
+          "coachName": "Diego Torres"
+        },
+        {
+          "id": 5,
+          "name": "Ambato Bulls",
+          "shortname": "ABL",
+          "coachName": "Fernando Ruiz"
+        },
+        {
+          "id": 6,
+          "name": "Machala Panthers",
+          "shortname": "MPT",
+          "coachName": "Jorge Salazar"
+        },
+        {
+          "id": 7,
+          "name": "Manta Dolphins",
+          "shortname": "MDF",
+          "coachName": "Ricardo Molina"
+        },
+        {
+          "id": 8,
+          "name": "Esmeraldas Jaguars",
+          "shortname": "EJG",
+          "coachName": "Hernán Viteri"
+        },
+        {
+          "id": 9,
+          "name": "Quito Eagles",
+          "shortname": "QEA",
+          "coachName": "Marco Espinoza"
+        },
+        {
+          "id": 10,
+          "name": "Guayaquil Sharks",
+          "shortname": "GSH",
+          "coachName": "Roberto Castillo"
+        },
+        {
+          "id": 11,
+          "name": "Ambato Volcanes",
+          "shortname": "AVO",
+          "coachName": "Fernando Naranjo"
+        },
+        {
+          "id": 12,
+          "name": "Loja Cóndores",
+          "shortname": "LCO",
+          "coachName": "Gustavo Palacios"
+        },
+        {
+          "id": 13,
+          "name": "Manta Piratas",
+          "shortname": "MPI",
+          "coachName": "Álvaro Cedeño"
+        },
+        {
+          "id": 14,
+          "name": "Esmeraldas Jaguares",
+          "shortname": "EJA",
+          "coachName": "Julio Caicedo"
+        },
+        {
+          "id": 15,
+          "name": "Riobamba Cóndor FC",
+          "shortname": "RCF",
+          "coachName": "Ramiro Colcha"
+        },
+        {
+          "id": 16,
+          "name": "Portoviejo Tigres",
+          "shortname": "PTI",
+          "coachName": "Tomás Solórzano"
+        }
+      ],
+      "fases": [
+        {
+          "id": 1,
+          "name": "Fase Suiza",
+          "phaseType": "swiss",
+          "status": "finished"
+        },
+        {
+          "id": 2,
+          "name": "Fase Eliminatoria",
+          "phaseType": "knockout",
+          "status": "finished"
+        }
+      ]
+    }
+  ]
+}
