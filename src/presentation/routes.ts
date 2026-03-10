@@ -22,11 +22,14 @@ export class AppRoutes {
     router.use('/api/categories', CategoryRoutes.routes );
     router.use('/api/players', PlayerRoutes.routes);
     router.use('/api/teams', TeamRoutes.routes);
+<<<<<<< HEAD
     router.use('/api/coaches', CoachRoutes.routes);
     router.use('/api/matches', MatchRoutes.routes);
     router.use('/api/championships', ChampionshipRoutes.routes);
     router.use('/api/championshipTeams', ChampionshipTeamRoutes.routes);
     router.use('/api/matchPlayers', MatchPlayerRoutes.routes);
+=======
+>>>>>>> main
     return router;
   }
 

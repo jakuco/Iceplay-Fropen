@@ -53,7 +53,6 @@ export class PlayerService {
           .lean()
           .exec() as Promise<any[]>
       ]);
-
       return {
         page,
         limit,

@@ -42,7 +42,6 @@ export class TeamController {
   };
 
   public getAllTeams = async (_req: Request, res: Response) => {
-
     this.teamService.getAllTeams()
       .then(teams => res.status(200).json(teams))
       .catch(error => this.handleError(error, res));

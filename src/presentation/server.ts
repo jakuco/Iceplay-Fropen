@@ -1,8 +1,11 @@
 import express, { Router } from 'express';
 import path from 'path';
 import morgan from 'morgan';
+<<<<<<< HEAD
 import cors from 'cors';
 import { envs } from '../config/envs';
+=======
+>>>>>>> main
 
 interface Options {
   port: number;
