@@ -1,7 +1,18 @@
-export interface TeamEntity {
-  team_id: number;
+export interface Team {
+  id: number;
+  championshipId: number;
   name: string;
   shortname: string;
-  city: string;
-  coach_id: number;
+  slug: string;
+  logoUrl: string;
+  documentURL: string;
+  primaryColor: string;
+  secondaryColor: string;
+  foundedYear: number;
+  homeVenue: number;
+  location: string;
+  isActive: boolean;
+  hasActiveMatches: boolean;
+  coachName: string;
+  coachPhone: string;
 }
