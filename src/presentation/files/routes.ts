@@ -27,11 +27,19 @@ export class FileRoutes {
     // Endpoint para descargar archivo
     router.get('/download/:key', fileController.downloadFile);
 
+    // ======== Los que se van a usar ==========
+
     // Endpoint para subir y comprimir
     router.post("/upload/compressed", upload.single("file"), fileController.uploadCompressedFile);
 
     // Endpoint para descargar y descomprimir
     router.get('/download/compressed/:key', fileController.downloadDecompressedFile);
+
+    // Endpoint para eliminar archivo por key (robusto si no existe)
+    router.delete('/:key', fileController.deleteFileByKey);
+
+    // Endpoint para procesar lote de fotos desde .zip/.rar con .xlsx
+    router.post('/upload/players/archive', upload.single("file"), fileController.uploadPlayersArchive);
 
     return router;
   }

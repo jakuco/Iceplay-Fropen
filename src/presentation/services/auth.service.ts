@@ -77,8 +77,12 @@ export class AuthService {
             return fail({ code: Status.BAD_REQUEST, message: "User or password are invalid" });
         }
 
+        console.log("user", user);
+
         const entityResult = UserEntity.fromObject(user);
         
+        console.log("entityResult", entityResult);
+
         if (!entityResult.ok) {
             console.error(entityResult.error);
             return fail({ code: Status.INTERNAL_SERVER_ERROR, message: "Internal Server Error" });

@@ -7,7 +7,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev": "tsnd -r tsconfig-paths/register --respawn --clear src/app.ts",
+    "dev": "tsnd --respawn --clear src/app.ts",
     "ts": "tsx watch src/app.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js",
@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^4.17.18",
@@ -35,6 +36,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1009.0",
+    "adm-zip": "^0.5.16",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^16.3.1",
@@ -45,8 +47,11 @@
     "mongoose": "^8.19.2",
     "morgan": "^1.10.1",
     "multer": "^2.1.1",
+    "node-unrar-js": "^2.0.2",
     "nodemailer": "^7.0.10",
     "pg": "^8.20.0",
+    "sharp": "^0.34.5",
+    "xlsx": "^0.18.5",
     "zod": "^4.3.6"
   }
 }

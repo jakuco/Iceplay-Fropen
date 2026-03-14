@@ -39,11 +39,11 @@ export class AuthController {
 
     loginUser = async (req: Request, res: Response) => {
         const result = LoginUserDto.create(req.body);
-        
+        console.log(result);
         if (!result.ok) { return res.status(400).json({ message: result.error }); }
 
         const serviceResult = await this.authService.loginUser(result.value);
-
+        console.log("serviceResult", serviceResult);
         if (!serviceResult.ok) {
             return this.handleError(serviceResult.error, res);
         }

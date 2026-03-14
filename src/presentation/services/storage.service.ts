@@ -2,6 +2,7 @@ import {
   PutObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
+  DeleteObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
 import { Readable } from "stream";
@@ -83,6 +84,62 @@ export class StorageService {
       if (error instanceof CustomError) throw error;
 
       throw CustomError.internalServer(`Download error: ${error}`);
+    }
+  }
+
+  private isObjectNotFoundError(error: unknown): boolean {
+    const err =
+      typeof error === "object" && error !== null
+        ? (error as { name?: string; Code?: string; code?: string; $metadata?: { httpStatusCode?: number } })
+        : undefined;
+
+    return (
+      err?.name === "NotFound" ||
+      err?.name === "NoSuchKey" ||
+      err?.Code === "NotFound" ||
+      err?.Code === "NoSuchKey" ||
+      err?.code === "NotFound" ||
+      err?.code === "NoSuchKey" ||
+      err?.$metadata?.httpStatusCode === 404
+    );
+  }
+
+  async deleteFromStorage(key: string): Promise<{ key: string; deleted: boolean; message: string }> {
+    try {
+      await this.client.send(
+        new HeadObjectCommand({
+          Bucket: this.bucket,
+          Key: key,
+        }),
+      );
+    } catch (error) {
+      console.log(`Pre-check error for key "${key}":`, error);
+      if (this.isObjectNotFoundError(error)) {
+        return {
+          key,
+          deleted: false,
+          message: "Object not found. Nothing was deleted.",
+        };
+      }
+
+      throw CustomError.internalServer(`Delete pre-check error: ${error}`);
+    }
+
+    try {
+      await this.client.send(
+        new DeleteObjectCommand({
+          Bucket: this.bucket,
+          Key: key,
+        }),
+      );
+
+      return {
+        key,
+        deleted: true,
+        message: "Object deleted successfully.",
+      };
+    } catch (error) {
+      throw CustomError.internalServer(`Delete error: ${error}`);
     }
   }
 }

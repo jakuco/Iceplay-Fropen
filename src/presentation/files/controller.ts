@@ -39,7 +39,6 @@ export class FileController {
   };
 
   public uploadFile = async (req: Request, res: Response) => {
-		console.log("Received upload request", req);
     const file = (req as Request & { file?: unknown }).file;
     const [error, uploadFileDto] = UploadFileDto.create({ file });
 
@@ -138,5 +137,41 @@ export class FileController {
     res.setHeader("Content-Length", result.buffer.byteLength);
 
     res.send(result.buffer);
+  };
+
+  public uploadPlayersArchive = async (req: Request, res: Response) => {
+    const file = (req as Request & { file?: unknown }).file;
+    const [error, uploadFileDto] = UploadFileDto.create({ file });
+
+    if (error) {
+      return res.status(Status.BAD_REQUEST).json({ message: error });
+    }
+
+    try {
+      const serviceResult = await this.fileService.uploadPlayersFromCompressedArchive(
+        uploadFileDto!.buffer,
+        uploadFileDto!.originalName,
+      );
+
+      return res.status(Status.CREATED).json(serviceResult);
+    } catch (error) {
+      return this.handleError(error, res);
+    }
+  };
+
+  public deleteFileByKey = async (req: Request, res: Response) => {
+		console.log("Received delete request with params:", req.params);
+    const [error, downloadDto] = DownloadFileDto.create(req.params);
+
+    if (error) {
+      return res.status(Status.BAD_REQUEST).json({ message: error });
+    }
+
+    try {
+      const serviceResult = await this.fileService.deleteFileByKey(downloadDto!.key);
+      return res.status(Status.OK).json(serviceResult);
+    } catch (error) {
+      return this.handleError(error, res);
+    }
   };
 }
