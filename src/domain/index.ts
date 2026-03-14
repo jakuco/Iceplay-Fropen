@@ -40,3 +40,9 @@ export * from './dto/championshipTeam/update-championshipTeam.dto';
 // Coach
 export * from "./dto/coach/create-coach.dto";
 export * from "./dto/coach/update-coach.dto";
+
+// File
+export * from './dto/files/upload-file.dto';
+export * from './dto/files/download-file.dto';
+export * from './dto/files/upload-compressed-file.dto';
+export * from './dto/files/download-decompressed-file.dto';

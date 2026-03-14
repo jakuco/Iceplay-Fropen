@@ -9,6 +9,7 @@ import { ChampionshipModel } from '../data';
 import { ChampionshipRoutes } from './championship/routes';
 import { ChampionshipTeamRoutes } from './championshipTeam/routes';
 import { MatchPlayerRoutes } from './matchPlayer/routes';
+import { FileRoutes } from './files/routes';
 
 export class AppRoutes {
 
@@ -27,6 +28,7 @@ export class AppRoutes {
     //router.use('/api/championships', ChampionshipRoutes.routes);
     //router.use('/api/championshipTeams', ChampionshipTeamRoutes.routes);
     //router.use('/api/matchPlayers', MatchPlayerRoutes.routes);
+    router.use('/api/files', FileRoutes.routes);
     return router;
   }
 
