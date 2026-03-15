@@ -1,11 +1,11 @@
-import { UserModel } from "$data/mongo/models/user.model";
-import { LoginUserDto, RegisterUserDto, UserEntity } from "$domain";
-import { ServiceError } from "$domain/errors";
-import { JwtAdapter, bcryptAdapter } from "$config";
+import { UserModel } from "../../data/mongo/models/user.model";
+import { LoginUserDto, RegisterUserDto, UserEntity } from "../../domain";
+import { ServiceError } from "../../domain/errors";
+import { JwtAdapter, bcryptAdapter } from "../../config";
 import { EmailService } from "./email.service";
-import { envs } from "$config/envs";
-import { Result, ok, fail } from "$config/result";
-import { Status } from "$config/status";
+import { envs } from "../../config/envs";
+import { Result, ok, fail } from "../../config/result";
+import { Status } from "../../config/status";
 
 type AuthResponse = { user: Omit<UserEntity, 'password'>, token: string }
 // Added to enforce type safety on token generation and make sure we don't accidentally skip any fields.

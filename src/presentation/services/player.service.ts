@@ -1,4 +1,4 @@
-import { PlayerModel } from "../../data/mongo/models/player.model";
+// import { PlayerModel } from "../../data/mongo/models/player.model";
 import { CustomError, PaginationDTO, UpdatePlayerDto } from "../../domain";
 
 type CreatePlayerDTO = any;
@@ -31,14 +31,8 @@ export class PlayerService {
         lastname: player.lastname,
         number: player.number,
         team_id: player.team_id,
-        statics: player.player_statics
+        statics: player.player_statics,
         //id: player.id,
-        player_id: player.id,
-        name: player.firstName,
-        lastname: player.lastName,
-        number: player.number,
-        team_id: player.teamId,
-        //statics: player.
       };
 
     } catch (err) {
@@ -106,8 +100,6 @@ export class PlayerService {
       number: player.number,
       name: player.name,
       lastname: player.lastname,
-      name: player.firstName,
-      lastname: player.lastName,
       weight: player.weight,
       height: player.height,
       primary_position: player.positionId,

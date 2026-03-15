@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import { AuthController } from './controller';
 import { AuthService, EmailService } from '../services';
-import { envs } from '$config/envs';
+import { envs } from '../../config/envs';
 import { AuthMiddleware } from '../middlewares/auth.middleware';
 
 export class AuthRoutes {

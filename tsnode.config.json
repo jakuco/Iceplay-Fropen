@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "paths": {
+      "$config": ["src/config"],
+      "$config/*": ["src/config/*"],
+      "$domain": ["src/domain"],
+      "$domain/*": ["src/domain/*"],
+      "$data": ["src/data"],
+      "$data/*": ["src/data/*"],
+      "$presentation": ["src/presentation"],
+      "$presentation/*": ["src/presentation/*"]
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"],
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "public"]
+}

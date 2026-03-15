@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import path from "path";
-import { LoginUserDto, RegisterUserDto } from "$domain";
-import { ServiceError } from "$domain/errors";
-import { AuthService } from "$presentation/services/auth.service";
-import { Status } from "$config/status";
+import { LoginUserDto, RegisterUserDto } from "../../domain";
+import { ServiceError } from "../../domain/errors";
+import { AuthService } from "../services/auth.service";
+import { Status } from "../../config/status";
 
 
 export class AuthController {

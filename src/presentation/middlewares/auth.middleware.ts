@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtAdapter } from "$config";
-import { UserModel } from "$data";
-import { UserEntity } from "$domain";
-import { Status } from "$config/status";
+import { JwtAdapter } from "../../config";
+import { UserModel } from "../../data";
+import { UserEntity } from "../../domain";
+import { Status } from "../../config/status";
 
 export class AuthMiddleware{
     static async validateJWT(req: Request, res: Response, next: NextFunction){

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Result, ok, fail } from "$config/result";
+import { Result, ok, fail } from "../../config/result";
 
 export class UserEntity {
     static readonly schema = z.object({
