@@ -1,0 +1,5303 @@
+{
+  "organization": {
+    "name": "UCuenca",
+    "slug": "ucuenca",
+    "description": "Organizacion de la universidad de cuenca, que apoya la excelencia deportiva.",
+    "logo": "https://example.com/logos/ucuenca.png",
+    "contactEmail": "aaron.ortiz@ucuenca.edu.ec",
+    "contactPhone": "0990401499",
+    "city": "Cuenca",
+    "country": "Ecuador",
+    "primaryColor": "#162B4E",
+    "secondaryColor": "#FFFFFF",
+    "championships": [
+      {
+        "phases": [
+          {
+            "id": 1,
+            "phase_type": "swiss",
+            "phase_order": 1,
+            "name": "Fase Suiza",
+            "status": "finished",
+            "phase_suizo": {
+              "num_rounds": 5,
+              "pairing_system": "dutch",
+              "first_round": "seeded",
+              "allow_rematch": false,
+              "tiebreak_order": "points,goal_diff,goals_for,h2h,random",
+              "direct_advance_count": 2,
+              "playoff_count": 4
+            },
+            "groupTeam": [
+              {
+                "id": 1,
+                "name": "Grupo General",
+                "type": "group",
+                "order": 1,
+                "teams": [
+                  {
+                    "teamId": 1
+                  },
+                  {
+                    "teamId": 2
+                  },
+                  {
+                    "teamId": 3
+                  },
+                  {
+                    "teamId": 4
+                  },
+                  {
+                    "teamId": 5
+                  },
+                  {
+                    "teamId": 6
+                  },
+                  {
+                    "teamId": 7
+                  },
+                  {
+                    "teamId": 8
+                  },
+                  {
+                    "teamId": 9
+                  },
+                  {
+                    "teamId": 10
+                  },
+                  {
+                    "teamId": 11
+                  },
+                  {
+                    "teamId": 12
+                  },
+                  {
+                    "teamId": 13
+                  },
+                  {
+                    "teamId": 14
+                  },
+                  {
+                    "teamId": 15
+                  },
+                  {
+                    "teamId": 16
+                  }
+                ],
+                "matches": [
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 16,
+                    "homeScore": 2,
+                    "awayScore": 0,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "02/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchEvents": [
+                      {
+                        "typeMatchEventId": 7,
+                        "playerId": null,
+                        "teamId": null,
+                        "time": 0
+                      },
+                      {
+                        "typeMatchEventId": 1,
+                        "playerId": 1,
+                        "teamId": 1,
+                        "time": 1860
+                      },
+                      {
+                        "typeMatchEventId": 1,
+                        "playerId": 8,
+                        "teamId": 1,
+                        "time": 2460
+                      },
+                      {
+                        "typeMatchEventId": 3,
+                        "playerId": 2,
+                        "teamId": 1,
+                        "time": 2580
+                      },
+                      {
+                        "typeMatchEventId": 8,
+                        "playerId": null,
+                        "teamId": null,
+                        "time": 2760
+                      },
+                      {
+                        "typeMatchEventId": 6,
+                        "playerId": 10,
+                        "teamId": 2,
+                        "time": 3540
+                      },
+                      {
+                        "typeMatchEventId": 5,
+                        "playerId": 14,
+                        "teamId": 2,
+                        "time": 3540
+                      },
+                      {
+                        "typeMatchEventId": 6,
+                        "playerId": 1,
+                        "teamId": 1,
+                        "time": 3900
+                      },
+                      {
+                        "typeMatchEventId": 5,
+                        "playerId": 4,
+                        "teamId": 1,
+                        "time": 3900
+                      },
+                      {
+                        "typeMatchEventId": 12,
+                        "playerId": null,
+                        "teamId": 1,
+                        "time": 5400
+                      }
+                    ],
+                    "matchPlayers": [
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 5
+                      },
+                      {
+                        "playerId": 122
+                      },
+                      {
+                        "playerId": 126
+                      },
+                      {
+                        "playerId": 127
+                      },
+                      {
+                        "playerId": 125
+                      },
+                      {
+                        "playerId": 121
+                      },
+                      {
+                        "playerId": 123
+                      },
+                      {
+                        "playerId": 128
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 2,
+                    "awayTeamId": 15,
+                    "homeScore": 1,
+                    "awayScore": 1,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "02/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 15
+                      },
+                      {
+                        "playerId": 10
+                      },
+                      {
+                        "playerId": 13
+                      },
+                      {
+                        "playerId": 11
+                      },
+                      {
+                        "playerId": 14
+                      },
+                      {
+                        "playerId": 116
+                      },
+                      {
+                        "playerId": 118
+                      },
+                      {
+                        "playerId": 119
+                      },
+                      {
+                        "playerId": 117
+                      },
+                      {
+                        "playerId": 120
+                      },
+                      {
+                        "playerId": 113
+                      },
+                      {
+                        "playerId": 114
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 3,
+                    "awayTeamId": 14,
+                    "homeScore": 3,
+                    "awayScore": 1,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "02/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 21
+                      },
+                      {
+                        "playerId": 23
+                      },
+                      {
+                        "playerId": 17
+                      },
+                      {
+                        "playerId": 18
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 24
+                      },
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 107
+                      },
+                      {
+                        "playerId": 106
+                      },
+                      {
+                        "playerId": 112
+                      },
+                      {
+                        "playerId": 105
+                      },
+                      {
+                        "playerId": 109
+                      },
+                      {
+                        "playerId": 111
+                      },
+                      {
+                        "playerId": 108
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 4,
+                    "awayTeamId": 13,
+                    "homeScore": 0,
+                    "awayScore": 2,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "02/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 30
+                      },
+                      {
+                        "playerId": 31
+                      },
+                      {
+                        "playerId": 27
+                      },
+                      {
+                        "playerId": 29
+                      },
+                      {
+                        "playerId": 32
+                      },
+                      {
+                        "playerId": 25
+                      },
+                      {
+                        "playerId": 26
+                      },
+                      {
+                        "playerId": 98
+                      },
+                      {
+                        "playerId": 100
+                      },
+                      {
+                        "playerId": 97
+                      },
+                      {
+                        "playerId": 101
+                      },
+                      {
+                        "playerId": 99
+                      },
+                      {
+                        "playerId": 103
+                      },
+                      {
+                        "playerId": 104
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 5,
+                    "awayTeamId": 12,
+                    "homeScore": 2,
+                    "awayScore": 2,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "03/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 36
+                      },
+                      {
+                        "playerId": 38
+                      },
+                      {
+                        "playerId": 33
+                      },
+                      {
+                        "playerId": 39
+                      },
+                      {
+                        "playerId": 34
+                      },
+                      {
+                        "playerId": 40
+                      },
+                      {
+                        "playerId": 37
+                      },
+                      {
+                        "playerId": 92
+                      },
+                      {
+                        "playerId": 95
+                      },
+                      {
+                        "playerId": 89
+                      },
+                      {
+                        "playerId": 96
+                      },
+                      {
+                        "playerId": 91
+                      },
+                      {
+                        "playerId": 90
+                      },
+                      {
+                        "playerId": 93
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 6,
+                    "awayTeamId": 11,
+                    "homeScore": 1,
+                    "awayScore": 0,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "03/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 43
+                      },
+                      {
+                        "playerId": 48
+                      },
+                      {
+                        "playerId": 47
+                      },
+                      {
+                        "playerId": 42
+                      },
+                      {
+                        "playerId": 46
+                      },
+                      {
+                        "playerId": 44
+                      },
+                      {
+                        "playerId": 41
+                      },
+                      {
+                        "playerId": 83
+                      },
+                      {
+                        "playerId": 85
+                      },
+                      {
+                        "playerId": 86
+                      },
+                      {
+                        "playerId": 82
+                      },
+                      {
+                        "playerId": 87
+                      },
+                      {
+                        "playerId": 84
+                      },
+                      {
+                        "playerId": 88
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 7,
+                    "awayTeamId": 10,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "03/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 53
+                      },
+                      {
+                        "playerId": 54
+                      },
+                      {
+                        "playerId": 55
+                      },
+                      {
+                        "playerId": 56
+                      },
+                      {
+                        "playerId": 50
+                      },
+                      {
+                        "playerId": 51
+                      },
+                      {
+                        "playerId": 52
+                      },
+                      {
+                        "playerId": 73
+                      },
+                      {
+                        "playerId": 74
+                      },
+                      {
+                        "playerId": 80
+                      },
+                      {
+                        "playerId": 75
+                      },
+                      {
+                        "playerId": 76
+                      },
+                      {
+                        "playerId": 79
+                      },
+                      {
+                        "playerId": 78
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 8,
+                    "awayTeamId": 9,
+                    "homeScore": 2,
+                    "awayScore": 1,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "03/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 59
+                      },
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 63
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 71
+                      },
+                      {
+                        "playerId": 70
+                      },
+                      {
+                        "playerId": 68
+                      },
+                      {
+                        "playerId": 66
+                      },
+                      {
+                        "playerId": 67
+                      },
+                      {
+                        "playerId": 65
+                      },
+                      {
+                        "playerId": 72
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 3,
+                    "homeScore": 1,
+                    "awayScore": 0,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "09/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 5
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 21
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 17
+                      },
+                      {
+                        "playerId": 23
+                      },
+                      {
+                        "playerId": 22
+                      },
+                      {
+                        "playerId": 24
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 13,
+                    "awayTeamId": 6,
+                    "homeScore": 2,
+                    "awayScore": 2,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "09/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 99
+                      },
+                      {
+                        "playerId": 103
+                      },
+                      {
+                        "playerId": 102
+                      },
+                      {
+                        "playerId": 100
+                      },
+                      {
+                        "playerId": 97
+                      },
+                      {
+                        "playerId": 98
+                      },
+                      {
+                        "playerId": 104
+                      },
+                      {
+                        "playerId": 48
+                      },
+                      {
+                        "playerId": 45
+                      },
+                      {
+                        "playerId": 43
+                      },
+                      {
+                        "playerId": 47
+                      },
+                      {
+                        "playerId": 41
+                      },
+                      {
+                        "playerId": 46
+                      },
+                      {
+                        "playerId": 44
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 8,
+                    "awayTeamId": 10,
+                    "homeScore": 3,
+                    "awayScore": 1,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "09/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 63
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 59
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 75
+                      },
+                      {
+                        "playerId": 76
+                      },
+                      {
+                        "playerId": 73
+                      },
+                      {
+                        "playerId": 80
+                      },
+                      {
+                        "playerId": 74
+                      },
+                      {
+                        "playerId": 77
+                      },
+                      {
+                        "playerId": 78
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 5,
+                    "awayTeamId": 2,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "09/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 37
+                      },
+                      {
+                        "playerId": 39
+                      },
+                      {
+                        "playerId": 38
+                      },
+                      {
+                        "playerId": 40
+                      },
+                      {
+                        "playerId": 34
+                      },
+                      {
+                        "playerId": 33
+                      },
+                      {
+                        "playerId": 36
+                      },
+                      {
+                        "playerId": 11
+                      },
+                      {
+                        "playerId": 13
+                      },
+                      {
+                        "playerId": 15
+                      },
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 10
+                      },
+                      {
+                        "playerId": 14
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 4,
+                    "awayTeamId": 11,
+                    "homeScore": 1,
+                    "awayScore": 1,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "10/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 26
+                      },
+                      {
+                        "playerId": 27
+                      },
+                      {
+                        "playerId": 31
+                      },
+                      {
+                        "playerId": 32
+                      },
+                      {
+                        "playerId": 25
+                      },
+                      {
+                        "playerId": 28
+                      },
+                      {
+                        "playerId": 30
+                      },
+                      {
+                        "playerId": 82
+                      },
+                      {
+                        "playerId": 86
+                      },
+                      {
+                        "playerId": 84
+                      },
+                      {
+                        "playerId": 81
+                      },
+                      {
+                        "playerId": 88
+                      },
+                      {
+                        "playerId": 85
+                      },
+                      {
+                        "playerId": 87
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 15,
+                    "awayTeamId": 9,
+                    "homeScore": 2,
+                    "awayScore": 0,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "10/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 115
+                      },
+                      {
+                        "playerId": 120
+                      },
+                      {
+                        "playerId": 117
+                      },
+                      {
+                        "playerId": 118
+                      },
+                      {
+                        "playerId": 116
+                      },
+                      {
+                        "playerId": 113
+                      },
+                      {
+                        "playerId": 119
+                      },
+                      {
+                        "playerId": 69
+                      },
+                      {
+                        "playerId": 68
+                      },
+                      {
+                        "playerId": 70
+                      },
+                      {
+                        "playerId": 67
+                      },
+                      {
+                        "playerId": 71
+                      },
+                      {
+                        "playerId": 72
+                      },
+                      {
+                        "playerId": 66
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 14,
+                    "awayTeamId": 7,
+                    "homeScore": 0,
+                    "awayScore": 2,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "10/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 106
+                      },
+                      {
+                        "playerId": 112
+                      },
+                      {
+                        "playerId": 111
+                      },
+                      {
+                        "playerId": 105
+                      },
+                      {
+                        "playerId": 107
+                      },
+                      {
+                        "playerId": 109
+                      },
+                      {
+                        "playerId": 108
+                      },
+                      {
+                        "playerId": 52
+                      },
+                      {
+                        "playerId": 49
+                      },
+                      {
+                        "playerId": 55
+                      },
+                      {
+                        "playerId": 54
+                      },
+                      {
+                        "playerId": 50
+                      },
+                      {
+                        "playerId": 53
+                      },
+                      {
+                        "playerId": 51
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 16,
+                    "awayTeamId": 12,
+                    "homeScore": 1,
+                    "awayScore": 0,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "10/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 126
+                      },
+                      {
+                        "playerId": 121
+                      },
+                      {
+                        "playerId": 125
+                      },
+                      {
+                        "playerId": 122
+                      },
+                      {
+                        "playerId": 123
+                      },
+                      {
+                        "playerId": 124
+                      },
+                      {
+                        "playerId": 128
+                      },
+                      {
+                        "playerId": 92
+                      },
+                      {
+                        "playerId": 93
+                      },
+                      {
+                        "playerId": 90
+                      },
+                      {
+                        "playerId": 95
+                      },
+                      {
+                        "playerId": 96
+                      },
+                      {
+                        "playerId": 89
+                      },
+                      {
+                        "playerId": 94
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 8,
+                    "homeScore": 2,
+                    "awayScore": 1,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "16/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 63
+                      },
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 58
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 2,
+                    "awayTeamId": 13,
+                    "homeScore": 1,
+                    "awayScore": 1,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "16/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 14
+                      },
+                      {
+                        "playerId": 15
+                      },
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 10
+                      },
+                      {
+                        "playerId": 13
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 12
+                      },
+                      {
+                        "playerId": 99
+                      },
+                      {
+                        "playerId": 100
+                      },
+                      {
+                        "playerId": 98
+                      },
+                      {
+                        "playerId": 104
+                      },
+                      {
+                        "playerId": 103
+                      },
+                      {
+                        "playerId": 97
+                      },
+                      {
+                        "playerId": 101
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 6,
+                    "awayTeamId": 10,
+                    "homeScore": 3,
+                    "awayScore": 0,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "16/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 48
+                      },
+                      {
+                        "playerId": 47
+                      },
+                      {
+                        "playerId": 45
+                      },
+                      {
+                        "playerId": 41
+                      },
+                      {
+                        "playerId": 46
+                      },
+                      {
+                        "playerId": 43
+                      },
+                      {
+                        "playerId": 44
+                      },
+                      {
+                        "playerId": 74
+                      },
+                      {
+                        "playerId": 79
+                      },
+                      {
+                        "playerId": 80
+                      },
+                      {
+                        "playerId": 78
+                      },
+                      {
+                        "playerId": 76
+                      },
+                      {
+                        "playerId": 77
+                      },
+                      {
+                        "playerId": 75
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 15,
+                    "awayTeamId": 7,
+                    "homeScore": 0,
+                    "awayScore": 2,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "16/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 116
+                      },
+                      {
+                        "playerId": 119
+                      },
+                      {
+                        "playerId": 120
+                      },
+                      {
+                        "playerId": 113
+                      },
+                      {
+                        "playerId": 114
+                      },
+                      {
+                        "playerId": 118
+                      },
+                      {
+                        "playerId": 117
+                      },
+                      {
+                        "playerId": 55
+                      },
+                      {
+                        "playerId": 51
+                      },
+                      {
+                        "playerId": 52
+                      },
+                      {
+                        "playerId": 56
+                      },
+                      {
+                        "playerId": 54
+                      },
+                      {
+                        "playerId": 53
+                      },
+                      {
+                        "playerId": 50
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 3,
+                    "awayTeamId": 5,
+                    "homeScore": 2,
+                    "awayScore": 2,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "17/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 18
+                      },
+                      {
+                        "playerId": 24
+                      },
+                      {
+                        "playerId": 23
+                      },
+                      {
+                        "playerId": 17
+                      },
+                      {
+                        "playerId": 22
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 38
+                      },
+                      {
+                        "playerId": 33
+                      },
+                      {
+                        "playerId": 39
+                      },
+                      {
+                        "playerId": 37
+                      },
+                      {
+                        "playerId": 36
+                      },
+                      {
+                        "playerId": 35
+                      },
+                      {
+                        "playerId": 40
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 4,
+                    "awayTeamId": 9,
+                    "homeScore": 1,
+                    "awayScore": 0,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "17/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 25
+                      },
+                      {
+                        "playerId": 29
+                      },
+                      {
+                        "playerId": 32
+                      },
+                      {
+                        "playerId": 26
+                      },
+                      {
+                        "playerId": 30
+                      },
+                      {
+                        "playerId": 27
+                      },
+                      {
+                        "playerId": 28
+                      },
+                      {
+                        "playerId": 68
+                      },
+                      {
+                        "playerId": 72
+                      },
+                      {
+                        "playerId": 65
+                      },
+                      {
+                        "playerId": 69
+                      },
+                      {
+                        "playerId": 66
+                      },
+                      {
+                        "playerId": 67
+                      },
+                      {
+                        "playerId": 70
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 11,
+                    "awayTeamId": 16,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "17/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 82
+                      },
+                      {
+                        "playerId": 84
+                      },
+                      {
+                        "playerId": 86
+                      },
+                      {
+                        "playerId": 85
+                      },
+                      {
+                        "playerId": 83
+                      },
+                      {
+                        "playerId": 88
+                      },
+                      {
+                        "playerId": 81
+                      },
+                      {
+                        "playerId": 126
+                      },
+                      {
+                        "playerId": 122
+                      },
+                      {
+                        "playerId": 123
+                      },
+                      {
+                        "playerId": 124
+                      },
+                      {
+                        "playerId": 127
+                      },
+                      {
+                        "playerId": 128
+                      },
+                      {
+                        "playerId": 125
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 12,
+                    "awayTeamId": 14,
+                    "homeScore": 2,
+                    "awayScore": 1,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "17/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 96
+                      },
+                      {
+                        "playerId": 91
+                      },
+                      {
+                        "playerId": 89
+                      },
+                      {
+                        "playerId": 94
+                      },
+                      {
+                        "playerId": 92
+                      },
+                      {
+                        "playerId": 95
+                      },
+                      {
+                        "playerId": 93
+                      },
+                      {
+                        "playerId": 106
+                      },
+                      {
+                        "playerId": 109
+                      },
+                      {
+                        "playerId": 112
+                      },
+                      {
+                        "playerId": 111
+                      },
+                      {
+                        "playerId": 107
+                      },
+                      {
+                        "playerId": 105
+                      },
+                      {
+                        "playerId": 110
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 2,
+                    "homeScore": 1,
+                    "awayScore": 0,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "23/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 5
+                      },
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 14
+                      },
+                      {
+                        "playerId": 13
+                      },
+                      {
+                        "playerId": 11
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 12
+                      },
+                      {
+                        "playerId": 10
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 8,
+                    "awayTeamId": 6,
+                    "homeScore": 2,
+                    "awayScore": 2,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "23/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 59
+                      },
+                      {
+                        "playerId": 44
+                      },
+                      {
+                        "playerId": 46
+                      },
+                      {
+                        "playerId": 43
+                      },
+                      {
+                        "playerId": 42
+                      },
+                      {
+                        "playerId": 47
+                      },
+                      {
+                        "playerId": 48
+                      },
+                      {
+                        "playerId": 45
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 13,
+                    "awayTeamId": 7,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "23/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 101
+                      },
+                      {
+                        "playerId": 103
+                      },
+                      {
+                        "playerId": 97
+                      },
+                      {
+                        "playerId": 102
+                      },
+                      {
+                        "playerId": 100
+                      },
+                      {
+                        "playerId": 98
+                      },
+                      {
+                        "playerId": 104
+                      },
+                      {
+                        "playerId": 49
+                      },
+                      {
+                        "playerId": 51
+                      },
+                      {
+                        "playerId": 50
+                      },
+                      {
+                        "playerId": 55
+                      },
+                      {
+                        "playerId": 54
+                      },
+                      {
+                        "playerId": 53
+                      },
+                      {
+                        "playerId": 52
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 3,
+                    "awayTeamId": 4,
+                    "homeScore": 3,
+                    "awayScore": 1,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "23/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 23
+                      },
+                      {
+                        "playerId": 21
+                      },
+                      {
+                        "playerId": 17
+                      },
+                      {
+                        "playerId": 22
+                      },
+                      {
+                        "playerId": 24
+                      },
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 25
+                      },
+                      {
+                        "playerId": 31
+                      },
+                      {
+                        "playerId": 27
+                      },
+                      {
+                        "playerId": 29
+                      },
+                      {
+                        "playerId": 26
+                      },
+                      {
+                        "playerId": 28
+                      },
+                      {
+                        "playerId": 32
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 5,
+                    "awayTeamId": 12,
+                    "homeScore": 1,
+                    "awayScore": 2,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "24/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 33
+                      },
+                      {
+                        "playerId": 35
+                      },
+                      {
+                        "playerId": 39
+                      },
+                      {
+                        "playerId": 40
+                      },
+                      {
+                        "playerId": 38
+                      },
+                      {
+                        "playerId": 37
+                      },
+                      {
+                        "playerId": 36
+                      },
+                      {
+                        "playerId": 90
+                      },
+                      {
+                        "playerId": 91
+                      },
+                      {
+                        "playerId": 93
+                      },
+                      {
+                        "playerId": 92
+                      },
+                      {
+                        "playerId": 96
+                      },
+                      {
+                        "playerId": 89
+                      },
+                      {
+                        "playerId": 95
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 10,
+                    "awayTeamId": 15,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "24/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 75
+                      },
+                      {
+                        "playerId": 76
+                      },
+                      {
+                        "playerId": 73
+                      },
+                      {
+                        "playerId": 74
+                      },
+                      {
+                        "playerId": 80
+                      },
+                      {
+                        "playerId": 77
+                      },
+                      {
+                        "playerId": 78
+                      },
+                      {
+                        "playerId": 117
+                      },
+                      {
+                        "playerId": 114
+                      },
+                      {
+                        "playerId": 118
+                      },
+                      {
+                        "playerId": 113
+                      },
+                      {
+                        "playerId": 116
+                      },
+                      {
+                        "playerId": 120
+                      },
+                      {
+                        "playerId": 119
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 9,
+                    "awayTeamId": 16,
+                    "homeScore": 2,
+                    "awayScore": 1,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "24/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 68
+                      },
+                      {
+                        "playerId": 66
+                      },
+                      {
+                        "playerId": 72
+                      },
+                      {
+                        "playerId": 67
+                      },
+                      {
+                        "playerId": 69
+                      },
+                      {
+                        "playerId": 65
+                      },
+                      {
+                        "playerId": 70
+                      },
+                      {
+                        "playerId": 121
+                      },
+                      {
+                        "playerId": 126
+                      },
+                      {
+                        "playerId": 122
+                      },
+                      {
+                        "playerId": 124
+                      },
+                      {
+                        "playerId": 123
+                      },
+                      {
+                        "playerId": 127
+                      },
+                      {
+                        "playerId": 128
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 11,
+                    "awayTeamId": 14,
+                    "homeScore": 1,
+                    "awayScore": 1,
+                    "round": 4,
+                    "matchday": 4,
+                    "status": "finished",
+                    "scheduledDate": "24/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 85
+                      },
+                      {
+                        "playerId": 83
+                      },
+                      {
+                        "playerId": 86
+                      },
+                      {
+                        "playerId": 88
+                      },
+                      {
+                        "playerId": 84
+                      },
+                      {
+                        "playerId": 87
+                      },
+                      {
+                        "playerId": 82
+                      },
+                      {
+                        "playerId": 105
+                      },
+                      {
+                        "playerId": 112
+                      },
+                      {
+                        "playerId": 107
+                      },
+                      {
+                        "playerId": 106
+                      },
+                      {
+                        "playerId": 110
+                      },
+                      {
+                        "playerId": 111
+                      },
+                      {
+                        "playerId": 108
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 7,
+                    "homeScore": 2,
+                    "awayScore": 1,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "30/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 5
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 55
+                      },
+                      {
+                        "playerId": 53
+                      },
+                      {
+                        "playerId": 50
+                      },
+                      {
+                        "playerId": 51
+                      },
+                      {
+                        "playerId": 49
+                      },
+                      {
+                        "playerId": 56
+                      },
+                      {
+                        "playerId": 54
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 2,
+                    "awayTeamId": 3,
+                    "homeScore": 1,
+                    "awayScore": 1,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "30/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 13
+                      },
+                      {
+                        "playerId": 15
+                      },
+                      {
+                        "playerId": 10
+                      },
+                      {
+                        "playerId": 11
+                      },
+                      {
+                        "playerId": 14
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 22
+                      },
+                      {
+                        "playerId": 21
+                      },
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 17
+                      },
+                      {
+                        "playerId": 24
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 18
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 8,
+                    "awayTeamId": 13,
+                    "homeScore": 3,
+                    "awayScore": 2,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "30/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 63
+                      },
+                      {
+                        "playerId": 59
+                      },
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 103
+                      },
+                      {
+                        "playerId": 102
+                      },
+                      {
+                        "playerId": 104
+                      },
+                      {
+                        "playerId": 98
+                      },
+                      {
+                        "playerId": 99
+                      },
+                      {
+                        "playerId": 101
+                      },
+                      {
+                        "playerId": 97
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 6,
+                    "awayTeamId": 4,
+                    "homeScore": 2,
+                    "awayScore": 0,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "30/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 45
+                      },
+                      {
+                        "playerId": 43
+                      },
+                      {
+                        "playerId": 42
+                      },
+                      {
+                        "playerId": 44
+                      },
+                      {
+                        "playerId": 47
+                      },
+                      {
+                        "playerId": 46
+                      },
+                      {
+                        "playerId": 48
+                      },
+                      {
+                        "playerId": 32
+                      },
+                      {
+                        "playerId": 30
+                      },
+                      {
+                        "playerId": 26
+                      },
+                      {
+                        "playerId": 29
+                      },
+                      {
+                        "playerId": 28
+                      },
+                      {
+                        "playerId": 27
+                      },
+                      {
+                        "playerId": 25
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 12,
+                    "awayTeamId": 15,
+                    "homeScore": 1,
+                    "awayScore": 0,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "31/05/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 90
+                      },
+                      {
+                        "playerId": 91
+                      },
+                      {
+                        "playerId": 93
+                      },
+                      {
+                        "playerId": 94
+                      },
+                      {
+                        "playerId": 95
+                      },
+                      {
+                        "playerId": 89
+                      },
+                      {
+                        "playerId": 92
+                      },
+                      {
+                        "playerId": 117
+                      },
+                      {
+                        "playerId": 114
+                      },
+                      {
+                        "playerId": 119
+                      },
+                      {
+                        "playerId": 118
+                      },
+                      {
+                        "playerId": 113
+                      },
+                      {
+                        "playerId": 116
+                      },
+                      {
+                        "playerId": 115
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 5,
+                    "awayTeamId": 9,
+                    "homeScore": 2,
+                    "awayScore": 2,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "31/05/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 40
+                      },
+                      {
+                        "playerId": 37
+                      },
+                      {
+                        "playerId": 33
+                      },
+                      {
+                        "playerId": 36
+                      },
+                      {
+                        "playerId": 39
+                      },
+                      {
+                        "playerId": 35
+                      },
+                      {
+                        "playerId": 38
+                      },
+                      {
+                        "playerId": 71
+                      },
+                      {
+                        "playerId": 68
+                      },
+                      {
+                        "playerId": 72
+                      },
+                      {
+                        "playerId": 66
+                      },
+                      {
+                        "playerId": 69
+                      },
+                      {
+                        "playerId": 67
+                      },
+                      {
+                        "playerId": 65
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 16,
+                    "awayTeamId": 10,
+                    "homeScore": 0,
+                    "awayScore": 2,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "31/05/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 122
+                      },
+                      {
+                        "playerId": 127
+                      },
+                      {
+                        "playerId": 124
+                      },
+                      {
+                        "playerId": 128
+                      },
+                      {
+                        "playerId": 125
+                      },
+                      {
+                        "playerId": 123
+                      },
+                      {
+                        "playerId": 126
+                      },
+                      {
+                        "playerId": 73
+                      },
+                      {
+                        "playerId": 77
+                      },
+                      {
+                        "playerId": 74
+                      },
+                      {
+                        "playerId": 80
+                      },
+                      {
+                        "playerId": 76
+                      },
+                      {
+                        "playerId": 79
+                      },
+                      {
+                        "playerId": 78
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 11,
+                    "awayTeamId": 14,
+                    "homeScore": 1,
+                    "awayScore": 3,
+                    "round": 5,
+                    "matchday": 5,
+                    "status": "finished",
+                    "scheduledDate": "31/05/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 86
+                      },
+                      {
+                        "playerId": 87
+                      },
+                      {
+                        "playerId": 84
+                      },
+                      {
+                        "playerId": 85
+                      },
+                      {
+                        "playerId": 88
+                      },
+                      {
+                        "playerId": 83
+                      },
+                      {
+                        "playerId": 82
+                      },
+                      {
+                        "playerId": 107
+                      },
+                      {
+                        "playerId": 110
+                      },
+                      {
+                        "playerId": 108
+                      },
+                      {
+                        "playerId": 111
+                      },
+                      {
+                        "playerId": 112
+                      },
+                      {
+                        "playerId": 105
+                      },
+                      {
+                        "playerId": 106
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "phase_type": "knockout",
+            "phase_order": 2,
+            "name": "Fase Eliminatoria",
+            "status": "finished",
+            "phase_knockout": {
+              "legs": 1,
+              "fixture_mode": "seeded",
+              "seeding": "rank",
+              "bye_strategy": "none",
+              "tie_break": "extra_time_penalties",
+              "away_goals_rule": false,
+              "third_place_match": false
+            },
+            "groupTeam": [
+              {
+                "id": 2,
+                "name": "Clasificados Directos",
+                "type": "direct",
+                "order": 1,
+                "teams": [
+                  {
+                    "teamId": 1
+                  },
+                  {
+                    "teamId": 8
+                  }
+                ],
+                "matches": []
+              },
+              {
+                "id": 3,
+                "name": "Cuartos de Final",
+                "type": "playoff",
+                "order": 2,
+                "teams": [
+                  {
+                    "teamId": 1
+                  },
+                  {
+                    "teamId": 2
+                  },
+                  {
+                    "teamId": 3
+                  },
+                  {
+                    "teamId": 6
+                  },
+                  {
+                    "teamId": 7
+                  },
+                  {
+                    "teamId": 10
+                  }
+                ],
+                "matches": [
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 10,
+                    "homeScore": 2,
+                    "awayScore": 0,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "06/06/2026",
+                    "scheduledTime": "09:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 76
+                      },
+                      {
+                        "playerId": 75
+                      },
+                      {
+                        "playerId": 79
+                      },
+                      {
+                        "playerId": 78
+                      },
+                      {
+                        "playerId": 73
+                      },
+                      {
+                        "playerId": 80
+                      },
+                      {
+                        "playerId": 77
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 2,
+                    "awayTeamId": 12,
+                    "homeScore": 1,
+                    "awayScore": 1,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "06/06/2026",
+                    "scheduledTime": "11:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 12
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 14
+                      },
+                      {
+                        "playerId": 10
+                      },
+                      {
+                        "playerId": 13
+                      },
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 15
+                      },
+                      {
+                        "playerId": 95
+                      },
+                      {
+                        "playerId": 91
+                      },
+                      {
+                        "playerId": 93
+                      },
+                      {
+                        "playerId": 92
+                      },
+                      {
+                        "playerId": 94
+                      },
+                      {
+                        "playerId": 89
+                      },
+                      {
+                        "playerId": 96
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 8,
+                    "awayTeamId": 7,
+                    "homeScore": 3,
+                    "awayScore": 2,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "06/06/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 63
+                      },
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 54
+                      },
+                      {
+                        "playerId": 51
+                      },
+                      {
+                        "playerId": 52
+                      },
+                      {
+                        "playerId": 56
+                      },
+                      {
+                        "playerId": 50
+                      },
+                      {
+                        "playerId": 53
+                      },
+                      {
+                        "playerId": 49
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 6,
+                    "awayTeamId": 3,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 1,
+                    "matchday": 1,
+                    "status": "finished",
+                    "scheduledDate": "06/06/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 45
+                      },
+                      {
+                        "playerId": 44
+                      },
+                      {
+                        "playerId": 47
+                      },
+                      {
+                        "playerId": 41
+                      },
+                      {
+                        "playerId": 46
+                      },
+                      {
+                        "playerId": 42
+                      },
+                      {
+                        "playerId": 43
+                      },
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 23
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 18
+                      },
+                      {
+                        "playerId": 17
+                      },
+                      {
+                        "playerId": 21
+                      },
+                      {
+                        "playerId": 22
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "name": "Semifinal",
+                "type": "playoff",
+                "order": 3,
+                "teams": [
+                  {
+                    "teamId": 1
+                  },
+                  {
+                    "teamId": 8
+                  },
+                  {
+                    "teamId": 3
+                  },
+                  {
+                    "teamId": 2
+                  }
+                ],
+                "matches": [
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 3,
+                    "homeScore": 2,
+                    "awayScore": 1,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "13/06/2026",
+                    "scheduledTime": "10:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 8
+                      },
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 21
+                      },
+                      {
+                        "playerId": 20
+                      },
+                      {
+                        "playerId": 19
+                      },
+                      {
+                        "playerId": 18
+                      },
+                      {
+                        "playerId": 23
+                      },
+                      {
+                        "playerId": 24
+                      },
+                      {
+                        "playerId": 22
+                      }
+                    ]
+                  },
+                  {
+                    "homeTeamId": 2,
+                    "awayTeamId": 8,
+                    "homeScore": 0,
+                    "awayScore": 1,
+                    "round": 2,
+                    "matchday": 2,
+                    "status": "finished",
+                    "scheduledDate": "13/06/2026",
+                    "scheduledTime": "13:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 15
+                      },
+                      {
+                        "playerId": 11
+                      },
+                      {
+                        "playerId": 12
+                      },
+                      {
+                        "playerId": 16
+                      },
+                      {
+                        "playerId": 9
+                      },
+                      {
+                        "playerId": 10
+                      },
+                      {
+                        "playerId": 14
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 59
+                      },
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 63
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "name": "Final",
+                "type": "playoff",
+                "order": 4,
+                "teams": [
+                  {
+                    "teamId": 1
+                  },
+                  {
+                    "teamId": 8
+                  }
+                ],
+                "matches": [
+                  {
+                    "homeTeamId": 1,
+                    "awayTeamId": 8,
+                    "homeScore": 2,
+                    "awayScore": 2,
+                    "round": 3,
+                    "matchday": 3,
+                    "status": "finished",
+                    "scheduledDate": "20/06/2026",
+                    "scheduledTime": "15:00",
+                    "venue": "Estadio Alejandro Serrano Aguilar",
+                    "city": "Cuenca",
+                    "matchPlayers": [
+                      {
+                        "playerId": 4
+                      },
+                      {
+                        "playerId": 7
+                      },
+                      {
+                        "playerId": 1
+                      },
+                      {
+                        "playerId": 5
+                      },
+                      {
+                        "playerId": 2
+                      },
+                      {
+                        "playerId": 6
+                      },
+                      {
+                        "playerId": 3
+                      },
+                      {
+                        "playerId": 64
+                      },
+                      {
+                        "playerId": 62
+                      },
+                      {
+                        "playerId": 57
+                      },
+                      {
+                        "playerId": 61
+                      },
+                      {
+                        "playerId": 58
+                      },
+                      {
+                        "playerId": 60
+                      },
+                      {
+                        "playerId": 59
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "sport": {
+          "icon": "https://example.com/icons/football.svg",
+          "periods": 2,
+          "match_type_singular": "GOL",
+          "match_type_plural": "GOLES",
+          "periodDuration": 2700,
+          "periodLabel": "TIEMPO",
+          "periodLabelPlural": "TIEMPOS",
+          "positions": [
+            {
+              "code": "GK",
+              "label": "Arquero",
+              "abbreviation": "ARQ"
+            },
+            {
+              "code": "CB",
+              "label": "Defensa Central",
+              "abbreviation": "DC"
+            },
+            {
+              "code": "LB",
+              "label": "Lateral Izquierdo",
+              "abbreviation": "LI"
+            },
+            {
+              "code": "RB",
+              "label": "Lateral Derecho",
+              "abbreviation": "LD"
+            },
+            {
+              "code": "SW",
+              "label": "Líbero",
+              "abbreviation": "LIB"
+            },
+            {
+              "code": "CDM",
+              "label": "Mediocampista Defensivo Central",
+              "abbreviation": "MDC"
+            },
+            {
+              "code": "CM",
+              "label": "Mediocampista Central",
+              "abbreviation": "MC"
+            },
+            {
+              "code": "LM",
+              "label": "Mediocampista Izquierdo",
+              "abbreviation": "MI"
+            },
+            {
+              "code": "RM",
+              "label": "Mediocampista Derecho",
+              "abbreviation": "MD"
+            },
+            {
+              "code": "CAM",
+              "label": "Mediocampista Ofensivo Central",
+              "abbreviation": "MOC"
+            },
+            {
+              "code": "LW",
+              "label": "Extremo Izquierdo",
+              "abbreviation": "EI"
+            },
+            {
+              "code": "RW",
+              "label": "Extremo Derecho",
+              "abbreviation": "ED"
+            },
+            {
+              "code": "SS",
+              "label": "Segunda Punta",
+              "abbreviation": "SP"
+            },
+            {
+              "code": "CF",
+              "label": "Delantero Centro",
+              "abbreviation": "DC"
+            },
+            {
+              "code": "ST",
+              "label": "Delantero",
+              "abbreviation": "DEL"
+            }
+          ],
+          "typeMatchEvents": [
+            {
+              "id": 1,
+              "label": "Gol",
+              "icon": "⚽",
+              "color": "#28a745",
+              "matchPoint": 1,
+              "category": "score",
+              "standingPoints": 0
+            },
+            {
+              "id": 2,
+              "label": "Gol en Propia",
+              "icon": "🥅",
+              "color": "#dc3545",
+              "matchPoint": -1,
+              "category": "score",
+              "standingPoints": 0
+            },
+            {
+              "id": 3,
+              "label": "Tarjeta Amarilla",
+              "icon": "🟨",
+              "color": "#ffc107",
+              "matchPoint": 0,
+              "category": "discipline",
+              "standingPoints": 0
+            },
+            {
+              "id": 4,
+              "label": "Tarjeta Roja",
+              "icon": "🟥",
+              "color": "#dc3545",
+              "matchPoint": 0,
+              "category": "discipline",
+              "standingPoints": 0
+            },
+            {
+              "id": 5,
+              "label": "Entrada de Jugador",
+              "icon": "⬆️",
+              "color": "#17a2b8",
+              "matchPoint": 0,
+              "category": "substitution",
+              "standingPoints": 0
+            },
+            {
+              "id": 6,
+              "label": "Salida de Jugador",
+              "icon": "⬇️",
+              "color": "#6c757d",
+              "matchPoint": 0,
+              "category": "substitution",
+              "standingPoints": 0
+            },
+            {
+              "id": 7,
+              "label": "Inicio de Partido",
+              "icon": "🟢",
+              "color": "#28a745",
+              "matchPoint": 0,
+              "category": "match_control",
+              "standingPoints": 0
+            },
+            {
+              "id": 8,
+              "label": "Inicio Segundo Tiempo",
+              "icon": "🔄",
+              "color": "#17a2b8",
+              "matchPoint": 0,
+              "category": "match_control",
+              "standingPoints": 0
+            },
+            {
+              "id": 9,
+              "label": "Inicio Tiempo Extra",
+              "icon": "⏱️",
+              "color": "#fd7e14",
+              "matchPoint": 0,
+              "category": "match_control",
+              "standingPoints": 0
+            },
+            {
+              "id": 10,
+              "label": "Tanda de Penales",
+              "icon": "🎯",
+              "color": "#6f42c1",
+              "matchPoint": 0,
+              "category": "match_control",
+              "standingPoints": 0
+            },
+            {
+              "id": 11,
+              "label": "Penal",
+              "icon": "🎯",
+              "color": "#6f42c1",
+              "matchPoint": 1,
+              "category": "score",
+              "standingPoints": 0
+            },
+            {
+              "id": 12,
+              "label": "Partido Ganado",
+              "icon": "🏆",
+              "color": "#ffd700",
+              "matchPoint": 0,
+              "category": "match_result",
+              "standingPoints": 3
+            },
+            {
+              "id": 13,
+              "label": "Partido Empatado",
+              "icon": "🤝",
+              "color": "#adb5bd",
+              "matchPoint": 0,
+              "category": "match_result",
+              "standingPoints": 1
+            }
+          ],
+          "matchRules": [
+            {
+              "name": "maxPlayersPerTeam",
+              "value": 11
+            },
+            {
+              "name": "maxSubstitutions",
+              "value": 5
+            },
+            {
+              "name": "maxYellowCards",
+              "value": 2
+            },
+            {
+              "name": "maxPlayersOnBench",
+              "value": 7
+            },
+            {
+              "name": "matchDurationMinutes",
+              "value": 90
+            },
+            {
+              "name": "extraTimeDurationMinutes",
+              "value": 30
+            },
+            {
+              "name": "maxRedCards",
+              "value": 1
+            }
+          ]
+        },
+        "teams": [
+          {
+            "id": 1,
+            "name": "Cuenca Warriors",
+            "shortname": "CWR",
+            "slug": "cuenca-warriors",
+            "logoUrl": "https://example.com/logos/cuenca.png",
+            "primaryColor": "#FF0000",
+            "secondaryColor": "#000000",
+            "foundedYear": 1995,
+            "homeVenue": 1,
+            "location": "Cuenca, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Luis Andrade",
+            "coachPhone": "+593987654321",
+            "players": [
+              {
+                "id": 1,
+                "firstName": "Andrés",
+                "lastName": "Ramírez",
+                "nickName": "El Toro",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1998-05-12",
+                "height": 1.82,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 2,
+                "firstName": "Miguel",
+                "lastName": "Lozano",
+                "nickName": "Mago",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "2000-11-03",
+                "height": 1.75,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-04-01",
+                "suspensionReason": "Red card accumulation"
+              },
+              {
+                "id": 3,
+                "firstName": "José",
+                "lastName": "Martínez",
+                "nickName": "Chepe",
+                "number": 5,
+                "position": "Defender",
+                "birthDate": "1995-07-21",
+                "height": 1.85,
+                "weight": 82,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 4,
+                "firstName": "Carlos",
+                "lastName": "Vega",
+                "nickName": "Rayo",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "1999-03-14",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 5,
+                "firstName": "Luis",
+                "lastName": "García",
+                "nickName": "Muralla",
+                "number": 4,
+                "position": "Center Back",
+                "birthDate": "1994-09-09",
+                "height": 1.9,
+                "weight": 85,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 6,
+                "firstName": "David",
+                "lastName": "Suárez",
+                "nickName": "Pulpo",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1997-01-30",
+                "height": 1.88,
+                "weight": 80,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 7,
+                "firstName": "Esteban",
+                "lastName": "Morales",
+                "nickName": "Chino",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1996-12-11",
+                "height": 1.8,
+                "weight": 76,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 8,
+                "firstName": "Felipe",
+                "lastName": "Navarro",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2001-08-22",
+                "height": 1.77,
+                "weight": 72,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/cuenca-warriors.pdf"
+          },
+          {
+            "id": 2,
+            "name": "Quito Titans",
+            "shortname": "QTT",
+            "slug": "quito-titans",
+            "logoUrl": "https://example.com/logos/quito.png",
+            "primaryColor": "#0044CC",
+            "secondaryColor": "#FFFFFF",
+            "foundedYear": 2001,
+            "homeVenue": 2,
+            "location": "Quito, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": false,
+            "coachName": "Carlos Pérez",
+            "coachPhone": "+593912345678",
+            "players": [
+              {
+                "id": 9,
+                "firstName": "Javier",
+                "lastName": "Paredes",
+                "nickName": "El Capitán",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "1993-04-18",
+                "height": 1.81,
+                "weight": 77,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 10,
+                "firstName": "Mauricio",
+                "lastName": "Salinas",
+                "nickName": "Zurdo",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "1999-07-02",
+                "height": 1.76,
+                "weight": 73,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 11,
+                "firstName": "Cristian",
+                "lastName": "Reyes",
+                "nickName": "Pantera",
+                "number": 3,
+                "position": "Center Back",
+                "birthDate": "1995-10-10",
+                "height": 1.88,
+                "weight": 84,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 12,
+                "firstName": "Daniel",
+                "lastName": "Ortiz",
+                "nickName": "El Muro",
+                "number": 2,
+                "position": "Right Back",
+                "birthDate": "1997-06-25",
+                "height": 1.8,
+                "weight": 75,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-20",
+                "suspensionReason": "Violent conduct"
+              },
+              {
+                "id": 13,
+                "firstName": "Sebastián",
+                "lastName": "Cordero",
+                "nickName": "Flash",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2001-01-15",
+                "height": 1.74,
+                "weight": 69,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 14,
+                "firstName": "Hugo",
+                "lastName": "Fernández",
+                "nickName": "Arquero",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-09-30",
+                "height": 1.86,
+                "weight": 81,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 15,
+                "firstName": "Gabriel",
+                "lastName": "Mendoza",
+                "nickName": "Cazador",
+                "number": 5,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-12-05",
+                "height": 1.79,
+                "weight": 76,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 16,
+                "firstName": "Iván",
+                "lastName": "Castro",
+                "nickName": "Tanque",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1994-11-19",
+                "height": 1.83,
+                "weight": 79,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/quito-titans.pdf"
+          },
+          {
+            "id": 3,
+            "name": "Guayaquil Sharks",
+            "shortname": "GSH",
+            "slug": "guayaquil-sharks",
+            "logoUrl": "https://example.com/logos/guayaquil.png",
+            "primaryColor": "#00AAFF",
+            "secondaryColor": "#333333",
+            "foundedYear": 1990,
+            "homeVenue": 3,
+            "location": "Guayaquil, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Pedro Gómez",
+            "coachPhone": "+593998877665",
+            "players": [
+              {
+                "id": 17,
+                "firstName": "Rodrigo",
+                "lastName": "Almeida",
+                "nickName": "Tiburón",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1997-03-22",
+                "height": 1.83,
+                "weight": 79,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 18,
+                "firstName": "Diego",
+                "lastName": "Santos",
+                "nickName": "El Zurdo",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1998-08-14",
+                "height": 1.76,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 19,
+                "firstName": "Marcelo",
+                "lastName": "Quintero",
+                "nickName": "Tanque",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-12-01",
+                "height": 1.87,
+                "weight": 85,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 20,
+                "firstName": "Álvaro",
+                "lastName": "Jiménez",
+                "nickName": "Rápido",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2000-05-09",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-25",
+                "suspensionReason": "Accumulated yellow cards"
+              },
+              {
+                "id": 21,
+                "firstName": "Francisco",
+                "lastName": "Mora",
+                "nickName": "Muralla",
+                "number": 4,
+                "position": "Defender",
+                "birthDate": "1994-11-17",
+                "height": 1.89,
+                "weight": 83,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 22,
+                "firstName": "Patricio",
+                "lastName": "Silva",
+                "nickName": "Pulpo",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-02-03",
+                "height": 1.85,
+                "weight": 80,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 23,
+                "firstName": "Leonardo",
+                "lastName": "Vásquez",
+                "nickName": "Cerebro",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1999-09-28",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 24,
+                "firstName": "Tomás",
+                "lastName": "Herrera",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2002-07-12",
+                "height": 1.75,
+                "weight": 71,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/guayaquil-sharks.pdf"
+          },
+          {
+            "id": 4,
+            "name": "Loja Eagles",
+            "shortname": "LEG",
+            "slug": "loja-eagles",
+            "logoUrl": "https://example.com/logos/loja.png",
+            "primaryColor": "#FFD700",
+            "secondaryColor": "#000080",
+            "foundedYear": 2005,
+            "homeVenue": 4,
+            "location": "Loja, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": false,
+            "coachName": "Diego Torres",
+            "coachPhone": "+593911223344",
+            "players": [
+              {
+                "id": 25,
+                "firstName": "Matías",
+                "lastName": "Carrillo",
+                "nickName": "Águila",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1998-04-12",
+                "height": 1.8,
+                "weight": 77,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 26,
+                "firstName": "Santiago",
+                "lastName": "Palacios",
+                "nickName": "Mago",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-06-20",
+                "height": 1.75,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 27,
+                "firstName": "Ángel",
+                "lastName": "Torres",
+                "nickName": "Muralla",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-11-08",
+                "height": 1.88,
+                "weight": 84,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 28,
+                "firstName": "Cristóbal",
+                "lastName": "Méndez",
+                "nickName": "Rayo",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2000-02-15",
+                "height": 1.73,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-30",
+                "suspensionReason": "Red card"
+              },
+              {
+                "id": 29,
+                "firstName": "Hernán",
+                "lastName": "Vega",
+                "nickName": "Tanque",
+                "number": 4,
+                "position": "Defender",
+                "birthDate": "1994-09-03",
+                "height": 1.9,
+                "weight": 86,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 30,
+                "firstName": "Ricardo",
+                "lastName": "Salas",
+                "nickName": "Arquero",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-12-25",
+                "height": 1.85,
+                "weight": 80,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 31,
+                "firstName": "Felipe",
+                "lastName": "Bravo",
+                "nickName": "Cerebro",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1997-07-19",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 32,
+                "firstName": "Ignacio",
+                "lastName": "Cruz",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2001-05-11",
+                "height": 1.76,
+                "weight": 71,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/loja-eagles.pdf"
+          },
+          {
+            "id": 5,
+            "name": "Ambato Bulls",
+            "shortname": "ABL",
+            "slug": "ambato-bulls",
+            "logoUrl": "https://example.com/logos/ambato.png",
+            "primaryColor": "#880000",
+            "secondaryColor": "#EEEEEE",
+            "foundedYear": 1998,
+            "homeVenue": 5,
+            "location": "Ambato, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Fernando Ruiz",
+            "coachPhone": "+593934567890",
+            "players": [
+              {
+                "id": 33,
+                "firstName": "Mauricio",
+                "lastName": "Ríos",
+                "nickName": "Toro",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1997-05-10",
+                "height": 1.82,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 34,
+                "firstName": "Cristian",
+                "lastName": "Gómez",
+                "nickName": "Mago",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-08-21",
+                "height": 1.74,
+                "weight": 71,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 35,
+                "firstName": "Fernando",
+                "lastName": "Paz",
+                "nickName": "Muralla",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-12-03",
+                "height": 1.88,
+                "weight": 84,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 36,
+                "firstName": "Esteban",
+                "lastName": "López",
+                "nickName": "Rayo",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2000-04-14",
+                "height": 1.73,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-25",
+                "suspensionReason": "Accumulated yellow cards"
+              },
+              {
+                "id": 37,
+                "firstName": "Jorge",
+                "lastName": "Mendoza",
+                "nickName": "Tanque",
+                "number": 4,
+                "position": "Defender",
+                "birthDate": "1994-09-07",
+                "height": 1.9,
+                "weight": 86,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 38,
+                "firstName": "Luis",
+                "lastName": "Salazar",
+                "nickName": "Arquero",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-01-29",
+                "height": 1.85,
+                "weight": 80,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 39,
+                "firstName": "Carlos",
+                "lastName": "Viteri",
+                "nickName": "Cerebro",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-11-11",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 40,
+                "firstName": "Felipe",
+                "lastName": "Navarro",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2001-07-23",
+                "height": 1.76,
+                "weight": 71,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/ambato-bulls.pdf"
+          },
+          {
+            "id": 6,
+            "name": "Machala Panthers",
+            "shortname": "MPT",
+            "slug": "machala-panthers",
+            "logoUrl": "https://example.com/logos/machala.png",
+            "primaryColor": "#222222",
+            "secondaryColor": "#FF8800",
+            "foundedYear": 2010,
+            "homeVenue": 6,
+            "location": "Machala, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": false,
+            "coachName": "Jorge Salazar",
+            "coachPhone": "+593976543210",
+            "players": [
+              {
+                "id": 41,
+                "firstName": "Oscar",
+                "lastName": "Ramón",
+                "nickName": "Pantera",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1997-06-12",
+                "height": 1.81,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 42,
+                "firstName": "Raúl",
+                "lastName": "Serrano",
+                "nickName": "Mago",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-09-22",
+                "height": 1.75,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 43,
+                "firstName": "Héctor",
+                "lastName": "Vargas",
+                "nickName": "Muralla",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-12-17",
+                "height": 1.88,
+                "weight": 85,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 44,
+                "firstName": "Iván",
+                "lastName": "Peña",
+                "nickName": "Rayo",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2000-03-05",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-28",
+                "suspensionReason": "Red card"
+              },
+              {
+                "id": 45,
+                "firstName": "Gustavo",
+                "lastName": "Moreno",
+                "nickName": "Tanque",
+                "number": 4,
+                "position": "Defender",
+                "birthDate": "1994-08-11",
+                "height": 1.9,
+                "weight": 87,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 46,
+                "firstName": "Alfonso",
+                "lastName": "Reyes",
+                "nickName": "Arquero",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-10-29",
+                "height": 1.86,
+                "weight": 81,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 47,
+                "firstName": "Darío",
+                "lastName": "Campos",
+                "nickName": "Cerebro",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-12-09",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 48,
+                "firstName": "Pedro",
+                "lastName": "Silva",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2001-07-27",
+                "height": 1.77,
+                "weight": 72,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/machala-panthers.pdf"
+          },
+          {
+            "id": 7,
+            "name": "Manta Dolphins",
+            "shortname": "MDF",
+            "slug": "manta-dolphins",
+            "logoUrl": "https://example.com/logos/manta.png",
+            "primaryColor": "#00CCCC",
+            "secondaryColor": "#FFFFFF",
+            "foundedYear": 2003,
+            "homeVenue": 7,
+            "location": "Manta, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Ricardo Molina",
+            "coachPhone": "+593945612378",
+            "players": [
+              {
+                "id": 49,
+                "firstName": "Adrián",
+                "lastName": "Santos",
+                "nickName": "Delfín",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1997-05-18",
+                "height": 1.82,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 50,
+                "firstName": "Martín",
+                "lastName": "Guzmán",
+                "nickName": "Mago",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-09-12",
+                "height": 1.75,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 51,
+                "firstName": "Pablo",
+                "lastName": "Ramírez",
+                "nickName": "Muralla",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-11-03",
+                "height": 1.87,
+                "weight": 85,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 52,
+                "firstName": "Cristian",
+                "lastName": "Salinas",
+                "nickName": "Rayo",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2000-02-20",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-29",
+                "suspensionReason": "Accumulated yellow cards"
+              },
+              {
+                "id": 53,
+                "firstName": "Hugo",
+                "lastName": "Vega",
+                "nickName": "Tanque",
+                "number": 4,
+                "position": "Defender",
+                "birthDate": "1994-08-15",
+                "height": 1.9,
+                "weight": 87,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 54,
+                "firstName": "Ramiro",
+                "lastName": "Cedeño",
+                "nickName": "Arquero",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-10-01",
+                "height": 1.86,
+                "weight": 81,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 55,
+                "firstName": "Sebastián",
+                "lastName": "Bravo",
+                "nickName": "Cerebro",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-12-07",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 56,
+                "firstName": "Ignacio",
+                "lastName": "Torres",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2001-07-25",
+                "height": 1.77,
+                "weight": 72,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/manta-dolphins.pdf"
+          },
+          {
+            "id": 8,
+            "name": "Esmeraldas Jaguars",
+            "shortname": "EJG",
+            "slug": "esmeraldas-jaguars",
+            "logoUrl": "https://example.com/logos/esmeraldas.png",
+            "primaryColor": "#008000",
+            "secondaryColor": "#FFD700",
+            "foundedYear": 1992,
+            "homeVenue": 8,
+            "location": "Esmeraldas, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": false,
+            "coachName": "Hernán Viteri",
+            "coachPhone": "+593923456789",
+            "players": [
+              {
+                "id": 57,
+                "firstName": "Julio",
+                "lastName": "Ramírez",
+                "nickName": "Jaguar",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1997-06-15",
+                "height": 1.82,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 58,
+                "firstName": "Marco",
+                "lastName": "Salinas",
+                "nickName": "Mago",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-08-10",
+                "height": 1.75,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 59,
+                "firstName": "Cristóbal",
+                "lastName": "Vega",
+                "nickName": "Muralla",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-12-01",
+                "height": 1.88,
+                "weight": 85,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 60,
+                "firstName": "Álvaro",
+                "lastName": "Jiménez",
+                "nickName": "Rayo",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2000-03-09",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-03-30",
+                "suspensionReason": "Red card"
+              },
+              {
+                "id": 61,
+                "firstName": "Francisco",
+                "lastName": "Mora",
+                "nickName": "Tanque",
+                "number": 4,
+                "position": "Defender",
+                "birthDate": "1994-09-17",
+                "height": 1.9,
+                "weight": 87,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 62,
+                "firstName": "Patricio",
+                "lastName": "Silva",
+                "nickName": "Arquero",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-02-03",
+                "height": 1.85,
+                "weight": 80,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 63,
+                "firstName": "Leonardo",
+                "lastName": "Vásquez",
+                "nickName": "Cerebro",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-09-28",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 64,
+                "firstName": "Tomás",
+                "lastName": "Herrera",
+                "nickName": "Flecha",
+                "number": 11,
+                "position": "Forward",
+                "birthDate": "2001-07-12",
+                "height": 1.77,
+                "weight": 72,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/esmeraldas-jaguars.pdf"
+          },
+          {
+            "id": 9,
+            "name": "Quito Eagles",
+            "shortname": "QEA",
+            "slug": "quito-eagles",
+            "logoUrl": "https://example.com/logos/quito-eagles.png",
+            "primaryColor": "#003366",
+            "secondaryColor": "#FFD700",
+            "foundedYear": 1988,
+            "homeVenue": 2,
+            "location": "Quito, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Marco Espinoza",
+            "coachPhone": "+593991234567",
+            "players": [
+              {
+                "id": 65,
+                "firstName": "Sebastián",
+                "lastName": "Torres",
+                "nickName": "Cóndor",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1996-03-15",
+                "height": 1.89,
+                "weight": 83,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 66,
+                "firstName": "Patricio",
+                "lastName": "Herrera",
+                "nickName": "Pato",
+                "number": 4,
+                "position": "Center Back",
+                "birthDate": "1993-07-22",
+                "height": 1.87,
+                "weight": 84,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 67,
+                "firstName": "Renato",
+                "lastName": "Cabrera",
+                "nickName": "Ratón",
+                "number": 5,
+                "position": "Defender",
+                "birthDate": "1998-11-08",
+                "height": 1.81,
+                "weight": 77,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 68,
+                "firstName": "Javier",
+                "lastName": "Quispe",
+                "nickName": "Javy",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1997-04-30",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-05-10",
+                "suspensionReason": "Unsporting behavior"
+              },
+              {
+                "id": 69,
+                "firstName": "Nicolás",
+                "lastName": "Flores",
+                "nickName": "Nico",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-09-17",
+                "height": 1.76,
+                "weight": 71,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 70,
+                "firstName": "Diego",
+                "lastName": "Salazar",
+                "nickName": "Diablo",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-01-25",
+                "height": 1.74,
+                "weight": 69,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 71,
+                "firstName": "Mateo",
+                "lastName": "Rivadeneira",
+                "nickName": "Cohete",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2001-06-14",
+                "height": 1.72,
+                "weight": 68,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 72,
+                "firstName": "Andrés",
+                "lastName": "Ponce",
+                "nickName": "Toro Loco",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1995-12-03",
+                "height": 1.83,
+                "weight": 80,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/quito-eagles.pdf"
+          },
+          {
+            "id": 10,
+            "name": "Guayaquil Sharks",
+            "shortname": "GSH",
+            "slug": "guayaquil-sharks",
+            "logoUrl": "https://example.com/logos/guayaquil-sharks.png",
+            "primaryColor": "#00BFFF",
+            "secondaryColor": "#FFFFFF",
+            "foundedYear": 2001,
+            "homeVenue": 3,
+            "location": "Guayaquil, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Roberto Castillo",
+            "coachPhone": "+593987112233",
+            "players": [
+              {
+                "id": 73,
+                "firstName": "Emanuel",
+                "lastName": "Delgado",
+                "nickName": "Tiburón",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1994-02-18",
+                "height": 1.91,
+                "weight": 86,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 74,
+                "firstName": "Bryan",
+                "lastName": "Mendieta",
+                "nickName": "Bry",
+                "number": 3,
+                "position": "Defender",
+                "birthDate": "1999-05-07",
+                "height": 1.8,
+                "weight": 75,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 75,
+                "firstName": "Kevin",
+                "lastName": "Zambrano",
+                "nickName": "Zamba",
+                "number": 4,
+                "position": "Center Back",
+                "birthDate": "1997-10-29",
+                "height": 1.86,
+                "weight": 82,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 76,
+                "firstName": "Cristian",
+                "lastName": "Mero",
+                "nickName": "Chris",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-08-14",
+                "height": 1.77,
+                "weight": 73,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-04-20",
+                "suspensionReason": "Red card accumulation"
+              },
+              {
+                "id": 77,
+                "firstName": "Jonathan",
+                "lastName": "Vera",
+                "nickName": "Jonny",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-03-11",
+                "height": 1.75,
+                "weight": 70,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 78,
+                "firstName": "Paul",
+                "lastName": "Intriago",
+                "nickName": "Paulito",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1996-07-05",
+                "height": 1.73,
+                "weight": 68,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 79,
+                "firstName": "Alexis",
+                "lastName": "Bone",
+                "nickName": "Lex",
+                "number": 11,
+                "position": "Winger",
+                "birthDate": "2002-01-19",
+                "height": 1.71,
+                "weight": 67,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 80,
+                "firstName": "Génesis",
+                "lastName": "Lazo",
+                "nickName": "Gené",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "2001-11-23",
+                "height": 1.79,
+                "weight": 76,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/guayaquil-sharks.pdf"
+          },
+          {
+            "id": 11,
+            "name": "Ambato Volcanes",
+            "shortname": "AVO",
+            "slug": "ambato-volcanes",
+            "logoUrl": "https://example.com/logos/ambato-volcanes.png",
+            "primaryColor": "#CC0000",
+            "secondaryColor": "#FF8800",
+            "foundedYear": 1979,
+            "homeVenue": 4,
+            "location": "Ambato, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Fernando Naranjo",
+            "coachPhone": "+593976543210",
+            "players": [
+              {
+                "id": 81,
+                "firstName": "Wilmer",
+                "lastName": "Chusin",
+                "nickName": "Volcán",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1993-04-10",
+                "height": 1.87,
+                "weight": 82,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 82,
+                "firstName": "Ismael",
+                "lastName": "Toapanta",
+                "nickName": "Isma",
+                "number": 2,
+                "position": "Defender",
+                "birthDate": "1998-06-27",
+                "height": 1.8,
+                "weight": 76,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 83,
+                "firstName": "Darwin",
+                "lastName": "Pilco",
+                "nickName": "Daro",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1995-09-03",
+                "height": 1.85,
+                "weight": 81,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 84,
+                "firstName": "Henry",
+                "lastName": "Aguiar",
+                "nickName": "Tren",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1997-02-14",
+                "height": 1.78,
+                "weight": 74,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 85,
+                "firstName": "Marco",
+                "lastName": "Caisabanda",
+                "nickName": "Marquito",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-12-01",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 86,
+                "firstName": "Edwin",
+                "lastName": "Lluglla",
+                "nickName": "Llave",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1999-07-18",
+                "height": 1.76,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 87,
+                "firstName": "Cristopher",
+                "lastName": "Moreta",
+                "nickName": "Cris",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2001-05-09",
+                "height": 1.72,
+                "weight": 68,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 88,
+                "firstName": "Rodrigo",
+                "lastName": "Tisalema",
+                "nickName": "Rodri",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1996-10-22",
+                "height": 1.82,
+                "weight": 79,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-05-01",
+                "suspensionReason": "Violent conduct"
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/ambato-volcanes.pdf"
+          },
+          {
+            "id": 12,
+            "name": "Loja Cóndores",
+            "shortname": "LCO",
+            "slug": "loja-condores",
+            "logoUrl": "https://example.com/logos/loja-condores.png",
+            "primaryColor": "#006400",
+            "secondaryColor": "#FFFF00",
+            "foundedYear": 1985,
+            "homeVenue": 5,
+            "location": "Loja, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Gustavo Palacios",
+            "coachPhone": "+593964321987",
+            "players": [
+              {
+                "id": 89,
+                "firstName": "Omar",
+                "lastName": "Sánchez",
+                "nickName": "Pared",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1992-08-16",
+                "height": 1.9,
+                "weight": 85,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 90,
+                "firstName": "Jhonatan",
+                "lastName": "Cueva",
+                "nickName": "Jhon",
+                "number": 3,
+                "position": "Defender",
+                "birthDate": "1998-01-07",
+                "height": 1.81,
+                "weight": 77,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 91,
+                "firstName": "Alexánder",
+                "lastName": "Vivanco",
+                "nickName": "Alex",
+                "number": 4,
+                "position": "Center Back",
+                "birthDate": "1996-04-21",
+                "height": 1.86,
+                "weight": 83,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 92,
+                "firstName": "Nelson",
+                "lastName": "Jumbo",
+                "nickName": "Nels",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1999-09-13",
+                "height": 1.77,
+                "weight": 73,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 93,
+                "firstName": "Stalin",
+                "lastName": "Sarango",
+                "nickName": "Tali",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-06-30",
+                "height": 1.75,
+                "weight": 71,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 94,
+                "firstName": "Ítalo",
+                "lastName": "Encalada",
+                "nickName": "Ita",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1997-03-25",
+                "height": 1.74,
+                "weight": 69,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 95,
+                "firstName": "Brayan",
+                "lastName": "Ordóñez",
+                "nickName": "Bray",
+                "number": 11,
+                "position": "Winger",
+                "birthDate": "2001-12-11",
+                "height": 1.7,
+                "weight": 66,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 96,
+                "firstName": "Paúl",
+                "lastName": "Godoy",
+                "nickName": "Bala",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1995-11-04",
+                "height": 1.8,
+                "weight": 77,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/loja-condores.pdf"
+          },
+          {
+            "id": 13,
+            "name": "Manta Piratas",
+            "shortname": "MPI",
+            "slug": "manta-piratas",
+            "logoUrl": "https://example.com/logos/manta-piratas.png",
+            "primaryColor": "#000080",
+            "secondaryColor": "#C0C0C0",
+            "foundedYear": 2003,
+            "homeVenue": 6,
+            "location": "Manta, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Álvaro Cedeño",
+            "coachPhone": "+593958741236",
+            "players": [
+              {
+                "id": 97,
+                "firstName": "Fidel",
+                "lastName": "Arteaga",
+                "nickName": "Fide",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1991-07-09",
+                "height": 1.88,
+                "weight": 84,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 98,
+                "firstName": "Leandro",
+                "lastName": "Párraga",
+                "nickName": "Leo",
+                "number": 2,
+                "position": "Defender",
+                "birthDate": "1999-03-22",
+                "height": 1.79,
+                "weight": 75,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 99,
+                "firstName": "Marcelo",
+                "lastName": "Bravo",
+                "nickName": "Mako",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1996-10-14",
+                "height": 1.85,
+                "weight": 82,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-04-15",
+                "suspensionReason": "Red card accumulation"
+              },
+              {
+                "id": 100,
+                "firstName": "Walther",
+                "lastName": "Intriago",
+                "nickName": "Wally",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-05-31",
+                "height": 1.76,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 101,
+                "firstName": "Gabriel",
+                "lastName": "Mero",
+                "nickName": "Gabo",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-01-17",
+                "height": 1.75,
+                "weight": 71,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 102,
+                "firstName": "Jorge",
+                "lastName": "Pincay",
+                "nickName": "Jorgito",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1997-08-08",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 103,
+                "firstName": "Ronaldo",
+                "lastName": "Cevallos",
+                "nickName": "Rona",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2002-04-03",
+                "height": 1.71,
+                "weight": 67,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 104,
+                "firstName": "Hernán",
+                "lastName": "Zambrano",
+                "nickName": "Pirata",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1994-12-28",
+                "height": 1.81,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/manta-piratas.pdf"
+          },
+          {
+            "id": 14,
+            "name": "Esmeraldas Jaguares",
+            "shortname": "EJA",
+            "slug": "esmeraldas-jaguares",
+            "logoUrl": "https://example.com/logos/esmeraldas-jaguares.png",
+            "primaryColor": "#228B22",
+            "secondaryColor": "#FFD700",
+            "foundedYear": 1991,
+            "homeVenue": 7,
+            "location": "Esmeraldas, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Julio Caicedo",
+            "coachPhone": "+593969874523",
+            "players": [
+              {
+                "id": 105,
+                "firstName": "Ronny",
+                "lastName": "Quiñónez",
+                "nickName": "Ronny",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1993-05-17",
+                "height": 1.89,
+                "weight": 83,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 106,
+                "firstName": "Klever",
+                "lastName": "Ayoví",
+                "nickName": "Kle",
+                "number": 3,
+                "position": "Defender",
+                "birthDate": "1998-02-12",
+                "height": 1.8,
+                "weight": 76,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 107,
+                "firstName": "Óscar",
+                "lastName": "Méndez",
+                "nickName": "Pantera",
+                "number": 4,
+                "position": "Center Back",
+                "birthDate": "1995-11-29",
+                "height": 1.86,
+                "weight": 84,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 108,
+                "firstName": "Wilton",
+                "lastName": "Nazareno",
+                "nickName": "Wilton",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1999-08-04",
+                "height": 1.77,
+                "weight": 73,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-06-01",
+                "suspensionReason": "Violent conduct"
+              },
+              {
+                "id": 109,
+                "firstName": "Félix",
+                "lastName": "Borja",
+                "nickName": "Felito",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-04-19",
+                "height": 1.75,
+                "weight": 71,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 110,
+                "firstName": "Yúber",
+                "lastName": "Arizala",
+                "nickName": "Yúber",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1997-01-11",
+                "height": 1.73,
+                "weight": 69,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 111,
+                "firstName": "Stiven",
+                "lastName": "Caicedo",
+                "nickName": "Ste",
+                "number": 11,
+                "position": "Winger",
+                "birthDate": "2001-09-26",
+                "height": 1.72,
+                "weight": 67,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 112,
+                "firstName": "Ángel",
+                "lastName": "Quiñones",
+                "nickName": "Jaguar",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1996-07-14",
+                "height": 1.8,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/esmeraldas-jaguares.pdf"
+          },
+          {
+            "id": 15,
+            "name": "Riobamba Cóndor FC",
+            "shortname": "RCF",
+            "slug": "riobamba-condor-fc",
+            "logoUrl": "https://example.com/logos/riobamba-condor.png",
+            "primaryColor": "#8B0000",
+            "secondaryColor": "#FFFFFF",
+            "foundedYear": 1977,
+            "homeVenue": 8,
+            "location": "Riobamba, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Ramiro Colcha",
+            "coachPhone": "+593972345678",
+            "players": [
+              {
+                "id": 113,
+                "firstName": "Iván",
+                "lastName": "Guaraca",
+                "nickName": "Muro",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1992-03-08",
+                "height": 1.9,
+                "weight": 87,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 114,
+                "firstName": "Freddy",
+                "lastName": "Yuquilema",
+                "nickName": "Fred",
+                "number": 2,
+                "position": "Defender",
+                "birthDate": "1997-06-20",
+                "height": 1.8,
+                "weight": 76,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 115,
+                "firstName": "Hugo",
+                "lastName": "Lema",
+                "nickName": "Hugui",
+                "number": 5,
+                "position": "Center Back",
+                "birthDate": "1994-12-15",
+                "height": 1.85,
+                "weight": 82,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 116,
+                "firstName": "Alex",
+                "lastName": "Morocho",
+                "nickName": "Alejo",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1999-09-01",
+                "height": 1.77,
+                "weight": 73,
+                "status": "Injured",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 117,
+                "firstName": "Byron",
+                "lastName": "Duchi",
+                "nickName": "Byro",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-02-27",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 118,
+                "firstName": "Pablo",
+                "lastName": "Cepeda",
+                "nickName": "Pablito",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1998-07-13",
+                "height": 1.76,
+                "weight": 72,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 119,
+                "firstName": "Santiago",
+                "lastName": "Barahona",
+                "nickName": "Santi",
+                "number": 7,
+                "position": "Winger",
+                "birthDate": "2001-04-06",
+                "height": 1.73,
+                "weight": 68,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 120,
+                "firstName": "Oswaldo",
+                "lastName": "Chimborazo",
+                "nickName": "Oswy",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1995-10-31",
+                "height": 1.82,
+                "weight": 79,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-04-30",
+                "suspensionReason": "Unsporting behavior"
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/riobamba-condor-fc.pdf"
+          },
+          {
+            "id": 16,
+            "name": "Portoviejo Tigres",
+            "shortname": "PTI",
+            "slug": "portoviejo-tigres",
+            "logoUrl": "https://example.com/logos/portoviejo-tigres.png",
+            "primaryColor": "#FF6600",
+            "secondaryColor": "#000000",
+            "foundedYear": 1998,
+            "homeVenue": 9,
+            "location": "Portoviejo, Ecuador",
+            "isActive": true,
+            "hasActiveMatches": true,
+            "coachName": "Tomás Solórzano",
+            "coachPhone": "+593945678901",
+            "players": [
+              {
+                "id": 121,
+                "firstName": "Ricardo",
+                "lastName": "Alcivar",
+                "nickName": "Ricky",
+                "number": 1,
+                "position": "Goalkeeper",
+                "birthDate": "1994-01-24",
+                "height": 1.88,
+                "weight": 83,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 122,
+                "firstName": "Ariel",
+                "lastName": "Moreira",
+                "nickName": "Ari",
+                "number": 3,
+                "position": "Defender",
+                "birthDate": "1999-04-16",
+                "height": 1.79,
+                "weight": 75,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 123,
+                "firstName": "Hernán",
+                "lastName": "Tutivén",
+                "nickName": "Tuti",
+                "number": 4,
+                "position": "Center Back",
+                "birthDate": "1996-08-07",
+                "height": 1.85,
+                "weight": 81,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 124,
+                "firstName": "Franklyn",
+                "lastName": "Ponce",
+                "nickName": "Frank",
+                "number": 6,
+                "position": "Defensive Midfielder",
+                "birthDate": "1998-11-19",
+                "height": 1.77,
+                "weight": 73,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 125,
+                "firstName": "Héctor",
+                "lastName": "Chica",
+                "nickName": "Hec",
+                "number": 8,
+                "position": "Midfielder",
+                "birthDate": "2000-07-23",
+                "height": 1.75,
+                "weight": 71,
+                "status": "Suspended",
+                "suspensionEndDate": "2026-05-20",
+                "suspensionReason": "Red card accumulation"
+              },
+              {
+                "id": 126,
+                "firstName": "Leonardo",
+                "lastName": "Rezabala",
+                "nickName": "Leo",
+                "number": 10,
+                "position": "Midfielder",
+                "birthDate": "1997-05-10",
+                "height": 1.74,
+                "weight": 70,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 127,
+                "firstName": "Jhosué",
+                "lastName": "Vera",
+                "nickName": "Josu",
+                "number": 11,
+                "position": "Winger",
+                "birthDate": "2002-02-28",
+                "height": 1.71,
+                "weight": 66,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              },
+              {
+                "id": 128,
+                "firstName": "Néstor",
+                "lastName": "Zambrano",
+                "nickName": "Tigre",
+                "number": 9,
+                "position": "Forward",
+                "birthDate": "1995-09-18",
+                "height": 1.81,
+                "weight": 78,
+                "status": "Active",
+                "suspensionEndDate": null,
+                "suspensionReason": null
+              }
+            ],
+            "documentURL": "https://example.com/docs/teams/portoviejo-tigres.pdf"
+          }
+        ],
+        "socialLinks": [
+          {
+            "link": "https://www.instagram.com/ucuenca",
+            "socialNetwork": {
+              "name": "Instagram",
+              "icon": "https://example.com/icons/instagram.svg"
+            }
+          },
+          {
+            "link": "https://www.facebook.com/ucuenca",
+            "socialNetwork": {
+              "name": "Facebook",
+              "icon": "https://example.com/icons/facebook.svg"
+            }
+          },
+          {
+            "link": "https://x.com/ucuenca",
+            "socialNetwork": {
+              "name": "X / Twitter",
+              "icon": "https://example.com/icons/twitter.svg"
+            }
+          }
+        ],
+        "name": "Copa Nulti",
+        "slug": "/CopaNulti/",
+        "description": "La mejor copa",
+        "season": 2026,
+        "logo": "https://es.pngtree.com/so/la-copa-de-f%C3%BAtbol",
+        "status": 1,
+        "registrationStartDate": "01/04/2026",
+        "registrationEndDate": "01/05/2026",
+        "startDate": "01/05/2026",
+        "endDate": "01/08/2026",
+        "maxTeams": 24
+      }
+    ]
+  }
+}

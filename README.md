@@ -1,6 +1,43 @@
 # Iceplay-Fropen
 Backend Iceplay
 
+## Configuración de bases de datos y Docker
+
+1. Verifica `docker-compose.yml` contiene los servicios:
+   - `mongo-db` (mongo:6.0.6)
+   - `postgres` (postgres:16-alpine)
+
+2. Levanta los contenedores:
+
+```bash
+docker-compose down
+docker-compose up -d
+```
+
+3. Confirma que los contenedores estén en estado `running`:
+
+```bash
+docker ps
+```
+
+4. Instala dependencias si no lo hiciste:
+
+```bash
+npm install
+```
+
+5. Genera el esquema Drizzle y la migración:
+
+```bash
+npx drizzle-kit generate
+npx drizzle-kit migrate
+```
+
+6. Inicia la aplicación:
+
+```bash
+npm run dev
+```
 
 ## Poblar la base de datos
 
@@ -34,3 +71,4 @@ localhost:3001/api/championships
 ```
 localhost:3001/api/matches
 ```
+>>>>>>>>> Temporary merge branch 2

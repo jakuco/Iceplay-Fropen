@@ -48,3 +48,7 @@ jest/
 __tests__/
 *.spec.ts
 *.test.ts
+
+# ----- Base de datos -----
+postgres_data
+mongoDB

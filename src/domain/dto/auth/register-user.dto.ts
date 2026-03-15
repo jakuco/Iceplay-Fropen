@@ -1,18 +1,26 @@
+import { z } from "zod";
+import { Result, ok, fail } from "$config/result";
+
 export class RegisterUserDto {
-  private constructor(
-    public readonly name: string,
-    public readonly email: string,
-    public readonly password: string
-  ) {}
+    static readonly schema = z.object({
+        name: z.string("Name is required").min(3, "Name too short"),
+        email: z.email("Invalid email"),
+        password: z.string("Password is required").min(8, "Password must be at least 8 characters"),
+    });
 
-  static create(payload: any): [string?, RegisterUserDto?] {
-    const { name, email, password } = payload ?? {};
+    private constructor(
+        public readonly name: string,
+        public readonly email: string,
+        public readonly password: string
+    ) { }
 
-    if (!name || typeof name !== 'string') return ['name is required'];
-    if (!email || typeof email !== 'string') return ['email is required'];
-    if (!password || typeof password !== 'string') return ['password is required'];
-    if (password.length < 6) return ['password must be at least 6 characters'];
+    static create(payload: any): Result<RegisterUserDto> {
+        const parseResult = this.schema.safeParse(payload);
 
-    return [undefined, new RegisterUserDto(name.trim(), email.trim().toLowerCase(), password)];
-  }
+        if (!parseResult.success) return fail(parseResult.error.message);
+
+        const { name, email, password } = parseResult.data;
+
+        return ok(new RegisterUserDto(name, email, password));
+    }
 }

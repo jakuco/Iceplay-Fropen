@@ -1,0 +1,53 @@
+export interface IPlayer {
+  id: string;
+  teamId: string;
+  championshipId: string;
+  organizationId: string;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  nickname?: string;
+  number: number;
+  position: string;
+  secondaryPosition?: string;
+  document?: string;
+  birthDate?: Date;
+  age?: number;
+  nationality?: string;
+  height?: number;
+  weight?: number;
+  photo?: string;
+  status: 'active' | 'injured' | 'suspended' | 'inactive';
+  suspensionEndDate?: Date;
+  suspensionReason?: string;
+  stats: {
+    matchesPlayed: number;
+    minutesPlayed: number;
+    // Football
+    goals?: number;
+    assists?: number;
+    yellowCards?: number;
+    redCards?: number;
+    ownGoals?: number;
+    penaltiesScored?: number;
+    penaltiesMissed?: number;
+    // Basketball
+    points?: number;
+    freeThrows?: number;
+    twoPointers?: number;
+    threePointers?: number;
+    rebounds?: number;
+    steals?: number;
+    blocks?: number;
+    turnovers?: number;
+    fouls?: number;
+    // Volleyball
+    aces?: number;
+    blockPoints?: number;
+    kills?: number;
+    digs?: number;
+    errors?: number;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}

@@ -1,58 +1,54 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose from "mongoose";
 
-export interface IMatch extends Document {
-  match_id: number;
-  championship_id: number;
-  home_team_id: number;
-  away_team_id: number;
-  date: Date;
-  state: number;
-  match_events: any;
-}
+// ── Match ─────────────────────────────────────────────────────────────────────
+// id: autoincrement (no viene en JSON)
+// groupTeamId: FK → GroupTeam.id  |  homeTeamId/awayTeamId: FK → Team.id
+const MatchSchema = new mongoose.Schema({
+    id:              { type: Number, required: true, unique: true },
+    groupTeamId:     { type: Number, required: [true, "GroupTeam is required"] },
+    homeTeamId:      { type: Number, required: [true, "Home team is required"] },
+    awayTeamId:      { type: Number, required: [true, "Away team is required"] },
+    homeScore:       { type: Number, default: 0 },
+    awayScore:       { type: Number, default: 0 },
+    status:          { type: String, enum: ["pending", "active", "finished"], default: "pending" },
+    round:           { type: Number },
+    matchday:        { type: Number },
+    scheduledDate:   { type: Date },
+    scheduledTime:   { type: String },
+    actualStartTime: { type: Date },
+    actualEndTime:   { type: Date },
+    venue:           { type: String },
+    city:            { type: String },
+}, { timestamps: true });
 
-const MatchSchema = new Schema<IMatch>(
-  {
-    match_id: {
-      type: Number,
-      unique: true,
-      index: true,
-      required: true,
-    },
+export const MatchModel = mongoose.model("Match", MatchSchema);
 
-    championship_id: {
-      type: Number,
-      ref: "Championship",
-      required: true,
-    },
 
-    home_team_id: {
-      type: Number,
-      ref: "Team",
-      required: true,
-    },
+// ── MatchPlayer (pivot) ───────────────────────────────────────────────────────
+// matchId: FK → Match.id  |  playerId: FK → Player.id (viene del JSON)
+const MatchPlayerSchema = new mongoose.Schema({
+    matchId:  { type: Number, required: [true, "Match is required"] },
+    playerId: { type: Number, required: [true, "Player is required"] },
+});
 
-    away_team_id: {
-      type: Number,
-      ref: "Team",
-      required: true,
-    },
+MatchPlayerSchema.index({ matchId: 1, playerId: 1 }, { unique: true });
 
-    date: {
-      type: Date,
-      required: true,
-    },
+export const MatchPlayerModel = mongoose.model("MatchPlayer", MatchPlayerSchema);
 
-    state: {
-      type: Number,
-      required: true,
-    },
 
-    match_events: {
-      type: Schema.Types.Mixed, // json{Evento[entrar, salir, roja, amarilla, gol, asistencia], id_jugador, minuto}
-      required: false,
-    },
-  },
-  { timestamps: true }
-);
+// ── MatchEvent ────────────────────────────────────────────────────────────────
+// id: autoincrement (no viene en JSON)
+// matchId: FK → Match.id
+// typeMatchEventId: FK → TypeMatchEvent.id (viene del JSON)
+// playerId: FK → Player.id (viene del JSON, nullable)
+// teamId: FK → Team.id (viene del JSON, nullable)
+const MatchEventSchema = new mongoose.Schema({
+    id:               { type: Number, required: true, unique: true },
+    matchId:          { type: Number, required: [true, "Match is required"] },
+    typeMatchEventId: { type: Number, required: [true, "TypeMatchEvent is required"] },
+    playerId:         { type: Number, default: null },
+    teamId:           { type: Number, default: null },
+    time:             { type: Number, required: [true, "Time is required"] },
+});
 
-export const MatchModel = mongoose.model<IMatch>("Match", MatchSchema);
+export const MatchEventModel = mongoose.model("MatchEvent", MatchEventSchema);

@@ -16,6 +16,13 @@ export const envs = {
   JWT_TOKEN:get('JWT_TOKEN').required().asString(),
   API_URL:get('API_URL').required().asString(),
   CORS_ORIGIN:get('CORS_ORIGIN').default('http://localhost:4200').asString(),
+
+  // PostgreSQL
+  DB_HOST: get('DB_HOST').default('localhost').asString(),
+  DB_PORT: get('DB_PORT').default('5432').asPortNumber(),
+  DB_USER: get('DB_USER').required().asString(),
+  DB_PASSWORD: get('DB_PASSWORD').required().asString(),
+  DB_NAME: get('DB_NAME').required().asString(),
 }
 
 

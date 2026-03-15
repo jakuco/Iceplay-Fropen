@@ -1,6 +1,16 @@
-import { CustomError } from "../errors/custom.errors";
+import { z } from "zod";
+import { Result, ok, fail } from "$config/result";
 
 export class UserEntity {
+    static readonly schema = z.object({
+        id: z.string("Missing id"),
+        name: z.string("Missing name"),
+        email: z.email("Invalid email"),
+        emailValidated: z.string("Missing emailValidated"),
+        password: z.string("Missing password"),
+        role: z.array(z.string(), "Missing roles"),
+        img: z.string().optional(),
+    });
 
     constructor(
         public readonly id: string,
@@ -12,37 +22,28 @@ export class UserEntity {
         public readonly img?: string,
     ) { }
 
-    static fromObject(obj: { [key: string]: any }) {
-        const { id, _id, name, email, emailValidated, password, role, img } = obj;
-
-        if (!id && !_id) {
-            throw CustomError.badRequest('Missing id');
-        }
-        if (!name) {
-            throw CustomError.badRequest('Missing name');
-        }
-        if (!email) {
-            throw CustomError.badRequest('Missing email');
-        }
-        if (emailValidated === undefined) {
-            throw CustomError.badRequest('Missing emailValidated');
-        }
-        if (!password) {
-            throw CustomError.badRequest('Missing password');
-        }
-        if (!role) {
-            throw CustomError.badRequest('Missing role');
+    static fromObject(obj: { [key: string]: any }): Result<UserEntity> {
+        if (obj.id === undefined) {
+            obj.id = obj._id;
         }
 
-        return new UserEntity(
-            id || _id.toString(),
+        const parseResult = this.schema.safeParse(obj);
+        
+        if (!parseResult.success) {
+            return fail(parseResult.error.message);
+        }
+
+        const { id, name, email, emailValidated, password, role, img } = parseResult.data;
+
+        return ok(new UserEntity(
+            id,
             name,
             email,
             emailValidated,
             password,
             role,
             img,
-        );
+        ));
     }
 
 }

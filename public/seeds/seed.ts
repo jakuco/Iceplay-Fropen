@@ -1,4 +1,4 @@
-import { envs } from "../src/config/envs";
+import { envs } from "../../src/config/envs";
 
 const API_URL = envs.API_URL;
 
@@ -69,40 +69,77 @@ async function seedMatches() {
       championship_id: 10,
       home_team_id: 1,
       away_team_id: 2,
-      date: "2026-03-15T15:00:00.000Z",
-      state: 1,
-      match_events: [
-        { evento: "gol", minuto: 15, player_id: 201, team_id: 1 },
-        { evento: "gol", minuto: 45, player_id: 202, team_id: 2 },
-        { evento: "gol", minuto: 70, player_id: 201, team_id: 1 },
-        { evento: "amarilla", minuto: 55, player_id: 202, team_id: 2 },
-        { evento: "entrada", minuto: 60, player_id: 203, team_id: 1 },
-        { evento: "salida", minuto: 60, player_id: 201, team_id: 1 }
-      ]
+      date: "2026-03-20T15:00:00.000Z",
+      state: 0, // scheduled
+      city: "Guayaquil",
+      venue: "Estadio Monumental",
+      match_events: []
     },
     {
       match_id: 102,
       championship_id: 10,
       home_team_id: 3,
       away_team_id: 4,
-      date: "2026-03-15T18:00:00.000Z",
-      state: 1,
-      match_events: [
-        { evento: "gol", minuto: 22, player_id: 204, team_id: 3 },
-        { evento: "gol", minuto: 80, player_id: 205, team_id: 4 },
-        { evento: "amarilla", minuto: 30, player_id: 204, team_id: 3 }
-      ]
+      date: "2026-03-21T18:00:00.000Z",
+      state: 1, // live
+      city: "Quito",
+      venue: "Estadio Casa Blanca",
+      match_events: [{ evento: "gol", minuto: 10, player_id: 201, team_id: 1 }]
     },
     {
       match_id: 103,
       championship_id: 11,
       home_team_id: 5,
       away_team_id: 6,
-      date: "2026-03-16T20:00:00.000Z",
-      state: 0,
-      match_events: [
-        // partido aún sin eventos
-      ]
+      date: "2026-03-22T20:00:00.000Z",
+      state: 2, // finished
+      city: "Cuenca",
+      venue: "Estadio Alejandro Serrano",
+      match_events: [{ evento: "gol", minuto: 30, player_id: 202, team_id: 2 }]
+    },
+    {
+      match_id: 104,
+      championship_id: 10,
+      home_team_id: 2,
+      away_team_id: 3,
+      date: "2026-03-23T17:00:00.000Z",
+      state: 3, // suspended
+      city: "Quito",
+      venue: "Estadio Olímpico Atahualpa",
+      match_events: []
+    },
+    {
+      match_id: 105,
+      championship_id: 11,
+      home_team_id: 4,
+      away_team_id: 5,
+      date: "2026-03-24T19:00:00.000Z",
+      state: 4, // postponed
+      city: "Sangolquí",
+      venue: "Estadio IDV",
+      match_events: []
+    },
+    {
+      match_id: 106,
+      championship_id: 10,
+      home_team_id: 6,
+      away_team_id: 1,
+      date: "2026-03-25T16:00:00.000Z",
+      state: 5, // cancelled
+      city: "Quito",
+      venue: "Estadio Gonzalo Pozo",
+      match_events: []
+    },
+    {
+      match_id: 107,
+      championship_id: 11,
+      home_team_id: 2,
+      away_team_id: 6,
+      date: "2026-03-26T20:00:00.000Z",
+      state: 6, // unknown
+      city: "Guayaquil",
+      venue: "Estadio Capwell",
+      match_events: []
     }
   ];
 
@@ -120,13 +157,15 @@ async function seedMatches() {
   }
 }
 
+
 // Poblar jugadores
 async function seedPlayers() {
   const players = [
     {
       player_id: 201,
       number: 10,
-      name: "Juan Pérez",
+      name: "Juan",
+      lastname: "Pérez",
       weight: 72,
       height: 175,
       primary_position: 9,
@@ -140,7 +179,8 @@ async function seedPlayers() {
     {
       player_id: 202,
       number: 7,
-      name: "Carlos Gómez",
+      name: "Carlos",
+      lastname: "Gómez",
       weight: 70,
       height: 178,
       primary_position: 7,
@@ -181,8 +221,73 @@ async function seedMatchPlayers() {
   }
 }
 
+// Eliminar datos existentes según IDs
+async function clearDatabase() {
+  // IDs que definiste en tu seeding
+  const championshipIds = [10, 11];
+  const coachIds = [101, 102, 103, 104, 105, 106];
+  const teamIds = [1, 2, 3, 4, 5, 6];
+  const matchIds = [101, 102, 103, 104, 105, 106, 107];
+  const playerIds = [201, 202];
+  const matchPlayerIds = [
+    { player_id: 201, match_id: 101 },
+    { player_id: 202, match_id: 101 },
+    { player_id: 201, match_id: 102 },
+    { player_id: 202, match_id: 103 },
+  ];
+
+  // Campeonatos
+  for (const id of championshipIds) {
+    await fetch(`${API_URL}/championships/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${envs.JWT_TOKEN}` },
+    }).then(res => console.log("Deleted championship", id));
+  }
+
+  // Coaches
+  for (const id of coachIds) {
+    await fetch(`${API_URL}/coaches/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${envs.JWT_TOKEN}` },
+    }).then(res => console.log("Deleted coach", id));
+  }
+
+  // Equipos
+  for (const id of teamIds) {
+    await fetch(`${API_URL}/teams/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${envs.JWT_TOKEN}` },
+    }).then(res => console.log("Deleted team", id));
+  }
+
+  // Partidos
+  for (const id of matchIds) {
+    await fetch(`${API_URL}/matches/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${envs.JWT_TOKEN}` },
+    }).then(res => console.log("Deleted match", id));
+  }
+
+  // Jugadores
+  for (const id of playerIds) {
+    await fetch(`${API_URL}/players/${id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${envs.JWT_TOKEN}` },
+    }).then(res => console.log("Deleted player", id));
+  }
+
+  // Relación MatchPlayer (si tu API requiere ambos IDs en la ruta)
+  for (const mp of matchPlayerIds) {
+    await fetch(`${API_URL}/matchplayers/${mp.match_id}/${mp.player_id}`, {
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${envs.JWT_TOKEN}` },
+    }).then(res => console.log("Deleted matchplayer", mp));
+  }
+}
+
 // Ejecutar todo en orden
 async function main() {
+  await clearDatabase();
   await seedChampionships();
   await seedCoaches();
   await seedTeams();
