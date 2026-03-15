@@ -1,6 +1,7 @@
 # ----- Node -----
 mongo
 mongoDB/
+postgres_data/
 node_modules
 npm-debug.log*
 yarn-debug.log*
