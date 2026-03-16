@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { eq } from "drizzle-orm";
 import { JwtAdapter } from "$config";
 import { getDb } from "../../data/drizzle/db";
-import { users } from "../../data/drizzle/modelos/schema";
+import { users } from "../../data/drizzle/models/schema";
 import { UserEntity } from "$domain";
 import { Status } from "$config/status";
 

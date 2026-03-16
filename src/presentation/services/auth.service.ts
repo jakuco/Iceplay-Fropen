@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "../../data/drizzle/db";
-import { users } from "../../data/drizzle/modelos/schema";
+import { users } from "../../data/drizzle/models/schema";
 import { LoginUserDto, RegisterUserDto, UserEntity } from "$domain";
 import { ServiceError } from "$domain/errors";
 import { JwtAdapter, bcryptAdapter } from "$config";

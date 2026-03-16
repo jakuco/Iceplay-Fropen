@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import * as schema from "./modelos/schema";
+import * as schema from "./models/schema";
 
 type DrizzleDb = ReturnType<typeof drizzle<typeof schema>>;
 

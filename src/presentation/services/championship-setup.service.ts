@@ -10,7 +10,7 @@ import {
   groupTeams,
   teams,
   teamGroupTeams,
-} from "../../data/drizzle/modelos/schema";
+} from "../../data/drizzle/models/schema";
 import { CustomError } from "../../domain";
 
 

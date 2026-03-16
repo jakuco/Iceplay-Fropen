@@ -11,7 +11,7 @@ import {
   teams,
   teamGroupTeams,
   matches,
-} from "../../data/drizzle/modelos/schema";
+} from "../../data/drizzle/models/schema";
 import { CustomError } from "../../domain";
 
 import { generateLeagueFixture, LeagueConfig, MatchInput } from "./fixture/algorithms/league.algorithm";
