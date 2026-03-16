@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { eq } from "drizzle-orm";
 import { JwtAdapter } from "$config";
-import { getDb } from "../../data/drizzle/db";
-import { users } from "../../data/drizzle/models/schema";
+import { getDb } from "$data/drizzle/db";
+import { users } from "$data/drizzle/models/schema";
 import { UserEntity } from "$domain";
 import { Status } from "$config/status";
 
@@ -22,15 +22,7 @@ export class AuthMiddleware {
       const user = await db.query.users.findFirst({ where: eq(users.id, parseInt(payload.id)) });
       if (!user) return res.status(Status.UNAUTHORIZED).json({ error: "Invalid token - user" });
 
-      const entityResult = UserEntity.fromObject({
-        id: user.id.toString(),
-        name: user.name,
-        email: user.email,
-        emailValidated: user.emailValidated ? "true" : "false",
-        password: user.password,
-        role: [user.role],
-        img: user.img ?? undefined,
-      });
+      const entityResult = UserEntity.fromObject(user);
 
       if (!entityResult.ok) {
         console.error(entityResult.error);

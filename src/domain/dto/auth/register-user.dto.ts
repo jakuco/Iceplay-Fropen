@@ -1,15 +1,17 @@
 import { z } from "zod";
-import { Result, ok, fail } from "../../../config/result";
+import { Result, ok, fail } from "$config/result";
 
 export class RegisterUserDto {
     static readonly schema = z.object({
         name: z.string("Name is required").min(3, "Name too short"),
+        organizationId: z.number("Organization id is required"),
         email: z.email("Invalid email"),
         password: z.string("Password is required").min(8, "Password must be at least 8 characters"),
     });
 
     private constructor(
         public readonly name: string,
+        public readonly organizationId: number,
         public readonly email: string,
         public readonly password: string
     ) { }
@@ -19,8 +21,8 @@ export class RegisterUserDto {
 
         if (!parseResult.success) return fail(parseResult.error.message);
 
-        const { name, email, password } = parseResult.data;
+        const { name, organizationId, email, password } = parseResult.data;
 
-        return ok(new RegisterUserDto(name, email, password));
+        return ok(new RegisterUserDto(name, organizationId, email, password));
     }
 }

@@ -1,7 +1,6 @@
 import { eq, count, asc, and } from "drizzle-orm";
-import { getDb } from "../../data/drizzle/db";
-import { teams } from "../../data/drizzle/models/schema";
-import { CustomError, PaginationDTO } from "../../domain";
+import { getDb, teams } from "$data";
+import { CustomError, PaginationDTO } from "$domain";
 
 export class TeamService {
   constructor() {}

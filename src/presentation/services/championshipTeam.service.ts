@@ -1,5 +1,4 @@
-import { ChampionshipTeamModel } from "../../data/mongo/models/championshipTeam.model";
-import { CustomError, PaginationDTO } from "../../domain";
+import { CustomError, PaginationDTO } from "$domain";
 
 type CreateChampionshipTeamDTO = any;
 

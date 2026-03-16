@@ -1,7 +1,7 @@
 import { eq, count, asc } from "drizzle-orm";
-import { getDb } from "../../data/drizzle/db";
-import { championships } from "../../data/drizzle/models/schema";
-import { CustomError, PaginationDTO } from "../../domain";
+import { getDb } from "$data/drizzle/db";
+import { championships } from "$data/drizzle/models/schema";
+import { CustomError, PaginationDTO } from "$domain";
 
 type CreateChampionshipDTO = any;
 

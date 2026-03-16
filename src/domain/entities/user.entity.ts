@@ -1,13 +1,13 @@
 import { z } from "zod";
-import { Result, ok, fail } from "../../config/result";
+import { Result, ok, fail } from "$config/result";
 
 export class UserEntity {
     static readonly schema = z.object({
         id: z.number({ message: "Missing id" }),
         organizationId: z.number({ message: "Missing organizationId" }).nullable().optional(),
         name: z.string({ message: "Missing name" }),
-        email: z.string({ message: "Missing email" }).email("Invalid email"),
-        emailValidated: z.boolean(),
+        email: z.email({ message: "Invalid email" }),
+        emailValidated: z.boolean().optional(),
         password: z.string({ message: "Missing password" }),
         role: z.number({ message: "Missing role" }).nullable().optional(), // FK directa a roles.id
         img: z.string().nullable().optional(),
@@ -24,7 +24,7 @@ export class UserEntity {
         public readonly img?: string | null,
     ) {}
 
-    static fromObject(obj: { [key: string]: any }): Result<UserEntity> {
+    static fromObject(obj: z.infer<typeof UserEntity.schema>): Result<UserEntity> {
         const parseResult = this.schema.safeParse(obj);
 
         if (!parseResult.success) {
@@ -39,7 +39,7 @@ export class UserEntity {
                 id,
                 name,
                 email,
-                emailValidated,
+                emailValidated ?? false,
                 password,
                 organizationId,
                 role,
