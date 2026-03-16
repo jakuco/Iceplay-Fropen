@@ -80,7 +80,7 @@ export class MatchPlayerService {
 
       const matchPlayers = await MatchPlayerModel.find()
         .lean()
-        .exec();
+        .exec() as any[];
 
       return matchPlayers.map(mp => ({
         id: mp._id,

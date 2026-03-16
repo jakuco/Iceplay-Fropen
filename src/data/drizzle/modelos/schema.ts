@@ -44,12 +44,13 @@ export const organizationsRelations = relations(organizations, ({ many }) => ({
 
 export const users = pgTable("users", {
     id: serial("id").primaryKey(),
-    organizationId: integer("organization_id")
-        .notNull()
-        .references(() => organizations.id),
-    nombre: varchar("nombre", { length: 255 }).notNull(),
+    organizationId: integer("organization_id").references(() => organizations.id),
+    name: varchar("name", { length: 255 }).notNull(),
     email: varchar("email", { length: 255 }).notNull().unique(),
     password: varchar("password", { length: 255 }).notNull(),
+    emailValidated: boolean("email_validated").default(false).notNull(),
+    role: varchar("role", { length: 50 }).default("USER_ROLE").notNull(),
+    img: varchar("img", { length: 500 }),
 });
 
 export const usersRelations = relations(users, ({ one, many }) => ({

@@ -11,6 +11,16 @@ export class ChampionshipRoutes {
 
     router.get("/", championshipController.getChampionships);
     router.get("/all", championshipController.getAllChampionships);
+
+    router.post("/setup", championshipController.setupChampionship);
+
+    router.get("/:id/detail", championshipController.getChampionshipDetail);
+
+    router.post("/:id/teams", championshipController.enrollTeams);
+
+    router.post("/:id/fixture/generate", championshipController.generateFixture);
+    router.get("/:id/fixture", championshipController.getFixture);
+
     router.get("/:championship_id", championshipController.getChampionshipById);
 
     router.post(

@@ -11,7 +11,7 @@ export class MatchService {
 
   async createMatch(createMatchDto: CreateMatchDto) {
 
-    const matchExist = await MatchModel.findOne({ match_id: createMatchDto.match_id });
+    const matchExist = await MatchModel.findOne({ id: (createMatchDto as any).match_id ?? (createMatchDto as any).id });
 
     if (matchExist) {
       throw CustomError.badRequest("Match already exists");
@@ -25,13 +25,10 @@ export class MatchService {
 
       return {
         id: match.id,
-        match_id: match.match_id,
-        championship_id: match.championship_id,
-        home_team_id: match.home_team_id,
-        away_team_id: match.away_team_id,
-        date: match.date,
-        state: match.state,
-        match_events: match.match_events
+        homeTeamId: match.homeTeamId,
+        awayTeamId: match.awayTeamId,
+        scheduledDate: match.scheduledDate,
+        status: match.status,
       };
 
     } catch (err) {
@@ -42,12 +39,13 @@ export class MatchService {
   async getMatches(paginationDTO: PaginationDTO) {
     const { page, limit } = paginationDTO;
 
-    const [totalMatches, matches] = await Promise.all([
+    const [totalMatches, matches]: [number, any[]] = await Promise.all([
       MatchModel.countDocuments().exec(),
       MatchModel.find()
         .skip((page - 1) * limit)
         .limit(limit)
-        .exec()
+        .lean()
+        .exec() as Promise<any[]>
     ]);
 
     return {
@@ -60,39 +58,36 @@ export class MatchService {
       prev: (page - 1 > 0)
         ? `/api/matches?page=${page - 1}&limit=${limit}`
         : null,
-      matches: matches.map(m => toMatchDto(m))
+      matches: matches.map(m => toMatchDto(m as any))
     };
   }
 
   async getAllMatches(): Promise<MatchDto[]> {
-    const matches = await MatchModel.find().exec();
+    const matches = await MatchModel.find().lean().exec() as any[];
     return matches.map(m => toMatchDto(m));
   }
 
 
-  async getMatchById(match_id: number) {
+  async getMatchById(id: number) {
 
-    const match = await MatchModel.findOne({ match_id }).lean().exec();
+    const match = await MatchModel.findOne({ id }).lean().exec();
 
     if (!match) {
       throw CustomError.badRequest("Match not found");
     }
 
     return {
-      id: match._id,
-      match_id: match.match_id,
-      championship_id: match.championship_id,
-      home_team_id: match.home_team_id,
-      away_team_id: match.away_team_id,
-      date: match.date,
-      state: match.state,
-      match_events: match.match_events
+      id: match.id,
+      homeTeamId: match.homeTeamId,
+      awayTeamId: match.awayTeamId,
+      scheduledDate: match.scheduledDate,
+      status: match.status,
     };
   }
 
-  async updateMatch(match_id: number, updateMatchDto: UpdateMatchDto) {
+  async updateMatch(id: number, updateMatchDto: UpdateMatchDto) {
 
-    const match = await MatchModel.findOne({ match_id });
+    const match = await MatchModel.findOne({ id });
 
     if (!match) {
       throw CustomError.badRequest("Match not found");
@@ -105,13 +100,10 @@ export class MatchService {
 
       return {
         id: match.id,
-        match_id: match.match_id,
-        championship_id: match.championship_id,
-        home_team_id: match.home_team_id,
-        away_team_id: match.away_team_id,
-        date: match.date,
-        state: match.state,
-        match_events: match.match_events
+        homeTeamId: match.homeTeamId,
+        awayTeamId: match.awayTeamId,
+        scheduledDate: match.scheduledDate,
+        status: match.status,
       };
 
     } catch (error) {
@@ -119,9 +111,9 @@ export class MatchService {
     }
   }
 
-  async deleteMatch(match_id: number) {
+  async deleteMatch(id: number) {
 
-    const match = await MatchModel.findOneAndDelete({ match_id });
+    const match = await MatchModel.findOneAndDelete({ id });
 
     if (!match) {
       throw CustomError.badRequest("Match not found");
@@ -129,7 +121,7 @@ export class MatchService {
 
     return {
       message: "Match deleted successfully",
-      match_id
+      id,
     };
   }
 
@@ -143,8 +135,8 @@ export class MatchService {
     try {
 
       const [totalMatches, matches]: [number, any[]] = await Promise.all([
-        MatchModel.countDocuments(filters).exec(),
-        MatchModel.find(filters)
+        MatchModel.countDocuments(filters as any).exec(),
+        MatchModel.find(filters as any)
           .skip((page - 1) * limit)
           .limit(limit)
           .lean()
@@ -153,17 +145,14 @@ export class MatchService {
 
       const results = await Promise.all(
         matches.map(async (m) => {
-          const championship = await ChampionshipModel.findOne({ championship_id: m.championship_id }).lean();
-          const homeTeam = await TeamModel.findOne({ team_id: m.home_team_id }).lean();
-          const awayTeam = await TeamModel.findOne({ team_id: m.away_team_id }).lean();
+          const homeTeam = await TeamModel.findOne({ id: m.homeTeamId }).lean();
+          const awayTeam = await TeamModel.findOne({ id: m.awayTeamId }).lean();
 
           return {
-            championship_name: championship?.name || "Unknown Championship",
             match: `${homeTeam?.name || "Home"} vs ${awayTeam?.name || "Away"}`,
-            date: m.date,
-            location: "Estadio Ejemplo",
-            state: m.state,
-            events: m.match_events || []
+            date: m.scheduledDate,
+            location: m.venue || "Unknown",
+            status: m.status,
           };
         })
       );
@@ -190,21 +179,18 @@ export class MatchService {
 
     try {
 
-      const matches = await MatchModel.find(filters).lean().exec();
+      const matches = await MatchModel.find(filters as any).lean().exec() as any[];
 
       const results = await Promise.all(
         matches.map(async (m) => {
-          const championship = await ChampionshipModel.findOne({ championship_id: m.championship_id }).lean();
-          const homeTeam = await TeamModel.findOne({ team_id: m.home_team_id }).lean();
-          const awayTeam = await TeamModel.findOne({ team_id: m.away_team_id }).lean();
+          const homeTeam = await TeamModel.findOne({ id: m.homeTeamId }).lean();
+          const awayTeam = await TeamModel.findOne({ id: m.awayTeamId }).lean();
 
           return {
-            championship_name: championship?.name || "Unknown Championship",
             match: `${homeTeam?.name || "Home"} vs ${awayTeam?.name || "Away"}`,
-            date: m.date,
-            location: "Estadio Ejemplo",
-            state: m.state,
-            events: m.match_events || []
+            date: m.scheduledDate,
+            location: m.venue || "Unknown",
+            status: m.status,
           };
         })
       );

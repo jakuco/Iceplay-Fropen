@@ -1,164 +1,105 @@
-import { TeamModel } from "../../data/mongo/models/team.model";
-import { CustomError, PaginationDTO, CreateTeamDto } from "../../domain";
-import { toTeamDto } from "../../domain/dto/team/team.mapper";
+import { eq, count, asc, and } from "drizzle-orm";
+import { getDb } from "../../data/drizzle/db";
+import { teams } from "../../data/drizzle/modelos/schema";
+import { CustomError, PaginationDTO } from "../../domain";
 
 export class TeamService {
-
   constructor() {}
 
-  async createTeam(createTeamDto: CreateTeamDto) {
-
-    const teamExist = await TeamModel.findOne({
-      $or: [
-        { name: createTeamDto.name },
-        { team_id: createTeamDto.team_id }
-      ]
-    });
-
-    if (teamExist) {
-      throw CustomError.badRequest("Team already exists");
-    }
-
-    try {
-
-      const team = await TeamModel.create(createTeamDto);
-
-      return {
-        id: team.id,
-        team_id: team.team_id,
-        name: team.name,
-        shortname: team.shortname,
-        city: team.city,
-        coach_id: team.coach_id
-      };
-
-    } catch (error) {
-      throw CustomError.internalServer(`${error}`);
-    }
-  }
-
-  async getTeams(paginationDTO: PaginationDTO) {
-
+  async getTeams(paginationDTO: PaginationDTO, filters: { organizationId?: number; championshipId?: number } = {}) {
+    const db = getDb();
     const { page, limit } = paginationDTO;
 
-    try {
+    const conditions = [];
+    if (filters.championshipId) conditions.push(eq(teams.championshipId, filters.championshipId));
 
-      const [totalTeams, teams] = await Promise.all([
-        TeamModel.countDocuments().exec(),
-        TeamModel.find()
-          .skip((page - 1) * limit)
-          .limit(limit)
-          .lean()
-          .exec()
-      ]);
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
+
+    try {
+      const [{ total }] = await db.select({ total: count() }).from(teams).where(where);
+
+      const rows = await db
+        .select()
+        .from(teams)
+        .where(where)
+        .orderBy(asc(teams.id))
+        .limit(limit)
+        .offset((page - 1) * limit);
 
       return {
         page,
         limit,
-        total: totalTeams,
-
-        next: (page * limit < totalTeams)
-          ? `/api/teams?page=${page + 1}&limit=${limit}`
-          : null,
-
-        prev: (page - 1 > 0)
-          ? `/api/teams?page=${page - 1}&limit=${limit}`
-          : null,
-
-        teams: teams.map(team => ({
-          id: team._id,
-          team_id: team.team_id,
-          name: team.name,
-          shortname: team.shortname,
-          city: team.city,
-          coach_id: team.coach_id
-        }))
+        total,
+        next: page * limit < total ? `/api/teams?page=${page + 1}&limit=${limit}` : null,
+        prev: page - 1 > 0 ? `/api/teams?page=${page - 1}&limit=${limit}` : null,
+        teams: rows,
       };
-
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async getAllTeams() {
+  async getAllTeams(filters: { organizationId?: number; championshipId?: number } = {}) {
+    const db = getDb();
 
-    const teams = await TeamModel.find().exec();
-    return teams.map(team => toTeamDto(team))
+    const conditions = [];
+    if (filters.championshipId) conditions.push(eq(teams.championshipId, filters.championshipId));
+
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
 
     try {
-
-      const teams = await TeamModel.find().lean().exec();
-
-      return teams.map(team => ({
-        id: team._id,
-        team_id: team.team_id,
-        name: team.name,
-        shortname: team.shortname,
-        city: team.city,
-        coach_id: team.coach_id
-      }));
-
+      return await db.select().from(teams).where(where).orderBy(asc(teams.id));
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async getTeamById(team_id: number) {
+  async getTeamById(id: number) {
+    const db = getDb();
 
-    const team = await TeamModel.findOne({ team_id }).lean().exec();
+    const team = await db.query.teams.findFirst({ where: eq(teams.id, id) });
+    if (!team) throw CustomError.notfound("Team not found");
 
-    if (!team) {
-      throw CustomError.badRequest("Team not found");
-    }
-
-    return {
-      id: team._id,
-      team_id: team.team_id,
-      name: team.name,
-      shortname: team.shortname,
-      city: team.city,
-      coach_id: team.coach_id
-    };
+    return team;
   }
 
-  async updateTeam(team_id: number, data: Partial<CreateTeamDto>) {
+  async updateTeam(id: number, data: any) {
+    const db = getDb();
 
-    const team = await TeamModel.findOne({ team_id });
-
-    if (!team) {
-      throw CustomError.badRequest("Team not found");
-    }
+    const existing = await db.query.teams.findFirst({ where: eq(teams.id, id) });
+    if (!existing) throw CustomError.notfound("Team not found");
 
     try {
+      const [updated] = await db
+        .update(teams)
+        .set({
+          name:            data.name            ?? existing.name,
+          shortname:       data.shortname       ?? existing.shortname,
+          primaryColor:    data.primaryColor    ?? existing.primaryColor,
+          secondaryColor:  data.secondaryColor  ?? existing.secondaryColor,
+          logoUrl:         data.logoUrl         ?? existing.logoUrl,
+          location:        data.location        ?? existing.location,
+          coachName:       data.coachName       ?? existing.coachName,
+          coachPhone:      data.coachPhone      ?? existing.coachPhone,
+          isActive:        data.isActive        ?? existing.isActive,
+        })
+        .where(eq(teams.id, id))
+        .returning();
 
-      Object.assign(team, data);
-      await team.save();
-
-      return {
-        id: team.id,
-        team_id: team.team_id,
-        name: team.name,
-        shortname: team.shortname,
-        city: team.city,
-        coach_id: team.coach_id
-      };
-
+      return updated;
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async deleteTeam(team_id: number) {
+  async deleteTeam(id: number) {
+    const db = getDb();
 
-    const team = await TeamModel.findOneAndDelete({ team_id });
+    const existing = await db.query.teams.findFirst({ where: eq(teams.id, id) });
+    if (!existing) throw CustomError.notfound("Team not found");
 
-    if (!team) {
-      throw CustomError.badRequest("Team not found");
-    }
+    await db.delete(teams).where(eq(teams.id, id));
 
-    return {
-      message: "Team deleted successfully",
-      team_id
-    };
+    return { message: "Team deleted successfully", id };
   }
 }

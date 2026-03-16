@@ -1,6 +1,7 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
-import * as schema from './modelos/schema';
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
+import * as schema from "./modelos/schema";
+import { initDb } from "./db";
 
 interface Options {
   host: string;
@@ -15,20 +16,15 @@ export class DrizzleDatabase {
     const { host, port, user, password, database } = options;
 
     try {
-      const pool = new Pool({
-        host,
-        port,
-        user,
-        password,
-        database,
-      });
+      const pool = new Pool({ host, port, user, password, database });
+      await pool.query("SELECT NOW()");
+      console.log("✅ Connected to PostgreSQL with Drizzle");
 
-      await pool.query('SELECT NOW()'); // Verifica la conexión
-      console.log('✅ Connected to PostgreSQL with Drizzle');
-
-      return drizzle(pool, { schema });
+      const db = drizzle(pool, { schema });
+      initDb(db);
+      return db;
     } catch (error) {
-      console.error('❌ PostgreSQL connection error:', error);
+      console.error("❌ PostgreSQL connection error:", error);
       throw error;
     }
   }

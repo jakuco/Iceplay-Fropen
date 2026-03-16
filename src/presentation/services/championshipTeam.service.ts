@@ -64,9 +64,9 @@ export class ChampionshipTeamService {
 
   async getAllChampionshipTeams() {
     try {
-      const championshipTeams = await ChampionshipTeamModel.find().lean().exec();
+      const championshipTeams = await ChampionshipTeamModel.find().lean().exec() as any[];
       return championshipTeams.map(ct => ({
-        id: ct.id,
+        id: ct._id,
         team_id: ct.team_id,
         championship_id: ct.championship_id,
         inscription_date: ct.inscription_date

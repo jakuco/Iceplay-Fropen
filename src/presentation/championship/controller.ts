@@ -1,8 +1,15 @@
 import { Request, Response } from "express";
 import { CustomError, PaginationDTO } from "../../domain";
 import { ChampionshipService } from "../services/championship.service";
+import { ChampionshipSetupService } from "../services/championship-setup.service";
+import { FixtureService } from "../services/fixture.service";
+import { ChampionshipSetupDTO, EnrollTeamsDTO } from "../../domain/dto/championship/championship-setup.dto";
+import { GenerateFixtureDTO } from "../../domain/dto/fixture/generate-fixture.dto";
 
 export class ChampionshipController {
+
+  private readonly setupService = new ChampionshipSetupService();
+  private readonly fixtureService = new FixtureService();
 
   constructor(private readonly championshipService: ChampionshipService) {}
 
@@ -25,12 +32,17 @@ export class ChampionshipController {
   };
 
   public getChampionships = async (req: Request, res: Response) => {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 10, organizationId } = req.query;
     const [error, paginationDTO] = PaginationDTO.create(+page, +limit);
 
     if (error) return res.status(400).json({ error });
 
-    this.championshipService.getChampionships(paginationDTO!)
+    const orgId = organizationId ? Number(organizationId) : undefined;
+    if (organizationId && isNaN(orgId!)) {
+      return res.status(400).json({ message: "organizationId must be a number" });
+    }
+
+    this.championshipService.getChampionships(paginationDTO!, orgId)
       .then(championships => res.status(200).json(championships))
       .catch(error => this.handleError(error, res));
   };
@@ -77,5 +89,59 @@ export class ChampionshipController {
       .catch(error => this.handleError(error, res));
   };
 
-  
+  public setupChampionship = async (req: Request, res: Response) => {
+    const { error, data } = ChampionshipSetupDTO.validate(req.body);
+    if (error) return res.status(400).json({ message: error });
+
+    this.setupService.setupChampionship(data!)
+      .then(result => res.status(201).json(result))
+      .catch(err => this.handleError(err, res));
+  };
+
+  public enrollTeams = async (req: Request, res: Response) => {
+    const championshipId = Number(req.params.id);
+    if (isNaN(championshipId)) return res.status(400).json({ message: "id must be a number" });
+
+    const { error, data } = EnrollTeamsDTO.validate(req.body);
+    if (error) return res.status(400).json({ message: error });
+
+    this.setupService.enrollTeams(championshipId, data!.teams)
+      .then(result => res.status(201).json(result))
+      .catch(err => this.handleError(err, res));
+  };
+
+  public getChampionshipDetail = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ message: "id must be a number" });
+
+    this.setupService.getChampionshipDetail(id)
+      .then(result => res.status(200).json(result))
+      .catch(err => this.handleError(err, res));
+  };
+
+  // ── Fixture endpoints ──────────────────────────────────────────────────────
+
+  public generateFixture = async (req: Request, res: Response) => {
+    const championshipId = Number(req.params.id);
+    if (isNaN(championshipId)) return res.status(400).json({ message: "id must be a number" });
+
+    const { error, data } = GenerateFixtureDTO.validate(req.body);
+    if (error) return res.status(400).json({ message: error });
+
+    this.fixtureService.generateFixture(championshipId, data!)
+      .then(result => res.status(201).json(result))
+      .catch(err => this.handleError(err, res));
+  };
+
+  public getFixture = async (req: Request, res: Response) => {
+    const championshipId = Number(req.params.id);
+    if (isNaN(championshipId)) return res.status(400).json({ message: "id must be a number" });
+
+    const phaseId = req.query.phaseId ? Number(req.query.phaseId) : undefined;
+    const round   = req.query.round   ? Number(req.query.round)   : undefined;
+
+    this.fixtureService.getFixture(championshipId, { phaseId, round })
+      .then(result => res.status(200).json(result))
+      .catch(err => this.handleError(err, res));
+  };
 }

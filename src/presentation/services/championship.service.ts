@@ -1,62 +1,85 @@
-import { ChampionshipModel } from "../../data/mongo/models/championship.model";
+import { eq, count, asc } from "drizzle-orm";
+import { getDb } from "../../data/drizzle/db";
+import { championships } from "../../data/drizzle/modelos/schema";
 import { CustomError, PaginationDTO } from "../../domain";
-import { toChampionshipDto } from "../../domain/dto/championship/championship.mapper";
 
 type CreateChampionshipDTO = any;
 
 export class ChampionshipService {
-
   constructor() {}
 
-  async createChampionship(createChampionshipDTO: CreateChampionshipDTO) {
-    const championshipExist = await ChampionshipModel.findOne({ championship_id: createChampionshipDTO.championship_id });
+  async createChampionship(dto: CreateChampionshipDTO) {
+    const db = getDb();
 
-    if (championshipExist) {
-      throw CustomError.badRequest("Championship already exists");
-    }
+    const existing = await db.query.championships.findFirst({
+      where: eq(championships.slug, dto.slug),
+    });
+    if (existing) throw CustomError.badRequest("Championship already exists");
 
     try {
-      const championship = new ChampionshipModel({ ...createChampionshipDTO });
-      await championship.save();
+      const [championship] = await db
+        .insert(championships)
+        .values({
+          name: dto.name,
+          slug: dto.slug,
+          season: dto.season,
+          organizationId: dto.organizationId,
+          sportId: dto.sportId,
+          description: dto.description,
+          logo: dto.logo,
+          status: dto.status ?? 0,
+          maxTeams: dto.maxTeams,
+          maxPlayersPerTeam: dto.maxPlayersPerTeam,
+          startDate: dto.startDate,
+          endDate: dto.endDate,
+          registrationStartDate: dto.registrationStartDate,
+          registrationEndDate: dto.registrationEndDate,
+        })
+        .returning();
 
       return {
         id: championship.id,
-        championship_id: championship.championship_id,
         name: championship.name,
-        type_id: championship.type_id,
-        format_id: championship.format_id,
-        state_id: championship.state_id,
-        season_id: championship.season_id
+        status: championship.status,
+        season: championship.season,
       };
     } catch (err) {
       throw CustomError.internalServer(`${err}`);
     }
   }
 
-  async getChampionships(paginationDTO: PaginationDTO) {
+  async getChampionships(paginationDTO: PaginationDTO, organizationId?: number) {
+    const db = getDb();
     const { page, limit } = paginationDTO;
+    const where = organizationId ? eq(championships.organizationId, organizationId) : undefined;
 
     try {
-      const [totalChampionships, championships]: [number, any[]] = await Promise.all([
-        ChampionshipModel.countDocuments().exec(),
-        ChampionshipModel.find()
-          .skip((page - 1) * limit)
-          .limit(limit)
-          .lean()
-          .exec() as Promise<any[]>
-      ]);
+      const [{ total }] = await db
+        .select({ total: count() })
+        .from(championships)
+        .where(where);
+
+      const rows = await db
+        .select()
+        .from(championships)
+        .where(where)
+        .orderBy(asc(championships.id))
+        .limit(limit)
+        .offset((page - 1) * limit);
 
       return {
         page,
         limit,
-        total: totalChampionships,
-        next: (page * limit < totalChampionships)
-          ? `/api/championships?page=${page + 1}&limit=${limit}`
-          : null,
-        prev: (page - 1 > 0)
-          ? `/api/championships?page=${page - 1}&limit=${limit}`
-          : null,
-        championships
+        total,
+        next:
+          page * limit < total
+            ? `/api/championships?page=${page + 1}&limit=${limit}`
+            : null,
+        prev:
+          page - 1 > 0
+            ? `/api/championships?page=${page - 1}&limit=${limit}`
+            : null,
+        championships: rows,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
@@ -64,78 +87,80 @@ export class ChampionshipService {
   }
 
   async getAllChampionships() {
-    const championships = await ChampionshipModel.find().exec();
-    return championships.map(c => toChampionshipDto(c))
-
+    const db = getDb();
     try {
-      const championships = await ChampionshipModel.find().lean().exec();
-      return championships.map(c => ({
-        id: c.id,
-        championship_id: c.championship_id,
-        name: c.name,
-        type_id: c.type_id,
-        format_id: c.format_id,
-        state_id: c.state_id,
-        season_id: c.season_id
-      }));
+      return await db.select().from(championships).orderBy(asc(championships.id));
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async getChampionshipById(championship_id: number) {
-    const championship = await ChampionshipModel.findOne({ championship_id }).lean().exec();
+  async getChampionshipById(id: number) {
+    const db = getDb();
 
-    if (!championship) {
-      throw CustomError.badRequest("Championship not found");
-    }
+    const championship = await db.query.championships.findFirst({
+      where: eq(championships.id, id),
+    });
+    if (!championship) throw CustomError.badRequest("Championship not found");
 
     return {
-      id: championship._id,
-      championship_id: championship.championship_id,
+      id: championship.id,
       name: championship.name,
-      type_id: championship.type_id,
-      format_id: championship.format_id,
-      state_id: championship.state_id,
-      season_id: championship.season_id
+      status: championship.status,
+      season: championship.season,
     };
   }
 
-  async updateChampionship(championship_id: number, data: any) {
-    const championship = await ChampionshipModel.findOne({ championship_id });
+  async updateChampionship(id: number, data: any) {
+    const db = getDb();
 
-    if (!championship) {
-      throw CustomError.badRequest("Championship not found");
-    }
+    const existing = await db.query.championships.findFirst({
+      where: eq(championships.id, id),
+    });
+    if (!existing) throw CustomError.badRequest("Championship not found");
 
     try {
-      Object.assign(championship, data);
-      await championship.save();
+      const [updated] = await db
+        .update(championships)
+        .set({
+          name: data.name ?? existing.name,
+          slug: data.slug ?? existing.slug,
+          season: data.season ?? existing.season,
+          description: data.description ?? existing.description,
+          logo: data.logo ?? existing.logo,
+          status: data.status ?? existing.status,
+          maxTeams: data.maxTeams ?? existing.maxTeams,
+          maxPlayersPerTeam: data.maxPlayersPerTeam ?? existing.maxPlayersPerTeam,
+          startDate: data.startDate ?? existing.startDate,
+          endDate: data.endDate ?? existing.endDate,
+          registrationStartDate: data.registrationStartDate ?? existing.registrationStartDate,
+          registrationEndDate: data.registrationEndDate ?? existing.registrationEndDate,
+          updatedAt: new Date(),
+        })
+        .where(eq(championships.id, id))
+        .returning();
 
       return {
-        id: championship.id,
-        championship_id: championship.championship_id,
-        name: championship.name,
-        type_id: championship.type_id,
-        format_id: championship.format_id,
-        state_id: championship.state_id,
-        season_id: championship.season_id
+        id: updated.id,
+        name: updated.name,
+        status: updated.status,
+        season: updated.season,
       };
     } catch (error) {
       throw CustomError.internalServer(`${error}`);
     }
   }
 
-  async deleteChampionship(championship_id: number) {
-    const championship = await ChampionshipModel.findOneAndDelete({ championship_id });
+  async deleteChampionship(id: number) {
+    const db = getDb();
 
-    if (!championship) {
-      throw CustomError.badRequest("Championship not found");
-    }
+    const existing = await db.query.championships.findFirst({
+      where: eq(championships.id, id),
+    });
+    if (!existing) throw CustomError.badRequest("Championship not found");
 
-    return {
-      message: "Championship deleted successfully",
-      championship_id
-    };
+    await db.delete(championships).where(eq(championships.id, id));
+
+    return { message: "Championship deleted successfully", id };
   }
 }
