@@ -49,7 +49,7 @@ export const users = pgTable("users", {
     email: varchar("email", { length: 255 }).notNull().unique(),
     password: varchar("password", { length: 255 }).notNull(),
     emailValidated: boolean("email_validated").default(false).notNull(),
-    role: varchar("role", { length: 50 }).default("USER_ROLE").notNull(),
+    role: integer("role").references(() => roles.id), // ✅ FK a roles
     img: varchar("img", { length: 500 }),
 });
 
@@ -58,16 +58,21 @@ export const usersRelations = relations(users, ({ one, many }) => ({
         fields: [users.organizationId],
         references: [organizations.id],
     }),
+    roleRef: one(roles, {
+        fields: [users.role],
+        references: [roles.id],
+    }),
     userRoles: many(userRoles),
 }));
 
 export const roles = pgTable("roles", {
     id: serial("id").primaryKey(),
-    nombre: varchar("nombre", { length: 100 }).notNull(),
-    descripcion: text("descripcion"),
+    name: varchar("name", { length: 100 }).notNull(),         // ✅ renombrado de "nombre"
+    description: text("description"),                          // ✅ renombrado de "descripcion"
 });
 
 export const rolesRelations = relations(roles, ({ many }) => ({
+    users: many(users),
     userRoles: many(userRoles),
     rolePermissions: many(rolePermissions),
 }));
@@ -206,7 +211,7 @@ export const sportPositionsRelations = relations(sportPositions, ({ one }) => ({
 export const matchRules = pgTable("match_rules", {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
-    value: integer("value"), // valor por defecto
+    value: integer("value"),
 });
 
 export const matchRulesRelations = relations(matchRules, ({ many }) => ({
@@ -529,7 +534,7 @@ export const phaseLeague = pgTable("phase_league", {
         .notNull()
         .references(() => phases.id),
     legs: integer("legs"),
-    tiebreakOrder: text("tiebreak_order"), // points | diff | gf | h2h | random
+    tiebreakOrder: text("tiebreak_order"),
     advanceCount: integer("advance_count"),
 });
 
@@ -642,7 +647,7 @@ export const matches = pgTable("matches", {
         .references(() => groupTeams.id),
     homeTeamId: integer("home_team_id")
         .notNull()
-        .references(() => teams.id),  // <- sin relationName
+        .references(() => teams.id),
     awayTeamId: integer("away_team_id")
         .notNull()
         .references(() => teams.id),
@@ -693,7 +698,7 @@ export const matchEvents = pgTable("match_events", {
         .references(() => typeMatchEvents.id),
     playerId: integer("player_id").references(() => players.id),
     teamId: integer("team_id").references(() => teams.id),
-    time: integer("time").notNull(), // en segundos
+    time: integer("time").notNull(),
 });
 
 export const matchEventsRelations = relations(matchEvents, ({ one }) => ({

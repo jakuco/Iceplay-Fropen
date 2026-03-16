@@ -3,51 +3,48 @@ import { Result, ok, fail } from "../../config/result";
 
 export class UserEntity {
     static readonly schema = z.object({
-        id: z.string("Missing id"),
-        name: z.string("Missing name"),
-        email: z.email("Invalid email"),
+        id: z.number({ message: "Missing id" }),
+        organizationId: z.number({ message: "Missing organizationId" }).nullable().optional(),
+        name: z.string({ message: "Missing name" }),
+        email: z.string({ message: "Missing email" }).email("Invalid email"),
         emailValidated: z.boolean(),
-        password: z.string("Missing password"),
-        role: z.array(z.string(), "Missing roles"),
-        img: z.string().optional(),
+        password: z.string({ message: "Missing password" }),
+        role: z.number({ message: "Missing role" }).nullable().optional(), // FK directa a roles.id
+        img: z.string().nullable().optional(),
     });
 
     constructor(
-        public readonly id: string,
+        public readonly id: number,
         public readonly name: string,
         public readonly email: string,
         public readonly emailValidated: boolean,
         public readonly password: string,
-        public readonly role: string[],
-        public readonly img?: string,
-    ) { }
+        public readonly organizationId?: number | null,
+        public readonly role?: number | null,
+        public readonly img?: string | null,
+    ) {}
 
     static fromObject(obj: { [key: string]: any }): Result<UserEntity> {
-        if (obj.id === undefined) {
-            obj.id = obj._id.toString();
-        }
-
-        console.log("obj", obj);
-
         const parseResult = this.schema.safeParse(obj);
-        
-        console.log("parseResult", parseResult);
 
         if (!parseResult.success) {
             return fail(parseResult.error.message);
         }
 
-        const { id, name, email, emailValidated, password, role, img } = parseResult.data;
+        const { id, name, email, emailValidated, password, organizationId, role, img } =
+            parseResult.data;
 
-        return ok(new UserEntity(
-            id,
-            name,
-            email,
-            emailValidated,
-            password,
-            role,
-            img,
-        ));
+        return ok(
+            new UserEntity(
+                id,
+                name,
+                email,
+                emailValidated,
+                password,
+                organizationId,
+                role,
+                img,
+            ),
+        );
     }
-
 }
