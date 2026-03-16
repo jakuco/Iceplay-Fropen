@@ -1,6 +1,22 @@
 # Iceplay-Fropen
 Backend Iceplay
 
+## Referencia rápida
+
+| Acción | Comando |
+|---|---|
+| Levantar todo | `docker compose up -d` |
+| Bajar | `docker compose down` |
+| Bajar + datos | `docker compose down -v` |
+| Migraciones dev | `npm run migrate` |
+| Migraciones test | `npm run migrate:test` |
+| Seed dev | `npm run seed` |
+| Seed test | `npm run seed:test` |
+| GUI DB | http://localhost:8080 (admin@iceplay.com / admin) |
+
+**Dev** (port 5432): `DB_HOST=localhost DB_PORT=5432 DB_NAME=iceplay`
+**Test** (port 5433): `DB_HOST=localhost DB_PORT=5433 DB_NAME=iceplay_test`
+
 ## Configuración de bases de datos y Docker
 
 1. Verifica `docker-compose.yml` contiene los servicios:
