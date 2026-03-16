@@ -18,7 +18,7 @@ export class TeamRoutes {
     router.post(
       '/',
       [AuthMiddleware.validateJWT],
-      teamController.createTeam
+      //teamController.createTeam
     );
 
     router.put(

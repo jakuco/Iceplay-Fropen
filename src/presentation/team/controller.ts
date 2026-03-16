@@ -80,4 +80,10 @@ export class TeamController {
       .then(result => res.status(200).json(result))
       .catch(error => this.handleError(error, res));
   };
+
+  /*public createTeam = async (req: Request, res: Response) => {
+    this.teamService.createTeam(req.body)
+      .then(team => res.status(201).json(team))
+      .catch(error => this.handleError(error, res));
+  };*/
 }
