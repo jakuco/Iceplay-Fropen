@@ -1,0 +1,397 @@
+{
+  "info": {
+    "name": "Iceplay API",
+    "description": "API IcePlay",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl",  "value": "http://localhost:3001", "type": "string" },
+    { "key": "token",    "value": "",                      "type": "string" },
+    { "key": "champId",  "value": "1",                     "type": "string" },
+    { "key": "phaseId",  "value": "1",                     "type": "string" },
+    { "key": "groupId",  "value": "1",                     "type": "string" }
+  ],
+  "item": [
+
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"], "path": ["api","auth","register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin\",\n  \"email\": \"admin@iceplay.com\",\n  \"password\": \"Admin1234!\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const res = pm.response.json();",
+                "if (res.token) pm.collectionVariables.set('token', res.token);"
+              ],
+              "type": "text/javascript"
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"], "path": ["api","auth","login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@iceplay.com\",\n  \"password\": \"Admin1234!\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Renew Token",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/renew",
+              "host": ["{{baseUrl}}"], "path": ["api","auth","renew"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Championships — CRUD",
+      "item": [
+        {
+          "name": "Listar (paginado)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api","championships"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar por organización",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships?organizationId=1&page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api","championships"],
+              "query": [
+                { "key": "organizationId", "value": "1" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar todos (sin paginación)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/all",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","all"]
+            }
+          }
+        },
+        {
+          "name": "Obtener por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type",  "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Descripción actualizada\",\n  \"status\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Championships — Setup",
+      "item": [
+        {
+          "name": "Setup: Liga (round-robin)",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const res = pm.response.json();",
+                "if (res.championship?.id) pm.collectionVariables.set('champId', String(res.championship.id));",
+                "if (res.phases?.[0]?.id)  pm.collectionVariables.set('phaseId', String(res.phases[0].id));",
+                "if (res.phases?.[0]?.groups?.[0]?.id) pm.collectionVariables.set('groupId', String(res.phases[0].groups[0].id));"
+              ],
+              "type": "text/javascript"
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/setup",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","setup"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Liga Apertura 2025\",\n  \"slug\": \"liga-apertura-2025\",\n  \"season\": \"2025\",\n  \"organizationId\": 1,\n  \"sportId\": 1,\n  \"description\": \"Torneo de liga ida y vuelta\",\n  \"maxTeams\": 8,\n  \"maxPlayersPerTeam\": 25,\n  \"startDate\": \"2025-04-01\",\n  \"endDate\": \"2025-08-31\",\n  \"phases\": [\n    {\n      \"name\": \"Temporada Regular\",\n      \"phaseType\": \"league\",\n      \"phaseOrder\": 1,\n      \"config\": {\n        \"legs\": 2,\n        \"advanceCount\": 4\n      }\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Setup: Knockout (eliminación directa)",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const res = pm.response.json();",
+                "if (res.championship?.id) pm.collectionVariables.set('champId', String(res.championship.id));",
+                "if (res.phases?.[0]?.id)  pm.collectionVariables.set('phaseId', String(res.phases[0].id));",
+                "if (res.phases?.[0]?.groups?.[0]?.id) pm.collectionVariables.set('groupId', String(res.phases[0].groups[0].id));"
+              ],
+              "type": "text/javascript"
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/setup",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","setup"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Copa Regional 2025\",\n  \"slug\": \"copa-regional-2025\",\n  \"season\": \"2025\",\n  \"organizationId\": 1,\n  \"sportId\": 1,\n  \"maxTeams\": 8,\n  \"phases\": [\n    {\n      \"name\": \"Eliminatoria\",\n      \"phaseType\": \"knockout\",\n      \"phaseOrder\": 1,\n      \"config\": {\n        \"legs\": 1,\n        \"thirdPlaceMatch\": true,\n        \"seeding\": \"ranked\",\n        \"byeStrategy\": \"top_seed\"\n      }\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Setup: Grupos + Knockout",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const res = pm.response.json();",
+                "if (res.championship?.id) pm.collectionVariables.set('champId', String(res.championship.id));",
+                "if (res.phases?.[0]?.id)  pm.collectionVariables.set('phaseId', String(res.phases[0].id));",
+                "if (res.phases?.[0]?.groups?.[0]?.id) pm.collectionVariables.set('groupId', String(res.phases[0].groups[0].id));",
+                "// Guardar IDs de grupos en console para usarlos al inscribir equipos",
+                "const groups = res.phases?.[0]?.groups ?? [];",
+                "groups.forEach(g => console.log(`Grupo: ${g.name} -> groupTeamId: ${g.id}`));"
+              ],
+              "type": "text/javascript"
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/setup",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","setup"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Torneo Grupos 2025\",\n  \"slug\": \"torneo-grupos-2025\",\n  \"season\": \"2025\",\n  \"organizationId\": 1,\n  \"sportId\": 1,\n  \"maxTeams\": 8,\n  \"phases\": [\n    {\n      \"name\": \"Fase de Grupos\",\n      \"phaseType\": \"groups\",\n      \"phaseOrder\": 1,\n      \"config\": {\n        \"numGroups\": 2,\n        \"teamsPerGroup\": 4,\n        \"legs\": 1,\n        \"advancePerGroup\": 2\n      }\n    },\n    {\n      \"name\": \"Fase Final\",\n      \"phaseType\": \"knockout\",\n      \"phaseOrder\": 2,\n      \"config\": {\n        \"legs\": 1,\n        \"thirdPlaceMatch\": true\n      }\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Setup: Swiss (sistema suizo)",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const res = pm.response.json();",
+                "if (res.championship?.id) pm.collectionVariables.set('champId', String(res.championship.id));",
+                "if (res.phases?.[0]?.id)  pm.collectionVariables.set('phaseId', String(res.phases[0].id));",
+                "if (res.phases?.[0]?.groups?.[0]?.id) pm.collectionVariables.set('groupId', String(res.phases[0].groups[0].id));"
+              ],
+              "type": "text/javascript"
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/setup",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","setup"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Open Suizo 2025\",\n  \"slug\": \"open-suizo-2025\",\n  \"season\": \"2025\",\n  \"organizationId\": 1,\n  \"sportId\": 1,\n  \"maxTeams\": 8,\n  \"phases\": [\n    {\n      \"name\": \"Rondas Suizo\",\n      \"phaseType\": \"swiss\",\n      \"phaseOrder\": 1,\n      \"config\": {\n        \"numRounds\": 5,\n        \"pairingSystem\": \"monrad\",\n        \"firstRound\": \"random\",\n        \"allowRematch\": false,\n        \"directAdvancedCount\": 4\n      }\n    }\n  ]\n}"
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Championships — Equipos",
+      "item": [
+        {
+          "name": "Ver detalle (fases + grupos + equipos)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/detail",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}","detail"]
+            }
+          }
+        },
+        {
+          "name": "Inscribir equipos — sin asignar grupo (auto)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/teams",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}","teams"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teams\": [\n    {\n      \"name\": \"Águilas FC\",\n      \"shortname\": \"AGU\",\n      \"slug\": \"aguilas-fc\",\n      \"primaryColor\": \"#1e40af\",\n      \"secondaryColor\": \"#ffffff\",\n      \"location\": \"Bogotá\",\n      \"coachName\": \"Juan Pérez\",\n      \"coachPhone\": \"+57300000001\"\n    },\n    {\n      \"name\": \"Leones SC\",\n      \"shortname\": \"LEO\",\n      \"slug\": \"leones-sc\",\n      \"primaryColor\": \"#b45309\",\n      \"location\": \"Medellín\"\n    },\n    {\n      \"name\": \"Tigres Atlético\",\n      \"shortname\": \"TIG\",\n      \"slug\": \"tigres-atletico\",\n      \"primaryColor\": \"#166534\",\n      \"location\": \"Cali\"\n    },\n    {\n      \"name\": \"Cóndores CF\",\n      \"shortname\": \"CON\",\n      \"slug\": \"condores-cf\",\n      \"primaryColor\": \"#7c3aed\",\n      \"location\": \"Barranquilla\"\n    }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Inscribir equipos — asignar a grupos específicos",
+          "description": "Usa groupTeamId obtenido del /detail o del /setup. Útil para torneos de grupos donde cada equipo va a Grupo A o Grupo B.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/teams",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}","teams"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teams\": [\n    { \"name\": \"Real Madrid\",  \"shortname\": \"RMA\", \"slug\": \"real-madrid\",  \"primaryColor\": \"#ffffff\", \"groupTeamId\": 1 },\n    { \"name\": \"Barcelona\",    \"shortname\": \"FCB\", \"slug\": \"barcelona\",    \"primaryColor\": \"#a50044\", \"groupTeamId\": 1 },\n    { \"name\": \"Atletico\",     \"shortname\": \"ATM\", \"slug\": \"atletico\",     \"primaryColor\": \"#cb3524\", \"groupTeamId\": 1 },\n    { \"name\": \"Sevilla\",      \"shortname\": \"SEV\", \"slug\": \"sevilla\",      \"primaryColor\": \"#ffffff\", \"groupTeamId\": 1 },\n    { \"name\": \"Valencia\",     \"shortname\": \"VAL\", \"slug\": \"valencia\",     \"primaryColor\": \"#f5a623\", \"groupTeamId\": 2 },\n    { \"name\": \"Villarreal\",   \"shortname\": \"VLL\", \"slug\": \"villarreal\",   \"primaryColor\": \"#ffde00\", \"groupTeamId\": 2 },\n    { \"name\": \"Betis\",        \"shortname\": \"BET\", \"slug\": \"betis\",        \"primaryColor\": \"#00954c\", \"groupTeamId\": 2 },\n    { \"name\": \"Athletic\",     \"shortname\": \"ATH\", \"slug\": \"athletic\",     \"primaryColor\": \"#ee2523\", \"groupTeamId\": 2 }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Championships — Fixture",
+      "item": [
+        {
+          "name": "Generar fixture",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/fixture/generate",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}","fixture","generate"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phaseId\": {{phaseId}},\n  \"startDate\": \"2025-04-05\",\n  \"matchIntervalDays\": 7,\n  \"matchTimes\": [\"16:00\", \"19:00\"],\n  \"venue\": \"Estadio El Campín\",\n  \"city\": \"Bogotá\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Ver fixture completo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/fixture",
+              "host": ["{{baseUrl}}"], "path": ["api","championships","{{champId}}","fixture"]
+            }
+          }
+        },
+        {
+          "name": "Ver fixture — filtrar por fase",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/fixture?phaseId={{phaseId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api","championships","{{champId}}","fixture"],
+              "query": [{ "key": "phaseId", "value": "{{phaseId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Ver fixture — filtrar por ronda",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/fixture?round=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api","championships","{{champId}}","fixture"],
+              "query": [{ "key": "round", "value": "1" }]
+            }
+          }
+        },
+        {
+          "name": "Ver fixture — fase + ronda",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/championships/{{champId}}/fixture?phaseId={{phaseId}}&round=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api","championships","{{champId}}","fixture"],
+              "query": [
+                { "key": "phaseId", "value": "{{phaseId}}" },
+                { "key": "round",   "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+
+  ]
+}

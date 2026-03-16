@@ -4,7 +4,7 @@ import { MatchPlayerService } from "../services/matchPlayer.service";
 
 export class MatchPlayerController {
 
-  constructor(private readonly matchPlayerService: MatchPlayerService) {}
+  constructor(private readonly matchPlayerService: MatchPlayerService) { }
 
   private handleError(err: unknown, res: Response) {
     if (err instanceof CustomError) {
@@ -51,7 +51,7 @@ export class MatchPlayerController {
   public getMatchPlayerById = async (req: Request, res: Response) => {
 
     const player_id = Number(req.params.player_id);
-    const match_id  = Number(req.params.match_id);
+    const match_id = Number(req.params.match_id);
 
     if (isNaN(player_id) || isNaN(match_id)) {
       return res.status(400).json({
@@ -67,7 +67,7 @@ export class MatchPlayerController {
   public updateMatchPlayer = async (req: Request, res: Response) => {
 
     const player_id = Number(req.params.player_id);
-    const match_id  = Number(req.params.match_id);
+    const match_id = Number(req.params.match_id);
 
     if (isNaN(player_id) || isNaN(match_id)) {
       return res.status(400).json({
@@ -83,7 +83,7 @@ export class MatchPlayerController {
   public deleteMatchPlayer = async (req: Request, res: Response) => {
 
     const player_id = Number(req.params.player_id);
-    const match_id  = Number(req.params.match_id);
+    const match_id = Number(req.params.match_id);
 
     if (isNaN(player_id) || isNaN(match_id)) {
       return res.status(400).json({

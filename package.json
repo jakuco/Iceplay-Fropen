@@ -7,11 +7,17 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev": "tsnd --project tsnode.config.json --respawn --clear src/app.ts",
+    "dev": "tsnd --respawn --clear -r tsconfig-paths/register src/app.ts",
     "ts": "tsx watch src/app.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js",
-    "seed": "ts-node --project tsnode.config.json src/data/seed.ts"
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d",
+    "migrate": "drizzle-kit migrate",
+    "migrate:test": "DB_HOST=localhost DB_PORT=5433 DB_USER=postgres DB_PASSWORD=postgres DB_NAME=iceplay_test drizzle-kit migrate",
+    "seed": "tsx public/seeds/seed_psql.ts",
+    "seed:test": "dotenv -e test/.env.test tsx public/seeds/seed_psql.ts"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +37,8 @@
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   },

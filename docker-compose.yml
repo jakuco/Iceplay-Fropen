@@ -1,37 +1,56 @@
 version: '3.8'
+
 services:
-
-  mongo-db:
-    image: mongo:6.0.6
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo-user
-      MONGO_INITDB_ROOT_PASSWORD: 123456
-    volumes:
-      - ./mongoDB:/data/db
-    ports:
-      - 27017:27017
-
 
   postgres:
     image: postgres:16-alpine
+    container_name: iceplay-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: iceplay
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_DB: iceplay_db
-      POSTGRES_USER: iceplay_user
-      POSTGRES_PASSWORD: iceplay_password
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-      
-  # postgres-db:
-  #   image: postgres:15.3
-  #   restart: always
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_DB: my-db
-  #     POSTGRES_PASSWORD: 123456
-  #   volumes:
-  #     - ./postgres:/var/lib/postgresql/data
-  #   ports:
-  #     - 5432:5432
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d iceplay"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: iceplay-postgres-test
+    restart: always
+    environment:
+      POSTGRES_DB: iceplay_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d iceplay_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: iceplay-pgadmin
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@iceplay.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+volumes:
+  postgres_data:
+  postgres_test_data:

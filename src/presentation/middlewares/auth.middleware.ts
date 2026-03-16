@@ -1,58 +1,48 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtAdapter } from "../../config";
-import { UserModel } from "../../data";
-import { UserEntity } from "../../domain";
-import { Status } from "../../config/status";
+import { eq } from "drizzle-orm";
+import { JwtAdapter } from "$config";
+import { getDb } from "../../data/drizzle/db";
+import { users } from "../../data/drizzle/modelos/schema";
+import { UserEntity } from "$domain";
+import { Status } from "$config/status";
 
-export class AuthMiddleware{
-    static async validateJWT(req: Request, res: Response, next: NextFunction){
-        const authorization = req.header('Authorization');
-        if(!authorization) return res.status(Status.UNAUTHORIZED).json({message: "No token provided"});
-        if(!authorization.startsWith("Bearer ")) return res.status(Status.UNAUTHORIZED).json({error: "Invalid Bearer token"})
+export class AuthMiddleware {
+  static async validateJWT(req: Request, res: Response, next: NextFunction) {
+    const authorization = req.header("Authorization");
+    if (!authorization) return res.status(Status.UNAUTHORIZED).json({ message: "No token provided" });
+    if (!authorization.startsWith("Bearer ")) return res.status(Status.UNAUTHORIZED).json({ error: "Invalid Bearer token" });
 
-        const token = authorization.split(" ").at(1) || "";
+    const token = authorization.split(" ").at(1) || "";
 
-        try {
+    try {
+      const payload = await JwtAdapter.verifyToken<{ id: string; email: string }>(token);
+      if (!payload) return res.status(Status.UNAUTHORIZED).json({ error: "Invalid token" });
 
-            const payload = await JwtAdapter.verifyToken<{ id: string, email: string }>(token);
-            if(!payload) return res.status(Status.UNAUTHORIZED).json({error: "Invalid token"});
+      const db = getDb();
+      const user = await db.query.users.findFirst({ where: eq(users.id, parseInt(payload.id)) });
+      if (!user) return res.status(Status.UNAUTHORIZED).json({ error: "Invalid token - user" });
 
-            const user = await UserModel.findById(payload.id);
-            //? También podemos ver si el usuario esta activo user.isActive
-            if (!user) return res.status(Status.UNAUTHORIZED).json({error: "Invalid token - user"});
+      const entityResult = UserEntity.fromObject({
+        id: user.id.toString(),
+        name: user.name,
+        email: user.email,
+        emailValidated: user.emailValidated ? "true" : "false",
+        password: user.password,
+        role: [user.role],
+        img: user.img ?? undefined,
+      });
 
+      if (!entityResult.ok) {
+        console.error(entityResult.error);
+        return res.status(Status.INTERNAL_SERVER_ERROR).json({ error: "Internal Server Error" });
+      }
 
-            //TODO: Validate if user is active
-            
-
-            const entityResult = UserEntity.fromObject(user);
-            
-            if (!entityResult.ok) {
-                // Shouldn't happen
-                console.error(entityResult.error);
-                return res.status(Status.INTERNAL_SERVER_ERROR).json({error: "Internal Server Error"});
-            }
-
-            //? Se puede poner en cualquier parte de la petición, en el body es fácil de acceder
-            req.body.user = entityResult.value;
-
-            /*
-                TODO: Remove req.body.user
-                We shouldn't be hijacking the request body for passing info; plus, this could result on GET requests
-                with a body, which is an anti-pattern. Per the Express docs, `res.locals` is a non-persisted object 
-                that can be used to pass data between middleware without causing side effects, scoped to a single 
-                request; thus, conceptually the correct place to put the user info. 
-
-                Leaving both in for now to not break the app.
-            */
-            res.locals.user = entityResult.value;
-
-            next();
-
-        }catch (error){
-            console.error(error);
-            //? We should to use Winsgton o something like that, to get info in our logs about the error
-            res.status(Status.INTERNAL_SERVER_ERROR).json({error: "Internal Server Error"});
-        }
+      req.body.user = entityResult.value;
+      res.locals.user = entityResult.value;
+      next();
+    } catch (error) {
+      console.error(error);
+      res.status(Status.INTERNAL_SERVER_ERROR).json({ error: "Internal Server Error" });
     }
+  }
 }

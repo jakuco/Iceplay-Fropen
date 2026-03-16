@@ -28,6 +28,9 @@ export class Server {
   async start() {
     
 
+    //* Disable ETag (evita 304 Not Modified)
+    this.app.set('etag', false);
+
     //* Middlewares
     this.app.use(cors({
       origin: envs.CORS_ORIGIN,

@@ -10,7 +10,7 @@ export class PlayerService {
   async createPlayer(createPlayerDTO: CreatePlayerDTO) {
 
     const playerExist = await PlayerModel.findOne({
-      player_id: createPlayerDTO.player_id
+      id: createPlayerDTO.player_id ?? createPlayerDTO.id
     });
 
     if (playerExist) {
@@ -25,18 +25,14 @@ export class PlayerService {
       await player.save();
 
       return {
-        id: player.id,
-        player_id: player.player_id,
-        name: player.name,
-        lastname: player.lastname,
+        player_id: player.id,
+        name: player.firstName,
+        lastname: player.lastName,
         number: player.number,
-        team_id: player.team_id,
-        statics: player.player_statics,
-        //id: player.id,
+        team_id: player.teamId,
       };
 
     } catch (err) {
-      // si mongoose lanza un ValidationError al crear, queda como 500; puedes mapearlo a 400 si quieres
       throw CustomError.internalServer(`${err}`);
     }
   }
@@ -67,14 +63,12 @@ export class PlayerService {
           : null,
         players: players.map((p: any) => ({
           id: p._id,
-          player_id: p.player_id,
-          name: p.name,
-          lastname: p.lastname,
+          player_id: p.id,
+          name: p.firstName,
+          lastname: p.lastName,
           number: p.number,
-          team_id: p.team_id,
-          primary_position: p.primary_position,
-          home_country: p.home_country,
-          statics: p.player_statics
+          team_id: p.teamId,
+          primary_position: p.positionId,
         }))
       };
 
@@ -86,7 +80,7 @@ export class PlayerService {
   async getPlayerById(player_id: number) {
 
     const player = await PlayerModel
-      .findOne({ player_id })
+      .findOne({ id: player_id })
       .lean()
       .exec();
 
@@ -103,19 +97,13 @@ export class PlayerService {
       weight: player.weight,
       height: player.height,
       primary_position: player.positionId,
-      //secondary_position: player.secondary_position,
-      home_country: player.home_country,
-      state_id: player.state_id,
-      type: player.type,
-      team_id: player.team_id,
-      statics: player.player_statics
+      status: player.status,
+      team_id: player.teamId,
     };
   }
 
-  // ✅ UPDATE (PATCH real): solo actualiza lo que viene y valida sin exigir todo el doc
   async updatePlayer(player_id: number, updatePlayerDto: UpdatePlayerDto) {
 
-    // validaciones extra rápidas (si mandan strings vacíos)
     if (updatePlayerDto.name !== undefined && updatePlayerDto.name.trim().length === 0) {
       throw CustomError.badRequest("name cannot be empty");
     }
@@ -124,7 +112,6 @@ export class PlayerService {
     }
 
     try {
-      // arma un objeto solo con keys definidas (evita setear undefined)
       const updateData: Record<string, any> = {};
       for (const [k, v] of Object.entries(updatePlayerDto as any)) {
         if (v !== undefined) updateData[k] = v;
@@ -135,11 +122,11 @@ export class PlayerService {
       }
 
       const updated = await PlayerModel.findOneAndUpdate(
-        { player_id },
+        { id: player_id },
         { $set: updateData },
         {
           new: true,
-          runValidators: true, // valida lo que estás seteando
+          runValidators: true,
         }
       ).exec();
 
@@ -149,23 +136,18 @@ export class PlayerService {
 
       return {
         id: updated.id,
-        player_id: updated.player_id,
+        player_id: updated.id,
         number: updated.number,
-        name: updated.name,
-        lastname: updated.lastname,
+        name: updated.firstName,
+        lastname: updated.lastName,
         weight: updated.weight,
         height: updated.height,
-        primary_position: updated.primary_position,
-        secondary_position: updated.secondary_position,
-        home_country: updated.home_country,
-        state_id: updated.state_id,
-        type: updated.type,
-        team_id: updated.team_id,
-        statics: updated.player_statics
+        primary_position: updated.positionId,
+        status: updated.status,
+        team_id: updated.teamId,
       };
 
     } catch (error) {
-      // si ya es CustomError, no lo conviertas a 500
       if (error instanceof CustomError) throw error;
       throw CustomError.internalServer(`${error}`);
     }
@@ -173,7 +155,7 @@ export class PlayerService {
 
   async deletePlayer(player_id: number) {
 
-    const player = await PlayerModel.findOneAndDelete({ player_id });
+    const player = await PlayerModel.findOneAndDelete({ id: player_id });
 
     if (!player) {
       throw CustomError.badRequest("Player not found");

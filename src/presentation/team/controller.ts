@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CustomError, PaginationDTO, CreateTeamDto } from "../../domain";
+import { CustomError, PaginationDTO } from "../../domain";
 import { TeamService } from "../services/team.service";
 
 export class TeamController {
@@ -14,35 +14,30 @@ export class TeamController {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 
-  public createTeam = async (req: Request, res: Response) => {
-
-    const [error, createTeamDto] = CreateTeamDto.create(req.body);
-
-    if (error) {
-      return res.status(400).json({ message: error });
-    }
-
-    this.teamService.createTeam(createTeamDto!)
-      .then(team => res.status(201).json(team))
-      .catch(error => this.handleError(error, res));
-  };
-
   public getTeams = async (req: Request, res: Response) => {
-
-    const { page = 1, limit = 10 } = req.query;
-
+    const { page = 1, limit = 10, organizationId, championshipId } = req.query;
     const [error, paginationDTO] = PaginationDTO.create(+page, +limit);
+    if (error) return res.status(400).json({ error });
 
-    if (error)
-      return res.status(400).json({ error });
+    const filters = {
+      organizationId:  organizationId  ? Number(organizationId)  : undefined,
+      championshipId:  championshipId  ? Number(championshipId)  : undefined,
+    };
 
-    this.teamService.getTeams(paginationDTO!)
+    this.teamService.getTeams(paginationDTO!, filters)
       .then(teams => res.status(200).json(teams))
       .catch(error => this.handleError(error, res));
   };
 
-  public getAllTeams = async (_req: Request, res: Response) => {
-    this.teamService.getAllTeams()
+  public getAllTeams = async (req: Request, res: Response) => {
+    const { organizationId, championshipId } = req.query;
+
+    const filters = {
+      organizationId:  organizationId  ? Number(organizationId)  : undefined,
+      championshipId:  championshipId  ? Number(championshipId)  : undefined,
+    };
+
+    this.teamService.getAllTeams(filters)
       .then(teams => res.status(200).json(teams))
       .catch(error => this.handleError(error, res));
   };
