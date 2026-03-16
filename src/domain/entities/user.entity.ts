@@ -6,7 +6,7 @@ export class UserEntity {
         id: z.string("Missing id"),
         name: z.string("Missing name"),
         email: z.email("Invalid email"),
-        emailValidated: z.string("Missing emailValidated"),
+        emailValidated: z.boolean(),
         password: z.string("Missing password"),
         role: z.array(z.string(), "Missing roles"),
         img: z.string().optional(),
@@ -16,7 +16,7 @@ export class UserEntity {
         public readonly id: string,
         public readonly name: string,
         public readonly email: string,
-        public readonly emailValidated: string,
+        public readonly emailValidated: boolean,
         public readonly password: string,
         public readonly role: string[],
         public readonly img?: string,
@@ -24,11 +24,15 @@ export class UserEntity {
 
     static fromObject(obj: { [key: string]: any }): Result<UserEntity> {
         if (obj.id === undefined) {
-            obj.id = obj._id;
+            obj.id = obj._id.toString();
         }
+
+        console.log("obj", obj);
 
         const parseResult = this.schema.safeParse(obj);
         
+        console.log("parseResult", parseResult);
+
         if (!parseResult.success) {
             return fail(parseResult.error.message);
         }

@@ -23,6 +23,14 @@ export const envs = {
   DB_USER: get('DB_USER').required().asString(),
   DB_PASSWORD: get('DB_PASSWORD').required().asString(),
   DB_NAME: get('DB_NAME').required().asString(),
+
+  // Cloudflare R2
+  R2_ACCOUNT_ID: get('R2_ACCOUNT_ID').required().asString(),
+  R2_ACCESS_KEY_ID: get('R2_ACCESS_KEY_ID').required().asString(),
+  R2_SECRET_ACCESS_KEY: get('R2_SECRET_ACCESS_KEY').required().asString(),
+  R2_BUCKET_NAME: get('R2_BUCKET_NAME').required().asString(),
+
+  MAX_FILE_SIZE_MB: parseInt(process.env.MAX_FILE_SIZE_MB ?? '50', 10),
 }
 
 
